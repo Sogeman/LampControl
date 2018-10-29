@@ -17,4 +17,4 @@ User should be able to:
 - control light color and brightness of group or individual lights
 - create new scene or choose standard scene
 
-Technologies used: Java EE backend, MySQL database, Angular frontend, Hue API
+Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API
