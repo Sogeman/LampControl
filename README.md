@@ -1,7 +1,7 @@
 # LampControl
 Third Semester Project, Hue Lamp Control
 
-Team: Fritz Lukas, Mandler Rene
+Mandler Rene
 
 Web Application to control Philips Hue lights
 
