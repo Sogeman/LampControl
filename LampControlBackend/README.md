@@ -7,7 +7,6 @@ Web Application to control Philips Hue lights
 
 User should be able to:
 
-- login
 - connect to Hue Bridge
 - see all owned lights
 - add new lights
