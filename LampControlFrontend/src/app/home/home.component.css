@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  margin: 2%;
+  padding: 1%;
+}
+
+.centered {
+  text-align: center;
+}
