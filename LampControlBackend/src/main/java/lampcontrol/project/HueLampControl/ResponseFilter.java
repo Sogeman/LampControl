@@ -15,30 +15,26 @@ public class ResponseFilter implements ContainerResponseFilter {
 	@Override
 	public void filter(ContainerRequestContext request, ContainerResponseContext response) throws IOException {
 		
-		response.getHeaders().add("Access-Control-Allow-Origin", "http://localhost:4200");
-		response.getHeaders().add("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
-		response.getHeaders().add("Access-Control-Allow-Headers", "Content-Type");
-		response.getHeaders().add("Access-Control-Max-Age", "10");
 		
-//		MultivaluedMap<String, String> requestHeaders = request.getHeaders();
-//		MultivaluedMap<String, Object> responseHeaders = response.getHeaders();
-//		
-//		responseHeaders.add("Access-Control-Allow-Origin", getRequestOrigin(requestHeaders));
-//        responseHeaders.add("Access-Control-Allow-Methods", "GET, DELETE, OPTIONS, POST, PUT");
-//        responseHeaders.add("Access-Control-Allow-Headers", getRequestHeaders(requestHeaders));
-//		
-//		CacheControl cacheControl = new CacheControl();
-//		cacheControl.setNoCache(true);
-//		responseHeaders.add("Cache-Control", cacheControl);
-//	}
-//	
-//	private String getRequestOrigin(MultivaluedMap<String, String> requestHeaders) {
-//		String origin = requestHeaders.getFirst("Origin");
-//		return (origin != null ? origin : "null");
-//	}
-//	
-//	private String getRequestHeaders(MultivaluedMap<String, String> requestHeaders) {
-//		List<String> headers = requestHeaders.get("Access-Control-Request-Headers");
-//		return (headers != null ? String.join(", ", headers) : "");
+		MultivaluedMap<String, String> requestHeaders = request.getHeaders();
+		MultivaluedMap<String, Object> responseHeaders = response.getHeaders();
+		
+		responseHeaders.add("Access-Control-Allow-Origin", getRequestOrigin(requestHeaders));
+        responseHeaders.add("Access-Control-Allow-Methods", "GET, DELETE, OPTIONS, POST, PUT");
+        responseHeaders.add("Access-Control-Allow-Headers", getRequestHeaders(requestHeaders));
+		
+		CacheControl cacheControl = new CacheControl();
+		cacheControl.setNoCache(true);
+		responseHeaders.add("Cache-Control", cacheControl);
+	}
+	
+	private String getRequestOrigin(MultivaluedMap<String, String> requestHeaders) {
+		String origin = requestHeaders.getFirst("Origin");
+		return (origin != null ? origin : "null");
+	}
+	
+	private String getRequestHeaders(MultivaluedMap<String, String> requestHeaders) {
+		List<String> headers = requestHeaders.get("Access-Control-Request-Headers");
+		return (headers != null ? String.join(", ", headers) : "");
 	}
 }
