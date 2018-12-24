@@ -19,14 +19,13 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.Status;
 
-
-@Path("/scenes")
+@Path("/rooms")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class HueSceneResource {
+public class HueRoomResource {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -40,31 +39,31 @@ public class HueSceneResource {
 	
 	@POST
 	@Transactional
-	public Response create(HueScene scene) {
-		entityManager.persist(scene);
-		URI uri = uriInfo.getAbsolutePathBuilder().path(scene.getId().toString()).build();
+	public Response create(HueRoom room) {
+		entityManager.persist(room);
+		URI uri = uriInfo.getAbsolutePathBuilder().path(room.getId().toString()).build();
 		return Response.created(uri).build();
 	}
 	
 	@GET
-	public List<HueScene> getAllScenes() {
-		return hueService.getAllScenes();
+	public List<HueRoom> getAllRooms() {
+		return hueService.getAllRooms();
 	}
 	
 	@GET
 	@Path("/{id}")
-	public HueScene retrieveScene(@PathParam("id") Long id) {
-		return entityManager.find(HueScene.class, id);
+	public HueRoom retrieveRoom(@PathParam("id") Long id) {
+		return entityManager.find(HueRoom.class, id);
 	}
 	
 	@PUT
 	@Path("/{id}")
 	@Transactional
-	public void updateScene(@PathParam("id") Long id, HueScene newScene) {
-		HueScene oldScene = entityManager.find(HueScene.class, id);
-		if(oldScene != null) {
-			oldScene.setName(newScene.getName());
-			oldScene.setLights(newScene.getLights());
+	public void updateRoom(@PathParam("id") Long id, HueRoom newRoom) {
+		HueRoom oldRoom = entityManager.find(HueRoom.class, id);
+		if(oldRoom != null) {
+			oldRoom.setName(newRoom.getName());
+			oldRoom.setLights(newRoom.getLights());
 		} else {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
@@ -73,10 +72,10 @@ public class HueSceneResource {
 	@DELETE
 	@Path("/{id}")
 	@Transactional
-	public void deleteScene(@PathParam("id") Long id) {
-		HueScene scene = entityManager.find(HueScene.class, id);
-		if (scene != null) {
-			entityManager.remove(scene);
+	public void deleteRoom(@PathParam("id") Long id) {
+		HueRoom room = entityManager.find(HueRoom.class, id);
+		if (room != null) {
+			entityManager.remove(room);
 		} else {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
