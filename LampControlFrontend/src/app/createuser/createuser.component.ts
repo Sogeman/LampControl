@@ -4,6 +4,7 @@ import { HueService } from '../hue.service';
 export class User {
   username: string;
   nickname: string;
+  bridgeIp: string;
 }
 
 @Component({
@@ -14,7 +15,6 @@ export class User {
 export class CreateuserComponent implements OnInit {
 
   user: User;
-  HUE_BRIDGE_IP: string;
   @Output() userCreated = new EventEmitter<User>();
 
   constructor(private hueService: HueService) {
@@ -22,12 +22,10 @@ export class CreateuserComponent implements OnInit {
    }
 
   ngOnInit() {
-  }
+    }
 
   startUserCreation() {
-    this.hueService.fetchBridgeList()
-      .then(bridgeList => this.HUE_BRIDGE_IP = bridgeList[0].internalipaddress)
-      .then(() => this.hueService.createUser(this.HUE_BRIDGE_IP))
+    this.hueService.createUser()
       .then(createdUser => this.user.username = createdUser[0].success.username) // saves username from api to local user
       .then(() => this.userCreated.emit(this.user)); // emits local user
   }
