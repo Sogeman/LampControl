@@ -8,12 +8,12 @@ Web Application to control Philips Hue lights
 User should be able to:
 
 - <s>connect to Hue Bridge</s>
-- see all owned lights
+- <s>see all owned lights</s>
 - add new lights
 - add new groups
 - add lights to groups
 - remove lights from groups
-- control light color and brightness of group or individual lights
+- control <s>light</s> <s>color</s> and brightness of group or individual lights
 - create new scene or choose standard scene
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API
