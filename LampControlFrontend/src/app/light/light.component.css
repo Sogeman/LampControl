@@ -17,9 +17,9 @@ h2 {
 }
 
 .item {
-  flex-basis: 25%;
-  margin: 15px;
+  flex-basis: 30%;
   padding: 10px;
+  margin: 0 auto;
 }
 
 .item-image {
