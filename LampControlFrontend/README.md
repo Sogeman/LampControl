@@ -1,27 +1,19 @@
 # LampControl
+Third Semester Project, Hue Lamp Control
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+Mandler Rene
 
-## Development server
+Web Application to control Philips Hue lights
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+User should be able to:
 
-## Code scaffolding
+- <s>connect to Hue Bridge</s>
+- <s>see all owned lights</s>
+- add new lights
+- add new groups
+- add lights to groups
+- remove lights from groups
+- control <s>light</s> <s>color</s> and <s>brightness</s> of group or individual lights
+- create new scene or choose standard scene
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API
