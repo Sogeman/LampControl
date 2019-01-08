@@ -15,6 +15,8 @@ export class ManipulationService {
     return rgbString.substring(4, rgbString.length - 1).split(',');
   }
 
+
+  // calculations aren't perfect and values drift if you send the same one multiple times but it's the best I can do
   convertRGBtoXY(color: string[]): string[] {
     let red = parseInt(color[0], 10) / 255;
     let green = parseInt(color[1], 10) / 255;
