@@ -9,6 +9,8 @@ import { RoomComponent } from './room/room.component';
 import { LightComponent } from './light/light.component';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { LightDetailComponent } from './light-detail/light-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,14 @@ import { CookieService } from 'ngx-cookie-service';
     HomeComponent,
     RoomComponent,
     LightComponent,
-    CreateuserComponent
+    CreateuserComponent,
+    LightDetailComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ColorPickerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

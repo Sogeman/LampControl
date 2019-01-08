@@ -1,0 +1,44 @@
+.float-left {
+  float: left;
+}
+
+.float-clear {
+  clear: both;
+}
+
+.item-image {
+  padding: 2%;
+  border-radius: 50%;
+  display: block;
+  margin: 1.5% auto;
+}
+
+.click-cursor {
+  cursor: pointer;
+}
+
+.color-picker {
+  opacity: 1;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.color-picker:hover {
+  opacity: 0.7;
+}
+
+.light-name {
+  margin: 1%;
+}
+
+.save-button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin: 5px;
+}

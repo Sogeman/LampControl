@@ -28,24 +28,31 @@ h2 {
 }
 
 .item-image:hover {
-  transform: scale(1.1);
+  opacity: 0.7;
 }
 
-button {
+.controls-button {
   padding: 0;
   background: transparent;
   border: none;
   margin: 5px;
+  transform: scale(1.2);
 }
 
 .controls-button:hover {
-  transform: scale(1.2);
+  opacity: 0.7;
 }
 
 .controls {
   width: 80px;
   margin: 0 auto;
-  float: right;
+  /* float: right; */
+}
+
+.color-picker {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .float-clear {

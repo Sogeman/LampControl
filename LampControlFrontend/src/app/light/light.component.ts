@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HueService } from '../hue.service';
+import { Light } from '../light-detail/light-detail.component';
+import { ManipulationService } from '../manipulation.service';
 
 @Component({
   selector: 'app-light',
@@ -8,9 +10,11 @@ import { HueService } from '../hue.service';
 })
 export class LightComponent implements OnInit {
 
-  lightList: Object;
+  lightList: Light;
+  selectedLight: Light;
+  id: number;
 
-  constructor(private hueService: HueService) {
+  constructor(private hueService: HueService, private manipulationService: ManipulationService) {
   }
 
   ngOnInit() {
@@ -21,27 +25,51 @@ export class LightComponent implements OnInit {
     }
   }
 
-  refresh() {
+  refreshSingle(id: number) {
+    this.hueService.retrieveSingleLight(id)
+      .then(light => this.selectedLight = light)
+      .then(() => this.id = id);
+  }
+
+  refreshAll() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
   }
 
   saveName(value: string, id: number) {
     this.hueService.changeLightName(value, id)
-      .then(() => this.refresh());
+      .then(() => this.refreshSingle(id));
   }
 
   toggleLight(LightState: boolean, id: number) {
     this.hueService.toggleLight(LightState, id)
-      .then(() => this.refresh());
+      .then(() => this.refreshAll());
   }
 
-  openColorPicker() {
-    alert('colorpicker');
+  toggleLightDetail(LightState: boolean, id: number) {
+    this.hueService.toggleLight(LightState, id)
+      .then(() => this.refreshSingle(id));
   }
 
-  openBrightnessSlider() {
-    alert('brightness slider');
+  viewSelectedLight(id: number) {
+    this.hueService.retrieveSingleLight(id)
+      .then(light => this.selectedLight = light)
+      .then(() => this.id = id);
   }
+
+  clearSelectedLight() {
+    this.selectedLight = null;
+    this.refreshAll();
+  }
+
+  changeState(state: string, id: number) {
+    const splitColor = this.manipulationService.getNumbersFromRgbString(state);
+    const xyColor = this.manipulationService.convertRGBtoXY(splitColor);
+    const brightness = Math.trunc(this.manipulationService.getBrightnessFromRgbString(state) * 254) || 254;
+    this.hueService.updateState(xyColor, brightness, this.id) // this would kill any server instantly if more people used it at once
+      .then(() => this.refreshSingle(id));
+  }
+
 
 }
+

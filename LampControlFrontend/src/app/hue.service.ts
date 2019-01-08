@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Light } from './light-detail/light-detail.component';
 
 export class Room {
   name: string;
@@ -8,7 +9,7 @@ export class Room {
   lights: string[];
 }
 
-const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lampcontroller/resources/scenes';
+const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
 let HUE_BRIDGE_URL = '';
 // let HUE_API_CREATE_USER_URL = '';
 
@@ -23,7 +24,7 @@ export class HueService {
 
   createUser(): Promise<any> {
     console.log(HUE_BRIDGE_URL);
-    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lampcontroller' }).toPromise();
+    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
   }
 
   changeLightName(value: string, id: number): Promise<any> {
@@ -44,8 +45,14 @@ export class HueService {
       .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
   }
 
-  retrieveAllLights(): Promise<any> {
-    return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights').toPromise();
+  retrieveAllLights(): Promise<Light> {
+    return this.httpClient.get<Light>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights').toPromise();
+  }
+
+  retrieveSingleLight(id: number): Promise<Light> {
+    return this.httpClient.get<Light>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id).toPromise();
   }
 
   toggleLight(lightState: boolean, id: number): Promise<any> {
@@ -62,4 +69,19 @@ export class HueService {
     }
 
   }
+
+  updateState(color: string[], brightness: number, id: number) {
+    const x = parseFloat(color[0]);
+    const y = parseFloat(color[1]);
+    const body = {
+      'xy' : [
+        x,
+        y
+      ],
+      bri: brightness
+    };
+    return this.httpClient.put(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id + '/state', body).toPromise();
+  }
+
 }
