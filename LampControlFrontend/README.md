@@ -13,7 +13,7 @@ User should be able to:
 - add new groups
 - add lights to groups
 - remove lights from groups
-- control <s>light</s> <s>color</s> and <s>brightness</s> of group or individual lights
+- control <s>light</s> <s>color</s> and <s>brightness</s> of group or <s>individual lights</s>
 - create new scene or choose standard scene
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API
