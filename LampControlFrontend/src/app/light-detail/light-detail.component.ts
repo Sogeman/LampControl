@@ -5,7 +5,6 @@ export interface Light {
   name: string;
   state: {
     bri: number;
-    hue: number;
     on: boolean;
     xy: [number];
   };

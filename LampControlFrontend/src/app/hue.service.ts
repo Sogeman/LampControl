@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Light } from './light-detail/light-detail.component';
+import { Group } from './room/room.component';
+import { ManipulationService } from './manipulation.service';
 
-export class Room {
-  name: string;
-  type: string; // "Room"
-  class: string; // "Living Room etc"
-  lights: string[];
-}
-
-const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
+// const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
 let HUE_BRIDGE_URL = '';
-// let HUE_API_CREATE_USER_URL = '';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HueService {
 
-  room: Room;
+  constructor(private httpClient: HttpClient, private manipulationService: ManipulationService) { }
 
-  constructor(private httpClient: HttpClient) { }
+  // User Creation
 
   createUser(): Promise<any> {
     console.log(HUE_BRIDGE_URL);
-    return this.httpClient.post(HUE_BRIDGE_URL + '/api', {'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
+    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
   }
+
+  fetchBridgeUrl(): Promise<string> {
+    return this.httpClient.get('https://discovery.meethue.com').toPromise()
+      .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
+  }
+
+  // Lights
 
   changeLightName(value: string, id: number): Promise<any> {
     const body = {
@@ -33,16 +34,6 @@ export class HueService {
     };
     return this.httpClient.put(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id, body).toPromise();
-  }
-
-  retrieveRoom(id: number) {
-    return 2;
-    // return this.httpClient.get<Room>();
-  }
-
-  fetchBridgeUrl(): Promise<string> {
-    return this.httpClient.get('https://discovery.meethue.com').toPromise()
-      .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
   }
 
   retrieveAllLights(): Promise<Light> {
@@ -56,16 +47,14 @@ export class HueService {
   }
 
   toggleLight(lightState: boolean, id: number): Promise<any> {
-    const body = {
-      'on': !lightState
-    };
-
     if (lightState) {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id + '/state', body).toPromise();
+        localStorage.getItem('bridgeIp') + '/api/'
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState)).toPromise();
     } else {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id + '/state', body).toPromise();
+        localStorage.getItem('bridgeIp') + '/api/'
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState)).toPromise();
     }
 
   }
@@ -74,7 +63,7 @@ export class HueService {
     const x = parseFloat(color[0]);
     const y = parseFloat(color[1]);
     const body = {
-      'xy' : [
+      'xy': [
         x,
         y
       ],
@@ -90,6 +79,18 @@ export class HueService {
 
   getNewLights(): Promise<any> {
     return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/new').toPromise();
+  }
+
+  // Groups
+
+  retrieveAllGroups(): Promise<Group> {
+    return this.httpClient.get<Group>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups').toPromise();
+  }
+
+  toggleGroup(groupState: boolean, id: number): Promise<any> {
+    return this.httpClient.put(localStorage.getItem('bridgeIp') + '/api/'
+    + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createStateBody(groupState)).toPromise();
   }
 
 }

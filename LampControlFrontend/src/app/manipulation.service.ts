@@ -60,4 +60,28 @@ export class ManipulationService {
     return [r, g, b];
   }
 
+  getClass(roomClass: string, state: string) {
+    switch (roomClass) {
+      case 'Bedroom':
+        return 'assets/bedroom_' + state + '.png';
+      case 'Bathroom':
+        return 'assets/bathroom_' + state + '.png';
+      case 'Living room':
+        return 'assets/livingroom_' + state + '.png';
+      case 'Dining': case 'Kitchen':
+        return 'assets/kitchen_' + state + '.png';
+      case 'Office':
+        return 'assets/office_' + state + '.png';
+      default:
+        return 'assets/light_' + state;
+    }
+  }
+
+  createStateBody(state: boolean): any {
+    const body = {
+      'on': !state
+    };
+    return body;
+  }
+
 }

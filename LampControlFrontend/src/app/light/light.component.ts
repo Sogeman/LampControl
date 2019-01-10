@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HueService } from '../hue.service';
 import { Light } from '../light-detail/light-detail.component';
 import { ManipulationService } from '../manipulation.service';
@@ -10,6 +10,7 @@ import { ManipulationService } from '../manipulation.service';
 })
 export class LightComponent implements OnInit {
 
+  @Output() lightsRefreshed = new EventEmitter();
   lightList: Light;
   selectedLight: Light;
   id: number;
@@ -32,9 +33,15 @@ export class LightComponent implements OnInit {
       .then(() => this.id = id);
   }
 
+  refreshAllWithGroups() {
+    this.hueService.retrieveAllLights()
+      .then(lights => this.lightList = lights);
+  }
+
   refreshAll() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
+    this.lightsRefreshed.emit();
   }
 
   saveName(value: string, id: number) {
@@ -42,13 +49,13 @@ export class LightComponent implements OnInit {
       .then(() => this.refreshSingle(id));
   }
 
-  toggleLight(LightState: boolean, id: number) {
-    this.hueService.toggleLight(LightState, id)
+  toggleLight(lightState: boolean, id: number) {
+    this.hueService.toggleLight(lightState, id)
       .then(() => this.refreshAll());
   }
 
-  toggleLightDetail(LightState: boolean, id: number) {
-    this.hueService.toggleLight(LightState, id)
+  toggleLightDetail(lightState: boolean, id: number) {
+    this.hueService.toggleLight(lightState, id)
       .then(() => this.refreshSingle(id));
   }
 
