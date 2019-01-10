@@ -13,6 +13,7 @@ export class LightComponent implements OnInit {
   lightList: Light;
   selectedLight: Light;
   id: number;
+  lightSearch: boolean;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) {
   }
@@ -75,6 +76,14 @@ export class LightComponent implements OnInit {
       .then(() => this.refreshSingle(id));
   }
 
+  startAddingLights() {
+    this.lightSearch = true;
+  }
+
+  clearLightSearch() {
+    this.lightSearch = false;
+    this.refreshAll();
+  }
 
 }
 

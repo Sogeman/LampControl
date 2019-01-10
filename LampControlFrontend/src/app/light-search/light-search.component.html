@@ -1,0 +1,18 @@
+<button (click)="backButtonClicked()" class="float-left">Zurück</button>
+<div class="float-clear"></div>
+
+<h1>Lampen hinzufügen</h1>
+
+<div *ngIf="!newLightsFound">
+  <div class="click-cursor search-button" (click)="startLightSearch()">
+    <img src="assets/search.png">
+  </div>
+</div>
+
+<div *ngIf="newLightsFound">
+  <div class="click-cursor search-button" (click)="startRetrievingNewLights()">
+    <img src="assets/show.png">
+  </div>
+</div>
+
+<h5>{{helpText}}</h5>

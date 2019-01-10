@@ -1,0 +1,11 @@
+.search-button {
+  max-width: 120px;
+  max-height: 120px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.search-button:hover {
+  background-color: antiquewhite;
+}

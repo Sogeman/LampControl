@@ -84,4 +84,12 @@ export class HueService {
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id + '/state', body).toPromise();
   }
 
+  searchForNewLights(): Promise<any> {
+    return this.httpClient.post(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights', {}).toPromise();
+  }
+
+  getNewLights(): Promise<any> {
+    return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/new').toPromise();
+  }
+
 }

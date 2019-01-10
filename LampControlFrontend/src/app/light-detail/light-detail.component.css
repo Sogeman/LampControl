@@ -1,11 +1,3 @@
-.float-left {
-  float: left;
-}
-
-.float-clear {
-  clear: both;
-}
-
 .item-image {
   padding: 2%;
   border-radius: 50%;

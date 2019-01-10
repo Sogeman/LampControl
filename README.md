@@ -9,7 +9,8 @@ User should be able to:
 
 - <s>connect to Hue Bridge</s>
 - <s>see all owned lights</s>
-- add new lights
+- <s>add new lights</s>
+- show all groups
 - add new groups
 - add lights to groups
 - remove lights from groups

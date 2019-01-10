@@ -1,6 +1,6 @@
 <h2>Lampen </h2>
 
-<div class="container" *ngIf="!selectedLight">
+<div class="container" *ngIf="!selectedLight && !lightSearch">
   <div *ngFor="let light of lightList | keyvalue" class="item">
     <img [src]="(light.value.state.on == true) ? 'assets/light_on.png' : 'assets/light_off.png'" (click)="toggleLight(light.value.state.on, light.key)"
       [style.background-color]="light.value.state.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
@@ -15,7 +15,12 @@
     </button> -->
   </div>
   <div class="float-clear"></div>
+  <div class="add-button click-cursor" (click)="startAddingLights()">
+    <img src="assets/plus.png">
+  </div>
 </div>
 
 <app-light-detail *ngIf="selectedLight" [selectedLight]="selectedLight" [id]="id" (nameChange)="saveName($event.value, $event.id)"
   (back)="clearSelectedLight()" (lightToggled)="toggleLightDetail($event, id)" (stateChange)="changeState($event, id)"></app-light-detail>
+
+<app-light-search *ngIf="lightSearch" (back)="clearLightSearch()"></app-light-search>

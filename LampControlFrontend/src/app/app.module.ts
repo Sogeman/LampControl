@@ -11,6 +11,7 @@ import { CreateuserComponent } from './createuser/createuser.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { LightDetailComponent } from './light-detail/light-detail.component';
+import { LightSearchComponent } from './light-search/light-search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LightDetailComponent } from './light-detail/light-detail.component';
     RoomComponent,
     LightComponent,
     CreateuserComponent,
-    LightDetailComponent
+    LightDetailComponent,
+    LightSearchComponent
   ],
   imports: [
     BrowserModule,
