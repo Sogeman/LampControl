@@ -65,7 +65,12 @@ export class LightComponent implements OnInit {
   changeState(state: string, id: number) {
     const splitColor = this.manipulationService.getNumbersFromRgbString(state);
     const xyColor = this.manipulationService.convertRGBtoXY(splitColor);
-    const brightness = Math.trunc(this.manipulationService.getBrightnessFromRgbString(state) * 254) || 254;
+    let brightness = Math.trunc(this.manipulationService.getBrightnessFromRgbString(state) * 254);
+    if (brightness === null) {
+      brightness = 254;
+    } else if (brightness === 0) {
+      brightness = 1;
+    }
     this.hueService.updateState(xyColor, brightness, this.id) // this would kill any server instantly if more people used it at once
       .then(() => this.refreshSingle(id));
   }

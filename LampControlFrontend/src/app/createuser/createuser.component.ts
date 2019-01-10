@@ -3,7 +3,6 @@ import { HueService } from '../hue.service';
 
 export class User {
   username: string;
-  nickname: string;
   bridgeIp: string;
 }
 
@@ -24,9 +23,9 @@ export class CreateuserComponent implements OnInit {
   ngOnInit() {
     }
 
-  startUserCreation() {
-    this.hueService.createUser()
-      .then(createdUser => this.user.username = createdUser[0].success.username) // saves username from api to local user
+  startUserCreation(user: User) {
+    this.hueService.createUser(user.username)
+      // .then(createdUser => this.user.username = createdUser[0].success.username) // saves username from api to local user
       .then(() => this.userCreated.emit(this.user)); // emits local user
   }
 }

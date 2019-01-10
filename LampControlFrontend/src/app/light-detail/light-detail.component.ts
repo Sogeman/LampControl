@@ -4,7 +4,7 @@ import { ManipulationService } from '../manipulation.service';
 export interface Light {
   name: string;
   state: {
-    brightness: number;
+    bri: number;
     hue: number;
     on: boolean;
     xy: [number];
@@ -25,7 +25,6 @@ export class LightDetailComponent implements OnInit {
   @Input() selectedLight: Light;
   @Input() id: number;
   private _lightState = '';
-  brightness: number;
 
   @Input('lightState')
   set lightState(lightState: string) {
@@ -38,7 +37,16 @@ export class LightDetailComponent implements OnInit {
 
   ngOnInit() {
     const rgb = this.manipulationService.convertXYtoRGB(this.selectedLight.state.xy);
-    this.lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
+    let bri = this.selectedLight.state.bri;
+    if (bri === 1) {
+      bri = 0;
+    } else if (bri === 254) {
+      bri = 1;
+    } else {
+      bri = parseFloat((bri / 254).toFixed(2));
+    }
+    console.log(bri);
+    this.lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + bri + ')';
   }
 
   backButtonClicked() {

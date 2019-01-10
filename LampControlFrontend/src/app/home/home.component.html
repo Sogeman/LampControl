@@ -1,7 +1,7 @@
 <app-createuser (userCreated)="setUser($event)" *ngIf="!user.username"></app-createuser>
 
-<div *ngIf="user.nickname" class="centered">
-  <h2>{{user.nickname}}'s Hue Controller</h2>
+<div *ngIf="user.username" class="centered">
+  <h2>{{user.username}}'s Hue Controller</h2>
 </div>
 <div class="row main" *ngIf="user.username">
   <app-room class="column centered"></app-room>
