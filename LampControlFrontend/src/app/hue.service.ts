@@ -22,9 +22,9 @@ export class HueService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createUser(username: string): Promise<any> {
+  createUser(): Promise<any> {
     console.log(HUE_BRIDGE_URL);
-    return this.httpClient.post(HUE_BRIDGE_URL + '/api', {'username': username, 'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
+    return this.httpClient.post(HUE_BRIDGE_URL + '/api', {'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
   }
 
   changeLightName(value: string, id: number): Promise<any> {

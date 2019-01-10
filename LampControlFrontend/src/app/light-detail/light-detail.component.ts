@@ -38,15 +38,18 @@ export class LightDetailComponent implements OnInit {
   ngOnInit() {
     const rgb = this.manipulationService.convertXYtoRGB(this.selectedLight.state.xy);
     let bri = this.selectedLight.state.bri;
+    let alpha = ',';
     if (bri === 1) {
       bri = 0;
+      alpha += bri.toString();
     } else if (bri === 254) {
       bri = 1;
+      alpha = '';
     } else {
       bri = parseFloat((bri / 254).toFixed(2));
+      alpha += bri.toString();
     }
-    console.log(bri);
-    this.lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + bri + ')';
+    this.lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + alpha + ')';
   }
 
   backButtonClicked() {
