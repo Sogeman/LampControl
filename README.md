@@ -12,7 +12,7 @@ User should be able to:
 - <s>change light state</s>, <s>name</s>
 - <s>add new lights</s>
 - <s>show all groups</s>
-- delete <s>light</s>, group, scene
+- delete <s>light</s>, <s>group</s>, scene
 - change <s>group state</s>, <s>name</s>
 - add lights to groups
 - switch to add light to groups mode if group doesn't have lights
