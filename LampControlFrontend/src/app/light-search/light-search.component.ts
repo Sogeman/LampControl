@@ -13,7 +13,11 @@ export interface NewLight {
 export class LightSearchComponent implements OnInit {
 
   @Output() back = new EventEmitter();
-  helpText = 'Nach Lampen suchen';
+  helpText = {
+    line: 'Nach Lampen suchen',
+    line1: 'Nach Lampen suchen',
+    line2: ''
+};
   newLightsFound: boolean;
   newLights: NewLight[];
 
@@ -28,18 +32,12 @@ export class LightSearchComponent implements OnInit {
 
   startLightSearch() {
     this.hueService.searchForNewLights()
-      .then(response => {
-        if (response[0].success) {
-          this.newLightsFound = true;
+      .then(() => this.newLightsFound = true)
+      .then(() => {
+        this.helpText.line1 = 'Es wird nach Lampen gesucht, dies kann bis zu 20s dauern.';
+        this.helpText.line2 = 'Bitte zur Hauptansicht zurückkehren und wenn notwendig aktualisieren.';
         }
-      })
-      .then(() => this.helpText = 'Es wird nach Lampen gesucht, zurück zu allen Lampen')
-      .then(() => this.startRetrievingNewLights);
-  }
-
-  startRetrievingNewLights() {
-    this.hueService.getNewLights()
-      .then(() => this.back.emit());
+      );
   }
 
 }

@@ -18,6 +18,7 @@ export interface Light {
 export class LightDetailComponent implements OnInit {
 
   @Output() back = new EventEmitter();
+  @Output() delete = new EventEmitter<number>();
   @Output() lightToggled = new EventEmitter<boolean>();
   @Output() stateChange = new EventEmitter<string>();
   @Output() nameChange = new EventEmitter();
@@ -53,6 +54,10 @@ export class LightDetailComponent implements OnInit {
 
   backButtonClicked() {
     this.back.emit();
+  }
+
+  deleteButtonClicked() {
+    this.delete.emit(this.id);
   }
 
   lightClicked() {

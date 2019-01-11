@@ -92,5 +92,10 @@ export class LightComponent implements OnInit {
     this.refreshAll();
   }
 
+  deleteSelectedLight(id: number) {
+    this.hueService.deleteLight(id)
+      .then(() => this.clearSelectedLight());
+  }
+
 }
 

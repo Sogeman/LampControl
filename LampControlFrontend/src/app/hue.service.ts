@@ -81,6 +81,11 @@ export class HueService {
     return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/new').toPromise();
   }
 
+  deleteLight(id: number): Promise<any> {
+    return this.httpClient.delete(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id).toPromise();
+  }
+
   // Groups
 
   retrieveAllGroups(): Promise<Group> {

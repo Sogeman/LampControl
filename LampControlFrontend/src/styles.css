@@ -12,8 +12,16 @@ body {
   padding: 1%;
 }
 
+.refresh-button {
+
+}
+
 .float-left {
   float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 .float-clear {

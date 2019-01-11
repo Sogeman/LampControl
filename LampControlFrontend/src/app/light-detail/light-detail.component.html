@@ -1,4 +1,5 @@
 <button (click)="backButtonClicked()" class="float-left">Zurück</button>
+<button (click)="deleteButtonClicked()" class="float-right">Löschen</button>
 <div class="float-clear"></div>
 
 <img [src]="(selectedLight.state.on == true) ? 'assets/light_on.png' : 'assets/light_off.png'" [style.background-color]="selectedLight.state.on ? '#f2e63c' : 'black'"
@@ -12,5 +13,5 @@
 <div class="color-picker" [(colorPicker)]="lightState" [style.background]="lightState" [cpCancelButton]="true" [cpDisableInput]="'true'"
   [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="true" [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']"
 >
-
 </div>
+<p>Farbe und Helligkeit ändern</p>
