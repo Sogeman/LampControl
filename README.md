@@ -23,3 +23,8 @@ User should be able to:
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend currently unused. I initially thought about saving scenes and rooms there but I'm not so sure anymore that even works. If I use it at all, it will be for saving user data.
+
+
+(colorPickerSelect)="lightState" to only send on ok?
+[cpOKButton]="true"
+[cpOKButtonText]="'Speichern'"
