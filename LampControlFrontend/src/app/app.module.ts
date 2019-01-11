@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
-import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { AddGroupComponent } from './add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
     CreateuserComponent,
     DetailComponent,
     LightSearchComponent,
-    RoomDetailComponent
+    AddGroupComponent
   ],
   imports: [
     BrowserModule,
