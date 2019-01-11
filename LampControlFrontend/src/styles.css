@@ -3,6 +3,22 @@ body {
   height: 100%;
 }
 
+app-home {
+  height: 97vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  align-items: center;
+}
+
+app-group, app-light {
+  border: 1px solid black;
+  height: 90%;
+  overflow-y: auto;
+}
+
 .overview-header {
   position: sticky;
   top: 0px;
@@ -55,7 +71,7 @@ body {
 }
 
 .item-image {
-  padding: 10px;
+  padding: 2%;
   border-radius: 20%;
   margin: 2% 0;
 }

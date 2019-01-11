@@ -9,12 +9,14 @@ User should be able to:
 
 - <s>connect to Hue Bridge</s>
 - <s>see all owned lights</s>
-- <s>change light state</s>
+- <s>change light state</s>, <s>name</s>
 - <s>add new lights</s>
 - <s>show all groups</s>
-- change group state
-- add new groups
+- delete <s>light</s>, group, scene
+- change <s>group state</s>, <s>name</s>
 - add lights to groups
+- switch to add light to groups mode if group doesn't have lights
+- add new groups
 - remove lights from groups
 - control <s>light</s> <s>color</s> and <s>brightness</s> of group or <s>individual lights</s>
 - create new scene or choose standard scene

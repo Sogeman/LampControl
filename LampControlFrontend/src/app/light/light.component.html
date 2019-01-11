@@ -18,8 +18,8 @@
   </div>
 </div>
 
-<app-light-detail *ngIf="selectedLight" [selectedLight]="selectedLight" [id]="id" (nameChange)="saveName($event.value, $event.id)"
+<app-detail *ngIf="selectedLight" [selectedLight]="selectedLight" [id]="id" (nameChange)="saveLightName($event.value, $event.id, $event.type)"
   (back)="clearSelectedLight()" (delete)="deleteSelectedLight($event)" (lightToggled)="toggleLightDetail($event, id)"
-  (stateChange)="changeState($event, id)"></app-light-detail>
+  (stateChange)="changeState($event, id)"></app-detail>
 
 <app-light-search *ngIf="lightSearch" (back)="clearLightSearch()"></app-light-search>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Light, Group } from './detail/detail.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class ManipulationService {
     let red = parseInt(color[0], 10) / 255;
     let green = parseInt(color[1], 10) / 255;
     let blue = parseInt(color[2], 10) / 255;
-    // console.log(red, green, blue);
 
     red = (red > 0.04045) ? Math.pow((red + 0.055) / (1.0 + 0.055), 2.4) : (red / 12.92);
     green = (green > 0.04045) ? Math.pow((green + 0.055) / (1.0 + 0.055), 2.4) : (green / 12.92);
@@ -60,7 +60,45 @@ export class ManipulationService {
     return [r, g, b];
   }
 
-  getClass(roomClass: string, state: string) {
+  calculateLightState(light: Light, group: Group) {
+    let bri = 0;
+    let rgb = [];
+    let lightState = '';
+    let alpha = ',';
+    if (light) {
+      bri = light.state.bri;
+      rgb = this.convertXYtoRGB(light.state.xy);
+    } else {
+      bri = group.action.bri;
+      rgb = this.convertXYtoRGB(group.action.xy);
+    }
+    if (bri === 1) {
+      bri = 0;
+      alpha += bri.toString();
+    } else if (bri === 254) {
+      bri = 1;
+      alpha = '';
+    } else {
+      bri = parseFloat((bri / 254).toFixed(2));
+      alpha += bri.toString();
+    }
+    lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + alpha + ')';
+    return lightState;
+  }
+
+  calculateChangeLightState(state: string) {
+    const splitColor = this.getNumbersFromRgbString(state);
+    const xyColor = this.convertRGBtoXY(splitColor);
+    let brightness = Math.trunc(this.getBrightnessFromRgbString(state) * 254);
+    if (isNaN(brightness)) {
+      brightness = 254;
+    } else if (brightness === 0) {
+      brightness = 1;
+    }
+    return {xy: xyColor, bri: brightness};
+  }
+
+  getClassImage(roomClass: string, state: string): string {
     switch (roomClass) {
       case 'Bedroom':
         return 'assets/bedroom_' + state + '.png';
@@ -77,7 +115,7 @@ export class ManipulationService {
     }
   }
 
-  createStateBody(state: boolean): any {
+  createStateBody(state: boolean) {
     const body = {
       'on': !state
     };

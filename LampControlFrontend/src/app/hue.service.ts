@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Light } from './light-detail/light-detail.component';
-import { Group } from './room/room.component';
+import { Light, Group } from './detail/detail.component';
 import { ManipulationService } from './manipulation.service';
 
 // const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
@@ -18,7 +17,8 @@ export class HueService {
 
   createUser(): Promise<any> {
     console.log(HUE_BRIDGE_URL);
-    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lightcontroller' }).toPromise();
+    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lightcontroller' })
+      .toPromise();
   }
 
   fetchBridgeUrl(): Promise<string> {
@@ -26,40 +26,25 @@ export class HueService {
       .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
   }
 
-  // Lights
+  // Lights & Groups
 
-  changeLightName(value: string, id: number): Promise<any> {
+  changeName(value: string, id: number, type: string): Promise<any> {
     const body = {
       'name': value
     };
-    return this.httpClient.put(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id, body).toPromise();
-  }
-
-  retrieveAllLights(): Promise<Light> {
-    return this.httpClient.get<Light>(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights').toPromise();
-  }
-
-  retrieveSingleLight(id: number): Promise<Light> {
-    return this.httpClient.get<Light>(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id).toPromise();
-  }
-
-  toggleLight(lightState: boolean, id: number): Promise<any> {
-    if (lightState) {
+    if (type === 'group') {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState)).toPromise();
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id, body)
+          .toPromise();
     } else {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState)).toPromise();
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id, body)
+          .toPromise();
     }
 
   }
 
-  updateState(color: string[], brightness: number, id: number) {
+  updateState(type: string, color: string[], brightness: number, id: number) {
     const x = parseFloat(color[0]);
     const y = parseFloat(color[1]);
     const body = {
@@ -69,33 +54,81 @@ export class HueService {
       ],
       bri: brightness
     };
-    return this.httpClient.put(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id + '/state', body).toPromise();
+    if (type === 'group') {
+      return this.httpClient.put(
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/action', body)
+          .toPromise();
+    } else {
+      return this.httpClient.put(
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/state', body)
+          .toPromise();
+    }
+  }
+
+  deleteEntity(id: number, type: string): Promise<any> {
+    return this.httpClient.delete(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id)
+        .toPromise();
+  }
+
+  // Lights
+
+  retrieveAllLights(): Promise<Light> {
+    return this.httpClient.get<Light>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights')
+        .toPromise();
+  }
+
+  retrieveSingleLight(id: number): Promise<Light> {
+    return this.httpClient.get<Light>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id)
+        .toPromise();
+  }
+
+  toggleLight(lightState: boolean, id: number): Promise<any> {
+    if (lightState) {
+      return this.httpClient.put(
+        localStorage.getItem('bridgeIp') + '/api/'
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState))
+          .toPromise();
+    } else {
+      return this.httpClient.put(
+        localStorage.getItem('bridgeIp') + '/api/'
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState))
+          .toPromise();
+    }
+
   }
 
   searchForNewLights(): Promise<any> {
-    return this.httpClient.post(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights', {}).toPromise();
+    return this.httpClient.post(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights', {})
+      .toPromise();
   }
 
   getNewLights(): Promise<any> {
-    return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/new').toPromise();
+    return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/new')
+      .toPromise();
   }
 
-  deleteLight(id: number): Promise<any> {
-    return this.httpClient.delete(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id).toPromise();
-  }
 
   // Groups
 
-  retrieveAllGroups(): Promise<Group> {
-    return this.httpClient.get<Group>(
-      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups').toPromise();
+  retrieveAllGroups(): Promise<Group[]> {
+    return this.httpClient.get<Group[]>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups')
+        .toPromise();
   }
 
   toggleGroup(groupState: boolean, id: number): Promise<any> {
     return this.httpClient.put(localStorage.getItem('bridgeIp') + '/api/'
-    + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createStateBody(groupState)).toPromise();
+      + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createStateBody(groupState))
+        .toPromise();
+  }
+
+  retrieveSingleGroup(id: number): Promise<Group> {
+    return this.httpClient.get<Group>(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id)
+        .toPromise();
   }
 
 }

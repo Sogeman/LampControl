@@ -1,0 +1,23 @@
+<h2 class="overview-header">Rooms</h2>
+
+<div class="container" *ngIf="!selectedGroup">
+  <div *ngFor="let group of groupList | keyvalue" class="item">
+    <img [src]="group.value.action.on ? (getGroupImage(group.value.class, 'on')) : (getGroupImage(group.value.class, 'off'))"
+      (click)="toggleGroup(group.value.action.on, group.key)" [style.background-color]="group.value.action.on ? '#f2e63c' : 'black'"
+      class="item-image click-cursor">
+    <div class=controls>
+      <button type="button" class="controls-button click-cursor" (click)="viewSelectedGroup(group.key)">
+        <img src="assets/settings.png" class="">
+      </button>
+    </div>
+    <input type="text" [value]="group.value.name" placeholder="{{group.value.name}}" disabled>
+  </div>
+  <div class="float-clear"></div>
+
+  <div class="add-button">
+    <img src="assets/plus.png">
+  </div>
+</div>
+
+<app-detail *ngIf="selectedGroup" [selectedGroup]="selectedGroup" [id]="id" (groupToggled)="toggleGroupDetail($event, id)"
+  (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)" (stateChange)="changeState($event, id)" (delete)="deleteSelectedGroup()"></app-detail>

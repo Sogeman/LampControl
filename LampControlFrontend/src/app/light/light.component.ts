@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HueService } from '../hue.service';
-import { Light } from '../light-detail/light-detail.component';
+import { Light } from '../detail/detail.component';
 import { ManipulationService } from '../manipulation.service';
 
 @Component({
@@ -44,8 +44,8 @@ export class LightComponent implements OnInit {
     this.lightsRefreshed.emit();
   }
 
-  saveName(value: string, id: number) {
-    this.hueService.changeLightName(value, id)
+  saveLightName(value: string, id: number, type: string) {
+    this.hueService.changeName(value, id, type)
       .then(() => this.refreshSingle(id));
   }
 
@@ -71,16 +71,10 @@ export class LightComponent implements OnInit {
   }
 
   changeState(state: string, id: number) {
-    const splitColor = this.manipulationService.getNumbersFromRgbString(state);
-    const xyColor = this.manipulationService.convertRGBtoXY(splitColor);
-    let brightness = Math.trunc(this.manipulationService.getBrightnessFromRgbString(state) * 254);
-    if (brightness === null) {
-      brightness = 254;
-    } else if (brightness === 0) {
-      brightness = 1;
-    }
-    this.hueService.updateState(xyColor, brightness, this.id) // this would kill any server instantly if more people used it at once
-      .then(() => this.refreshSingle(id));
+    const changeState = this.manipulationService.calculateChangeLightState(state);
+    this.hueService.updateState('lights', changeState.xy, changeState.bri, id)
+      .then(() => this.refreshSingle(id));  // this would kill any server instantly if more people used it at once
+                                            // polls server every movement
   }
 
   startAddingLights() {
@@ -93,7 +87,7 @@ export class LightComponent implements OnInit {
   }
 
   deleteSelectedLight(id: number) {
-    this.hueService.deleteLight(id)
+    this.hueService.deleteEntity(id, 'lights')
       .then(() => this.clearSelectedLight());
   }
 

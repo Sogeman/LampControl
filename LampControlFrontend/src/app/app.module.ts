@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RoomComponent } from './room/room.component';
+import { GroupComponent } from './group/group.component';
 import { LightComponent } from './light/light.component';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { LightDetailComponent } from './light-detail/light-detail.component';
+import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 
@@ -18,10 +18,10 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    RoomComponent,
+    GroupComponent,
     LightComponent,
     CreateuserComponent,
-    LightDetailComponent,
+    DetailComponent,
     LightSearchComponent,
     RoomDetailComponent
   ],

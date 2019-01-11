@@ -1,6 +1,4 @@
-.item-image {
-  padding: 2%;
-  border-radius: 50%;
+.detail-image {
   display: block;
   margin: 1.5% auto;
 }
@@ -24,7 +22,7 @@
   opacity: 0.7;
 }
 
-.light-name {
+.detail-name {
   margin: 1%;
 }
 

@@ -15,12 +15,6 @@
   text-align: center;
 }
 
-app-room, app-light {
-  border: 1px solid black;
-  height: 90%;
-  overflow-y: auto;
-}
-
 .main {
   height: 85%;
 }
