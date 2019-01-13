@@ -111,15 +111,38 @@ export class ManipulationService {
       case 'Office':
         return 'assets/office_' + state + '.png';
       default:
-        return 'assets/light_' + state;
+        return 'assets/light_' + state + '.png';
     }
   }
 
-  createStateBody(state: boolean) {
+  createToggleBody(state: boolean) {
     const body = {
       'on': !state
     };
     return body;
+  }
+
+  createStateBody(color: string[], brightness: number) {
+    const x = parseFloat(color[0]);
+    const y = parseFloat(color[1]);
+    const body = {
+      'xy': [
+        x,
+        y
+      ],
+      bri: brightness
+    };
+    return body;
+  }
+
+  createGroupCreationBody(name: string, lights: number[], roomClass: string): any {
+    const group = {
+      name: name,
+      lights: lights,
+      type: 'Room',
+      class: roomClass
+    };
+    return group;
   }
 
 }

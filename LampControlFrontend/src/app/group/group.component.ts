@@ -15,21 +15,34 @@ export class GroupComponent implements OnInit {
   groupList: Group[];
   selectedGroup: Group;
   id: number;
-  addGroup: boolean;
+  addingLightsToGroup: boolean;
+  groupCreation: boolean;
 
-  constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
+  constructor(private hueService: HueService, private manipulationService: ManipulationService) {
+   }
 
   ngOnInit() {
     if (localStorage.getItem('bridgeIp')) {
       this.hueService.retrieveAllGroups()
-        .then(groups => this.groupList = groups)
-        .then(() => console.log(this.groupList));
+      .then(groups => this.groupList = this.filterGroups(groups))
+      .then(() => console.log(this.groupList));
     }
+  }
+
+  filterGroups(list: Group[]): Group[] {
+    const filteredGroups = [];
+    Object.values(list).forEach((group) => {
+      if (group.type === 'Room') {
+        filteredGroups.push(group);
+      }
+    });
+    return filteredGroups;
   }
 
   getGroupImage(roomClass: string, state: string): string {
     return this.manipulationService.getClassImage(roomClass, state);
   }
+
 
   refreshSingle(id: number) {
     this.hueService.retrieveSingleGroup(id)
@@ -37,14 +50,14 @@ export class GroupComponent implements OnInit {
       .then(() => this.id = id);
   }
 
-  refreshAllWithLights() {
+  refreshAllGroupsOnly() {
     this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = groups);
+      .then(groups => this.groupList = this.filterGroups(groups));
   }
 
   refreshAll() {
     this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = groups);
+      .then(groups => this.groupList = this.filterGroups(groups));
     this.groupsRefreshed.emit();
   }
 
@@ -62,7 +75,7 @@ export class GroupComponent implements OnInit {
     this.hueService.retrieveSingleGroup(id)
       .then(group => {
         if (group.lights.length < 1) {
-          this.addGroup = true;
+          this.addingLightsToGroup = true;
         } else {
           this.selectedGroup = group;
         }
@@ -75,6 +88,11 @@ export class GroupComponent implements OnInit {
     this.refreshAll();
   }
 
+  clearAddingLightsToGroup() {
+    this.addingLightsToGroup = false;
+    this.groupCreation = false;
+  }
+
   saveGroupName(value: string, id: number, type: string) {
     this.hueService.changeName(value, id, type)
       .then(() => this.refreshSingle(id));
@@ -83,12 +101,25 @@ export class GroupComponent implements OnInit {
   changeState(state: string, id: number) {
     const changeState = this.manipulationService.calculateChangeLightState(state);
     this.hueService.updateState('groups', changeState.xy, changeState.bri, id)
-      .then(() => this.refreshSingle(id));  // this would kill any server instantly if more people used it at once
-                                            // polls server every movement
+      .then(() => this.refreshSingle(id));
   }
 
   deleteSelectedGroup(id: number) {
     this.hueService.deleteEntity(id, 'groups')
       .then(() => this.clearSelectedGroup());
   }
+
+  startCreatingGroup() {
+    this.groupCreation = true;
+  }
+
+  saveGroup(body: any) {
+    this.hueService.createGroup(body)
+      .then(() => {
+        this.addingLightsToGroup = false;
+        this.groupCreation = false;
+      })
+      .then(() => this.refreshAllGroupsOnly());
+  }
+
 }

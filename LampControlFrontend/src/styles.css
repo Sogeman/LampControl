@@ -28,10 +28,6 @@ app-group, app-light {
   padding: 1%;
 }
 
-.refresh-button {
-
-}
-
 .float-left {
   float: left;
 }
@@ -102,6 +98,15 @@ app-group, app-light {
   height: 30px;
 }
 
+.light-list {
+  list-style: none;
+  width: 40%;
+  margin: 2% auto;
+}
+
+.list-checkbox {
+  float: left;
+}
 
 @media only screen and (max-width: 1200px) {
   .controls-button {

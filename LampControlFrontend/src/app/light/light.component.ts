@@ -11,7 +11,7 @@ import { ManipulationService } from '../manipulation.service';
 export class LightComponent implements OnInit {
 
   @Output() lightsRefreshed = new EventEmitter();
-  lightList: Light;
+  lightList: Light[];
   selectedLight: Light;
   id: number;
   lightSearch: boolean;
@@ -33,7 +33,7 @@ export class LightComponent implements OnInit {
       .then(() => this.id = id);
   }
 
-  refreshAllWithGroups() {
+  refreshAllLightsOnly() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
   }
@@ -73,8 +73,7 @@ export class LightComponent implements OnInit {
   changeState(state: string, id: number) {
     const changeState = this.manipulationService.calculateChangeLightState(state);
     this.hueService.updateState('lights', changeState.xy, changeState.bri, id)
-      .then(() => this.refreshSingle(id));  // this would kill any server instantly if more people used it at once
-                                            // polls server every movement
+      .then(() => this.refreshSingle(id));
   }
 
   startAddingLights() {

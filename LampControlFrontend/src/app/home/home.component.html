@@ -4,6 +4,6 @@
   <h2>{{user.nickname}}'s Hue Controller</h2>
 </div>
 <div class="row main" *ngIf="user.username">
-  <app-group class="column centered" (groupsRefreshed)="light.refreshAllWithGroups()" #group></app-group>
-  <app-light class="column centered" (lightsRefreshed)="group.refreshAllWithLights()" #light></app-light>
+  <app-group class="column centered" (groupsRefreshed)="light.refreshAllLightsOnly()" #group></app-group>
+  <app-light class="column centered" (lightsRefreshed)="group.refreshAllGroupsOnly()" #light></app-light>
 </div>

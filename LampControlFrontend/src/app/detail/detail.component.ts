@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ManipulationService } from '../manipulation.service';
 
-export interface Light {
+export class Light {
   name: string;
   state: {
     bri: number;
@@ -10,7 +10,7 @@ export interface Light {
   };
 }
 
-export interface Group {
+export class Group {
   name: string;
   lights: [number];
   type: string; // 'Room'

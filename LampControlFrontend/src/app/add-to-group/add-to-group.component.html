@@ -1,3 +1,36 @@
-<p>
-  add-to-group works!
-</p>
+<button (click)="backButtonClicked()" class="float-left">Zurück</button>
+<div class="float-clear"></div>
+
+<div *ngIf="groupCreation">
+  <input type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName">
+  <p>Bitte Raumtyp auswählen</p>
+  <select [(ngModel)]="selectedRoomClass">
+    <option>Living Room</option>
+    <option>Kitchen</option>
+    <option>Dining</option>
+    <option>Bedroom</option>
+    <option>Office</option>
+    <option>Bathroom</option>
+    <option>Other</option>
+  </select>
+</div>
+
+<div *ngIf="!groupCreation">
+  <h3>Bitte Lichter zum Raum hinzufügen</h3>
+</div>
+
+<div class="group-lights">
+  <ul class="light-list">
+    <li *ngFor="let light of lightList | keyvalue">
+      <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onChange(light.key, $event.target.checked)">
+      <label class="list-label" for="light.value.name">{{light.value.name}}</label>
+    </li>
+  </ul>
+
+  <button *ngIf="groupCreation" type="button" class="click-cursor save-button" (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
+    <img src="assets/save.png">
+  </button>
+  <button *ngIf="!groupCreation" type="button" class="click-cursor save-button" (click)="startSavingGroup(selectedLights)">
+      <img src="assets/save.png">
+    </button>
+</div>

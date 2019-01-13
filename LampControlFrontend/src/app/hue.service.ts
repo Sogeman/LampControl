@@ -45,22 +45,15 @@ export class HueService {
   }
 
   updateState(type: string, color: string[], brightness: number, id: number) {
-    const x = parseFloat(color[0]);
-    const y = parseFloat(color[1]);
-    const body = {
-      'xy': [
-        x,
-        y
-      ],
-      bri: brightness
-    };
-    if (type === 'group') {
+    if (type === 'groups') {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/action', body)
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/action',
+        this.manipulationService.createStateBody(color, brightness))
           .toPromise();
     } else {
       return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/state', body)
+        localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/state',
+        this.manipulationService.createStateBody(color, brightness))
           .toPromise();
     }
   }
@@ -73,8 +66,8 @@ export class HueService {
 
   // Lights
 
-  retrieveAllLights(): Promise<Light> {
-    return this.httpClient.get<Light>(
+  retrieveAllLights(): Promise<Light[]> {
+    return this.httpClient.get<Light[]>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights')
         .toPromise();
   }
@@ -89,12 +82,12 @@ export class HueService {
     if (lightState) {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState))
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
           .toPromise();
     } else {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createStateBody(lightState))
+        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
           .toPromise();
     }
 
@@ -121,13 +114,19 @@ export class HueService {
 
   toggleGroup(groupState: boolean, id: number): Promise<any> {
     return this.httpClient.put(localStorage.getItem('bridgeIp') + '/api/'
-      + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createStateBody(groupState))
+      + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createToggleBody(groupState))
         .toPromise();
   }
 
   retrieveSingleGroup(id: number): Promise<Group> {
     return this.httpClient.get<Group>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id)
+        .toPromise();
+  }
+
+  createGroup(body: any): Promise<any> {
+    return this.httpClient.post(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups', body)
         .toPromise();
   }
 
