@@ -24,70 +24,76 @@ export class LightComponent implements OnInit {
       this.hueService.retrieveAllLights()
         .then(lights => this.lightList = lights)
         .then(() => console.log(this.lightList));
+      console.log('all lights retrieved');
     }
   }
 
-  refreshSingle(id: number) {
+  refreshSingleLight(id: number) {
     this.hueService.retrieveSingleLight(id)
       .then(light => this.selectedLight = light)
       .then(() => this.id = id);
+    console.log('light id ' + id + ' retrieved');
   }
 
   refreshAllLightsOnly() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
+    console.log('all lights retrieved')
   }
 
   refreshAll() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
     this.lightsRefreshed.emit();
+    console.log('all lights retrieved');
   }
 
   saveLightName(value: string, id: number, type: string) {
     this.hueService.changeName(value, id, type)
-      .then(() => this.refreshSingle(id));
+      .then(() => this.refreshSingleLight(id));
+    console.log('lightname changed');
   }
 
   toggleLight(lightState: boolean, id: number) {
     this.hueService.toggleLight(lightState, id)
       .then(() => this.refreshAll());
+    console.log('light ' + id + ' toggled');
   }
 
   toggleLightDetail(lightState: boolean, id: number) {
     this.hueService.toggleLight(lightState, id)
-      .then(() => this.refreshSingle(id));
-  }
-
-  viewSelectedLight(id: number) {
-    this.hueService.retrieveSingleLight(id)
-      .then(light => this.selectedLight = light)
-      .then(() => this.id = id);
+      .then(() => this.refreshSingleLight(id));
+      console.log('light ' + id + ' toggled');
   }
 
   clearSelectedLight() {
     this.selectedLight = null;
     this.refreshAll();
+    console.log('return to homepage');
   }
 
   changeState(state: string, id: number) {
     const changeState = this.manipulationService.calculateChangeLightState(state);
     this.hueService.updateState('lights', changeState.xy, changeState.bri, id)
-      .then(() => this.refreshSingle(id));
+      .then(() => this.refreshSingleLight(id));
+    console.log('light ' + id + ' state changed to ' + state);
   }
 
   startAddingLights() {
     this.lightSearch = true;
+    console.log('change to add light view');
   }
 
   clearLightSearch() {
     this.lightSearch = false;
     this.refreshAll();
+    console.log('return to homepage');
   }
 
   deleteSelectedLight(id: number) {
     this.hueService.deleteEntity(id, 'lights')
       .then(() => this.clearSelectedLight());
+    console.log('light ' + id + ' deleted and return to homepage')
   }
 
 }

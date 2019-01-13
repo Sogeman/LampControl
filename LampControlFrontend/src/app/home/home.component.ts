@@ -19,22 +19,30 @@ export class HomeComponent implements OnInit {
     if (this.cookieService.get('username')) {
       this.user.username = this.cookieService.get('username');
       this.user.nickname = this.cookieService.get('nickname');
+      this.user.bridgeIp = this.cookieService.get('bridgeIp');
+      console.log('Fetched userdata from cookies.');
     } else if (localStorage.getItem('username')) {
       this.user.username = localStorage.getItem('username');
       this.user.nickname = localStorage.getItem('nickname');
+      this.user.bridgeIp = localStorage.getItem('bridgeIp');
+      console.log('Fetched userdata from storage.');
+    } else {
+      this.hueService.fetchBridgeUrl()
+        .then(bridgeIp => {
+          localStorage.setItem('bridgeIp', bridgeIp);
+          this.user.bridgeIp = bridgeIp;
+          console.log('Saved Bridge IP');
+      });
     }
-    this.hueService.fetchBridgeUrl()
-      .then(bridgeIp => {
-        localStorage.setItem('bridgeIp', bridgeIp);
-        this.user.bridgeIp = bridgeIp;
-    });
   }
 
   setUser(user: User) {
     this.user = user;
+    console.log('user created');
     console.log(this.user);
     this.setCookies();
     this.setLocalStorage();
+    console.log('Saved userdata to cookies and storage');
   }
 
   setCookies() {

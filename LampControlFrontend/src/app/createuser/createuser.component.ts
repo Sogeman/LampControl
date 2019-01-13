@@ -28,5 +28,6 @@ export class CreateuserComponent implements OnInit {
     this.hueService.createUser()
       .then(createdUser => this.user.username = createdUser[0].success.username) // saves username from api to local user
       .then(() => this.userCreated.emit(this.user)); // emits local user
+    console.log('User created');
   }
 }
