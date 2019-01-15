@@ -6,19 +6,19 @@ export class Light {
   state: {
     bri: number;
     on: boolean;
-    xy: [number];
+    xy: number[];
   };
 }
 
 export class Group {
   name: string;
-  lights: [number];
+  lights: number[];
   type: string; // 'Room'
   class: string; // Room name
   action: {
     on: boolean,
     bri: number,
-    xy: [number]
+    xy: number[]
   };
 }
 

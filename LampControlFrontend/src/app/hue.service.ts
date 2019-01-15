@@ -79,18 +79,10 @@ export class HueService {
   }
 
   toggleLight(lightState: boolean, id: number): Promise<any> {
-    if (lightState) {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/'
         + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
           .toPromise();
-    } else {
-      return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
-          .toPromise();
-    }
-
   }
 
   searchForNewLights(): Promise<any> {
@@ -127,6 +119,12 @@ export class HueService {
   createGroup(body: any): Promise<any> {
     return this.httpClient.post(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups', body)
+        .toPromise();
+  }
+
+  setGroupAttributes(body: any, id: number): Promise<any> {
+    return this.httpClient.put(
+      localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id, body)
         .toPromise();
   }
 

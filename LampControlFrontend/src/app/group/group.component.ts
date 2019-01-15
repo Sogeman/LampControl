@@ -14,7 +14,7 @@ export class GroupComponent implements OnInit {
   @Output() groupsRefreshed = new EventEmitter();
   groupList: Group[];
   selectedGroup: Group;
-  id: number;
+  groupId: number;
   addingLightsToGroup: boolean;
   groupCreation: boolean;
 
@@ -48,7 +48,7 @@ export class GroupComponent implements OnInit {
   refreshSingle(id: number) {
     this.hueService.retrieveSingleGroup(id)
       .then(group => this.selectedGroup = group)
-      .then(() => this.id = id);
+      .then(() => this.groupId = id);
     console.log('group ' + id + ' retrieved');
   }
 
@@ -82,13 +82,14 @@ export class GroupComponent implements OnInit {
       .then(group => {
         if (group.lights.length < 1) {
           this.addingLightsToGroup = true;
+          this.groupId = id;
           console.log('change to light add view');
         } else {
           this.selectedGroup = group;
-          console.log('group ' + id + 'retrieved');
+          console.log('group ' + id + ' retrieved');
         }
         })
-      .then(() => this.id = id);
+      .then(() => this.groupId = id);
   }
 
   clearSelectedGroup() {
@@ -100,6 +101,7 @@ export class GroupComponent implements OnInit {
   clearAddingLightsToGroup() {
     this.addingLightsToGroup = false;
     this.groupCreation = false;
+    this.refreshAllGroupsOnly();
     console.log('return to homepage');
   }
 
@@ -127,7 +129,7 @@ export class GroupComponent implements OnInit {
     console.log('switch to group create view');
   }
 
-  saveGroup(body: any) {
+  createGroup(body: any) {
     this.hueService.createGroup(body)
       .then(() => {
         this.addingLightsToGroup = false;
@@ -136,6 +138,11 @@ export class GroupComponent implements OnInit {
       })
       .then(() => this.refreshAllGroupsOnly());
       console.log('all groups retrieved');
+  }
+
+  saveGroup(body: any) {
+    this.hueService.setGroupAttributes(body, this.groupId)
+      .then(() => this.clearAddingLightsToGroup());
   }
 
 }

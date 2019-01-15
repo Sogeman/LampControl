@@ -117,7 +117,7 @@ export class ManipulationService {
 
   createToggleBody(state: boolean) {
     const body = {
-      'on': !state
+      on: !state
     };
     return body;
   }
@@ -130,18 +130,21 @@ export class ManipulationService {
         x,
         y
       ],
-      bri: brightness
+      bri: brightness,
+      transitiontime: 0
     };
     return body;
   }
 
-  createGroupCreationBody(name: string, lights: number[], roomClass: string): any {
+  createGroupAttributeBody(name: string, lights: number[], roomClass: string): any {
     const group = {
       name: name,
-      lights: lights,
-      type: 'Room',
-      class: roomClass
+      lights: lights
     };
+    if (roomClass !== '') {
+      group['type'] = 'Room';
+      group['class'] = roomClass;
+    }
     return group;
   }
 

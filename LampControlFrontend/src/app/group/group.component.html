@@ -2,9 +2,8 @@
 
 <div class="container" *ngIf="!selectedGroup && !addingLightsToGroup && !groupCreation">
   <div *ngFor="let group of groupList; let i = index" class="item">
-    <img [src]="group.action.on ? (getGroupImage(group.class, 'on')) : (getGroupImage(group.class, 'off'))"
-      (click)="toggleGroup(group.action.on, i+1)" [style.background-color]="group.action.on ? '#f2e63c' : 'black'"
-      class="item-image click-cursor">
+    <img [src]="group.action.on ? (getGroupImage(group.class, 'on')) : (getGroupImage(group.class, 'off'))" (click)="toggleGroup(group.action.on, i+1)"
+      [style.background-color]="group.action.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
     <div class=controls>
       <button type="button" class="controls-button click-cursor" (click)="viewSelectedGroup(i+1)">
         <img src="assets/settings.png" class="">
@@ -19,9 +18,9 @@
   </div>
 </div>
 
-<app-detail *ngIf="selectedGroup && !addingLightsToGroup" [selectedGroup]="selectedGroup" [id]="id" (groupToggled)="toggleGroupDetail($event, id)"
-  (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)" (stateChange)="changeState($event, id)"
+<app-detail *ngIf="selectedGroup && !addingLightsToGroup" [selectedGroup]="selectedGroup" [id]="groupId" (groupToggled)="toggleGroupDetail($event, groupId)"
+  (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)" (stateChange)="changeState($event, groupId)"
   (delete)="deleteSelectedGroup($event)"></app-detail>
 
-<app-add-to-group *ngIf="addingLightsToGroup || groupCreation" (back)="clearAddingLightsToGroup()" (createGroup)="saveGroup($event)"
-  [selectedGroup]="selectedGroup" [groupCreation]="groupCreation"></app-add-to-group>
+<app-add-to-group *ngIf="addingLightsToGroup || groupCreation" (back)="clearAddingLightsToGroup()" (createGroup)="createGroup($event)"
+  (saveGroup)="saveGroup($event)" [selectedGroup]="selectedGroup" [groupCreation]="groupCreation" [id]="groupId"></app-add-to-group>
