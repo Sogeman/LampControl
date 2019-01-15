@@ -93,7 +93,7 @@ export class LightComponent implements OnInit {
   deleteSelectedLight(id: number) {
     this.hueService.deleteEntity(id, 'lights')
       .then(() => this.clearSelectedLight());
-    console.log('light ' + id + ' deleted and return to homepage')
+    console.log('light ' + id + ' deleted and return to homepage');
   }
 
 }
