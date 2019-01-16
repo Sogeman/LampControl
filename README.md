@@ -5,7 +5,7 @@ Mandler Rene
 
 Web Application to control Philips Hue lights
 
-You can: <s>implemented</s>
+You can:  (<s>implemented</s>)
 
 - <s>connect to Hue Bridge</s>
 - <s>see all owned lights</s>
