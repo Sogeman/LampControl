@@ -5,7 +5,7 @@ Mandler Rene
 
 Web Application to control Philips Hue lights
 
-You can:  (<s>implemented</s>)
+TODO:  (<s>implemented</s>)
 
 - <s>connect to Hue Bridge</s>
 - <s>see all owned lights</s>
@@ -25,6 +25,6 @@ You can:  (<s>implemented</s>)
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend currently unused. I initially thought about saving scenes and rooms there but I'm not so sure anymore that even works. If I use it at all, it will be for saving user data.
 
-TODO NEXT: delete lights from groups, style add-to-group and delete view
+TODO NEXT: style add-to-group and delete view
 
 TODO maybe: make back and delete button into component
