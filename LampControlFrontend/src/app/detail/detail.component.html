@@ -1,8 +1,8 @@
 <!-- Light Detail -->
 
 <div *ngIf="selectedLight && !selectedGroup">
-  <button (click)="backButtonClicked('light')" class="float-left">Zurück</button>
-  <button (click)="deleteButtonClicked()" class="float-right">Löschen</button>
+  <button (click)="backButtonClicked('light')" class="float-left back-button">Zurück</button>
+  <button (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
 
   <img [src]="(selectedLight.state.on == true) ? 'assets/light_on.png' : 'assets/light_off.png'"
@@ -10,21 +10,21 @@
     (click)="lightClicked()">
 
   <input type="text" class="detail-name" [value]="selectedLight.name" placeholder="{{selectedLight.name}}" #lightName>
-  <button type="button" class="click-cursor save-button" (click)="startNameSave(lightName.value, id, 'light')"><img
-      src="assets/save.png">
-  </button>
+  <button type="button" class="click-cursor save-button" (click)="startNameSave(lightName.value, id, 'light')">Speichern</button>
 
-  <div class="color-picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState" [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'" [cpDisableInput]="'true'"
-    [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="true" [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
-  </div>
   <p>Farbe und Helligkeit ändern</p>
+  <div class="color-picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState"
+    [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
+    [cpDisableInput]="'true'" [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false" [cpPositionOffset]="'-160%'"
+    [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
+  </div>
 </div>
 
 <!-- Group Detail -->
 
 <div *ngIf="selectedGroup && !selectedLight">
-  <button (click)="backButtonClicked('group')" class="float-left">Zurück</button>
-  <button (click)="deleteButtonClicked()" class="float-right">Löschen</button>
+  <button (click)="backButtonClicked('group')" class="float-left back-button">Zurück</button>
+  <button (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
 
   <img [src]="selectedGroup.action.on ? (getGroupImage(selectedGroup.class, 'on')) : (getGroupImage(selectedGroup.class, 'off'))"
@@ -32,15 +32,14 @@
     (click)="groupClicked()">
 
   <input type="text" class="detail-name" [value]="selectedGroup.name" placeholder="{{selectedGroup.name}}" #groupName>
-  <button type="button" class="click-cursor save-button" (click)="startNameSave(groupName.value, id, 'group')"><img
-      src="assets/save.png">
-  </button>
+  <button type="button" class="click-cursor save-button" (click)="startNameSave(groupName.value, id, 'group')">Speichern</button>
 
-  <div class="color-picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState" [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
+  <p>Farbe und Helligkeit ändern</p>
+  <div class="color-picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState"
+    [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
     [cpDisableInput]="'true'" [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="true"
     [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
   </div>
-  <p>Farbe und Helligkeit ändern</p>
 
-  <button type="button" class="light-delete" (click)="startLightChange()">Lampen ändern</button>
+  <button type="button" class="light-delete light-change-button" (click)="startLightChange()">Lampen ändern</button>
 </div>

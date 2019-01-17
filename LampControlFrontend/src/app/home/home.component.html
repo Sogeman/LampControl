@@ -1,6 +1,6 @@
 <app-createuser (userCreated)="setUser($event)" *ngIf="!user.username"></app-createuser>
 
-<div *ngIf="user.nickname" class="centered">
+<div *ngIf="user.nickname" class="centered title">
   <h2>{{user.nickname}}'s Hue Controller</h2>
 </div>
 <div class="row main" *ngIf="user.username">

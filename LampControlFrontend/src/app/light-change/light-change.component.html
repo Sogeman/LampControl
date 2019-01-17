@@ -1,12 +1,13 @@
-<button (click)="backButtonClicked()" class="float-left">Zurück</button>
-<button *ngIf="selectedGroup" (click)="deleteButtonClicked()" class="float-right">Löschen</button>
+<button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
+<button *ngIf="selectedGroup" (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
 <div class="float-clear"></div>
 
 <div *ngIf="isCreatingGroup && !isChangingLights">
   <div *ngIf="isCreatingGroup">
-    <input type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName">
-    <p>Raumtyp auswählen</p>
-    <select [(ngModel)]="selectedRoomClass">
+    <h4>Namen eingeben:</h4>
+    <input class="name-input" type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName">
+    <h4>Raumtyp auswählen:</h4>
+    <select class="room-select" [(ngModel)]="selectedRoomClass">
       <option value="Living room">Wohnzimmer</option>
       <option value="Kitchen">Küche</option>
       <option value="Dining">Essbereich</option>
@@ -18,7 +19,7 @@
   </div>
 
   <div>
-    <h4>Lampen zum Raum hinzufügen</h4>
+    <h4>Lampen zum Raum hinzufügen:</h4>
   </div>
 
   <div class="group-lights">
@@ -31,7 +32,7 @@
     <p>{{helpText}}</p>
 
     <button *ngIf="isCreatingGroup && helpText === ''" type="button" class="click-cursor save-button" (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
-      <img src="assets/save.png">
+      Speichern
     </button>
     <!-- <button *ngIf="!isCreatingGroup && selectedLights.length > 0" type="button" class="click-cursor save-button"
       (click)="startSavingGroup(groupName, selectedLights)">
@@ -59,7 +60,7 @@
   </ul>
 
   <button type="button" class="click-cursor save-button" (click)="startSavingGroup(groupName, selectedLights)">
-    <img src="assets/save.png">
+    Speichern
   </button>
 
 </div>

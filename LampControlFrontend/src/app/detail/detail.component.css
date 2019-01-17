@@ -3,10 +3,6 @@
   margin: 1.5% auto;
 }
 
-.click-cursor {
-  cursor: pointer;
-}
-
 .color-picker {
   opacity: 1;
   cursor: pointer;
@@ -20,6 +16,7 @@
 
 .color-picker:hover {
   opacity: 0.7;
+  box-shadow: 0 0 5px black;
 }
 
 .detail-name {

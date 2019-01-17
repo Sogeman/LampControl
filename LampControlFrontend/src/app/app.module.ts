@@ -12,8 +12,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
-import { AddToGroupComponent } from './add-to-group/add-to-group.component';
-import { LightRemoveComponent } from './light-remove/light-remove.component';
 import { LightChangeComponent } from './light-change/light-change.component';
 
 @NgModule({
@@ -25,8 +23,6 @@ import { LightChangeComponent } from './light-change/light-change.component';
       CreateuserComponent,
       DetailComponent,
       LightSearchComponent,
-      AddToGroupComponent,
-      LightRemoveComponent,
       LightChangeComponent
    ],
    imports: [

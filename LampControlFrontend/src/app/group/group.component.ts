@@ -138,7 +138,8 @@ export class GroupComponent implements OnInit {
 
   saveGroup(body: any) {
     this.hueService.setGroupAttributes(body, this.groupId)
-      .then(() => this.clearGroupCreation());
+      .then(() => this.clearGroupCreation())
+      .then(() => this.clearSelectedGroup());
   }
 
   startLightChange() {

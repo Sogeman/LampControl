@@ -25,6 +25,6 @@ TODO:  (<s>implemented</s>)
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend currently unused. I initially thought about saving scenes and rooms there but I'm not so sure anymore that even works. If I use it at all, it will be for saving user data.
 
-TODO NEXT: style add-to-group and delete view
+TODO NEXT: scene implementation
 
 TODO maybe: make back and delete button into component
