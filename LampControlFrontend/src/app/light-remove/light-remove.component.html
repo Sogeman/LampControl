@@ -1,0 +1,17 @@
+<button (click)="backButtonClicked()" class="float-left">Zurück</button>
+<div class="float-clear"></div>
+
+<ul class="light-list">
+  <li *ngFor="let light of lightList | keyvalue">
+    <input checked class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightRemoval(light.key, $event.target.checked)">
+    <label class="list-label" for="light.value.name">{{light.value.name}}</label>
+  </li>
+</ul>
+
+<button type="button" class="click-cursor save-button" (click)="startSavingGroup(selectedLights)">
+  <img src="assets/save.png">
+</button>
+
+<div>
+  put all lights in the group here with filled checkbox, save button
+</div>

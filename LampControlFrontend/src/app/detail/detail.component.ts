@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ManipulationService } from '../manipulation.service';
 
+
 export class Light {
   name: string;
   state: {
@@ -35,9 +36,12 @@ export class DetailComponent implements OnInit {
   @Output() groupToggled = new EventEmitter<boolean>();
   @Output() stateChange = new EventEmitter<string>();
   @Output() nameChange = new EventEmitter();
+  @Output() lightRemove = new EventEmitter<boolean>();
+  @Output() lightChange = new EventEmitter();
   @Input() selectedLight: Light;
   @Input() selectedGroup: Group;
   @Input() id: number;
+  lightList: Light[];
   private _lightState = '';
   private _groupState = '';
 
@@ -101,5 +105,12 @@ export class DetailComponent implements OnInit {
     this.nameChange.emit(name);
   }
 
+  startLightRemove() {
+    this.lightRemove.emit(true);
+  }
+
+  startLightChange() {
+    this.lightChange.emit();
+  }
 
 }

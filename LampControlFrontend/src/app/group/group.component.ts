@@ -2,7 +2,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HueService } from '../hue.service';
 import { ManipulationService } from '../manipulation.service';
-import { Group } from '../detail/detail.component';
+import { Group, Light } from '../detail/detail.component';
 
 @Component({
   selector: 'app-group',
@@ -13,10 +13,11 @@ export class GroupComponent implements OnInit {
 
   @Output() groupsRefreshed = new EventEmitter();
   groupList: Group[];
+  lightList: Light[];
   selectedGroup: Group;
   groupId: number;
-  addingLightsToGroup: boolean;
-  groupCreation: boolean;
+  isChangingLights: boolean;
+  isGroupCreation: boolean;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) {
    }
@@ -81,7 +82,7 @@ export class GroupComponent implements OnInit {
     this.hueService.retrieveSingleGroup(id)
       .then(group => {
         if (group.lights.length < 1) {
-          this.addingLightsToGroup = true;
+          this.isChangingLights = true;
           this.groupId = id;
           console.log('change to light add view');
         } else {
@@ -98,9 +99,14 @@ export class GroupComponent implements OnInit {
     console.log('return to homepage');
   }
 
-  clearAddingLightsToGroup() {
-    this.addingLightsToGroup = false;
-    this.groupCreation = false;
+  startCreatingGroup() {
+    this.isGroupCreation = true;
+    console.log('switch to group create view');
+  }
+
+  clearGroupCreation() {
+    this.isChangingLights = false;
+    this.isGroupCreation = false;
     this.refreshAllGroupsOnly();
     console.log('return to homepage');
   }
@@ -120,29 +126,28 @@ export class GroupComponent implements OnInit {
 
   deleteSelectedGroup(id: number) {
     this.hueService.deleteEntity(id, 'groups')
-      .then(() => this.clearSelectedGroup());
+      .then(() => this.clearSelectedGroup())
+      .then(() => this.clearChangingLights());
     console.log('group ' + id + ' deleted and return to homepage');
-  }
-
-  startCreatingGroup() {
-    this.groupCreation = true;
-    console.log('switch to group create view');
   }
 
   createGroup(body: any) {
     this.hueService.createGroup(body)
-      .then(() => {
-        this.addingLightsToGroup = false;
-        this.groupCreation = false;
-        console.log('switch to homepage');
-      })
-      .then(() => this.refreshAllGroupsOnly());
-      console.log('all groups retrieved');
+      .then(() => this.clearGroupCreation());
   }
 
   saveGroup(body: any) {
     this.hueService.setGroupAttributes(body, this.groupId)
-      .then(() => this.clearAddingLightsToGroup());
+      .then(() => this.clearGroupCreation());
+  }
+
+  startLightChange() {
+    this.isChangingLights = true;
+    this.isGroupCreation = false;
+  }
+
+  clearChangingLights() {
+    this.isChangingLights = false;
   }
 
 }

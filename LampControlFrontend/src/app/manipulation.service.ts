@@ -9,11 +9,14 @@ export class ManipulationService {
   constructor() { }
 
   getBrightnessFromRgbString(rgbString: string): number {
-    return parseFloat(rgbString.substring(4, rgbString.length - 1).split(',')[3]);
+    const substring = rgbString.substring(4, rgbString.length - 1);
+    const replacedsubstring = substring.replace('(', '');
+    return parseFloat(replacedsubstring.split(',')[3]);
   }
 
   getNumbersFromRgbString(rgbString: string): string[] {
-    return rgbString.substring(4, rgbString.length - 1).split(',');
+    const substring = rgbString.substring(4, rgbString.length - 1);
+    return substring.replace('(', '').split(',');
   }
 
 
@@ -130,8 +133,7 @@ export class ManipulationService {
         x,
         y
       ],
-      bri: brightness,
-      transitiontime: 0
+      bri: brightness
     };
     return body;
   }

@@ -1,38 +1,44 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Group, Light } from '../detail/detail.component';
 import { HueService } from '../hue.service';
-import { Light, Group } from '../detail/detail.component';
 import { ManipulationService } from '../manipulation.service';
 
 @Component({
-  selector: 'app-add-to-group',
-  templateUrl: './add-to-group.component.html',
-  styleUrls: ['./add-to-group.component.css']
+  selector: 'app-light-change',
+  templateUrl: './light-change.component.html',
+  styleUrls: ['./light-change.component.css']
 })
-export class AddToGroupComponent implements OnInit {
+export class LightChangeComponent implements OnInit {
 
-  @Output() back = new EventEmitter();
+  @Output() back = new EventEmitter<boolean>();
   @Output() delete = new EventEmitter<number>();
   @Output() createGroup = new EventEmitter();
   @Output() saveGroup = new EventEmitter();
-  @Input() selectedGroup: Group;
-  @Input() isGroupCreation: boolean;
   @Input() id: number;
-  lightList: Light[];
-  selectedRoomClass: string;
-  selectedLights: Array<any> = [];
-  groupName: string;
+  @Input() selectedGroup: Group;
+  @Input() isCreatingGroup: boolean;
+  @Input() isChangingLights: boolean;
+  usedLights: Light[];
+  unusedLights: Light[];
   isListEmpty: boolean;
   helpText: string;
+  groupName: string;
+  selectedRoomClass: string;
+  selectedLights: Array<any> = [];
+
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 
   ngOnInit() {
-    this.retrieveUnusedLights();
-    this.retrieveLightsInGroup();
+    if (!this.isCreatingGroup) {
+      this.retrieveUsedLights();
+    } else {
+      this.retrieveUnusedLights();
+    }
   }
 
   backButtonClicked() {
-    this.back.emit();
+    this.back.emit(this.isCreatingGroup);
   }
 
   deleteButtonClicked() {
@@ -49,19 +55,19 @@ export class AddToGroupComponent implements OnInit {
   }
 
   retrieveUnusedLights() {
-    let lights: Light[];
-    this.hueService.retrieveAllLights()
-    .then(response => lights = response)
-    .then(() => this.filterUsedLights(lights)) // filter out lights already in a group
-    .then(filteredIds => this.retrieveFilteredLights(filteredIds))
-    .then(lightObjects => this.lightList = lightObjects)
-    .then(() => {
-      if (this.isListEmpty === true) {
-        this.helpText = 'Keine Lichter mehr frei. Bitte entferne zuerst Lichter aus anderen Räumen.';
-      } else {
-        this.helpText = '';
-      }
-    });
+      let lights: Light[];
+      this.hueService.retrieveAllLights()
+      .then(response => lights = response)
+      .then(() => this.filterUsedLights(lights)) // filter out lights already in a group
+      .then(filteredIds => this.retrieveFilteredLights(filteredIds))
+      .then(lightObjects => this.unusedLights = lightObjects)
+      .then(() => {
+        if (this.isListEmpty === true) {
+          this.helpText = 'Keine Lampen mehr frei. Bitte entferne zuerst Lampen aus anderen Räumen.';
+        } else {
+          this.helpText = '';
+        }
+      });
   }
 
   filterUsedLights(lights: Light[]): Promise<number[]> {
@@ -109,9 +115,13 @@ export class AddToGroupComponent implements OnInit {
     return lightIds;
   }
 
-  retrieveLightsInGroup() {
-    const lights = this.selectedGroup.lights;
-
+  onLightRemoval(id: number, isChecked: boolean) {
+    if (isChecked) {
+      this.selectedLights.push(id);
+    } else {
+      const index = this.selectedLights.indexOf(id);
+      this.selectedLights.splice(index, 1);
+    }
   }
 
   startGroupCreation(name: string, lights: number[], roomClass: string) {
@@ -122,6 +132,22 @@ export class AddToGroupComponent implements OnInit {
     this.saveGroup.emit(this.manipulationService.createGroupAttributeBody(name, lights, ''));
   }
 
+  retrieveUsedLights() {
+    let lightIds: number[];
+    this.hueService.retrieveSingleGroup(this.id)
+      .then(group => lightIds = group.lights)
+      .then(() => this.usedLights = this.retrieveFilteredLightList(lightIds))
+      .then(() => this.selectedLights = lightIds)
+      .then(() => this.retrieveUnusedLights());
+  }
 
+  retrieveFilteredLightList(lightIds: number[]): Light[] {
+    const lights = [];
+    lightIds.forEach(id => {
+      this.hueService.retrieveSingleLight(id)
+        .then(light => lights[id] = light);
+    });
+    return lights;
+  }
 
 }

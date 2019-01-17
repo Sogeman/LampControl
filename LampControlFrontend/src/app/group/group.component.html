@@ -1,6 +1,6 @@
 <h2 class="overview-header">Rooms</h2>
 
-<div class="container" *ngIf="!selectedGroup && !addingLightsToGroup && !groupCreation">
+<div class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation">
   <div *ngFor="let group of groupList; let i = index" class="item">
     <img [src]="group.action.on ? (getGroupImage(group.class, 'on')) : (getGroupImage(group.class, 'off'))" (click)="toggleGroup(group.action.on, i+1)"
       [style.background-color]="group.action.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
@@ -18,9 +18,10 @@
   </div>
 </div>
 
-<app-detail *ngIf="selectedGroup && !addingLightsToGroup" [selectedGroup]="selectedGroup" [id]="groupId" (groupToggled)="toggleGroupDetail($event, groupId)"
-  (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)" (stateChange)="changeState($event, groupId)"
-  (delete)="deleteSelectedGroup($event)"></app-detail>
+<app-detail *ngIf="selectedGroup && !isChangingLights && !isLightRemove" [selectedGroup]="selectedGroup" [id]="groupId"
+  (groupToggled)="toggleGroupDetail($event, groupId)" (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)"
+  (stateChange)="changeState($event, groupId)" (delete)="deleteSelectedGroup($event)" (lightChange)="startLightChange()" (lightRemove)="isLightRemove = $event"></app-detail>
 
-<app-add-to-group *ngIf="addingLightsToGroup || groupCreation" (back)="clearAddingLightsToGroup()" (createGroup)="createGroup($event)"
-  (saveGroup)="saveGroup($event)" [selectedGroup]="selectedGroup" [groupCreation]="groupCreation" [id]="groupId"></app-add-to-group>
+<app-light-change *ngIf="isChangingLights || isGroupCreation" [selectedGroup]="selectedGroup"
+  [id]="groupId" [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : clearChangingLights()" (delete)="deleteSelectedGroup($event)" (saveGroup)="saveGroup($event)"
+  (createGroup)="createGroup($event)"></app-light-change>

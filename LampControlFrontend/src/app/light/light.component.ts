@@ -38,7 +38,7 @@ export class LightComponent implements OnInit {
   refreshAllLightsOnly() {
     this.hueService.retrieveAllLights()
       .then(lights => this.lightList = lights);
-    console.log('all lights retrieved')
+    console.log('all lights retrieved');
   }
 
   refreshAll() {
