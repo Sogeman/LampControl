@@ -27,4 +27,4 @@ Backend will probably used for storing and recalling standard scenes
 
 TODO NEXT: scene implementation
 
-TODO maybe: make back and delete button into component, create/delete own scene
+TODO maybe: make back and delete button into component, create/delete own scene, set lightstate in group independently
