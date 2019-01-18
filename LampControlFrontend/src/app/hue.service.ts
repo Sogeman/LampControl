@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Light, Group } from './detail/detail.component';
 import { ManipulationService } from './manipulation.service';
 
-// const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
+const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
 let HUE_BRIDGE_URL = '';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class HueService {
   }
 
   fetchBridgeUrl(): Promise<string> {
-    return this.httpClient.get('https://discovery.meethue.com').toPromise()
+    return this.httpClient.get('https://www.meethue.com/api/nupnp').toPromise()
       .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
   }
 
@@ -127,5 +127,9 @@ export class HueService {
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id, body)
         .toPromise();
   }
+
+  // Scenes
+
+
 
 }

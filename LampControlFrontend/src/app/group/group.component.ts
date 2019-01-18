@@ -18,6 +18,7 @@ export class GroupComponent implements OnInit {
   groupId: number;
   isChangingLights: boolean;
   isGroupCreation: boolean;
+  isChangingScene: boolean;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) {
    }
@@ -149,6 +150,14 @@ export class GroupComponent implements OnInit {
 
   clearChangingLights() {
     this.isChangingLights = false;
+  }
+
+  startSceneChange() {
+    this.isChangingScene = true;
+  }
+
+  clearSceneChange() {
+    this.isChangingScene = false;
   }
 
 }

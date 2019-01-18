@@ -16,23 +16,23 @@ public class HueScene {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length=50, nullable=false)
+	@Column(length=32, nullable=false)
 	private String name;
 	
-	@Column(length=100, nullable=false)
-	private String lights; // needs to be sent as array to HUE API
+	@Column(length=32, nullable=false)
+	private String type = "GroupScene"; // default value for HUE API
+	
+	@Column(length=32)
+	private String group; // group id
+	
 	
 	public HueScene() {}
 
-	public HueScene(Long id, String name, String lights) {
+	public HueScene(Long id, String name, String type, String group) {
 		this.id = id;
 		this.name = name;
-		this.lights = lights;
-	}
-
-	public HueScene(String name, String lights) {
-		this.name = name;
-		this.lights = lights;
+		this.type = type;
+		this.group = group;
 	}
 
 	public Long getId() {
@@ -51,18 +51,27 @@ public class HueScene {
 		this.name = name;
 	}
 
-	public String getLights() {
-		return lights;
+	public String getType() {
+		return type;
 	}
 
-	public void setLights(String lights) {
-		this.lights = lights;
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	@Override
 	public String toString() {
-		return "HueScene [id=" + id + ", name=" + name + ", lights=" + lights
-				+ "]";
+		return "HueScene [id=" + id + ", name=" + name + ", type=" + type + ", group=" + group + "]";
 	}
 
+	
+	
 }

@@ -13,6 +13,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
 import { LightChangeComponent } from './light-change/light-change.component';
+import { SceneComponent } from './scene/scene.component';
 
 @NgModule({
    declarations: [
@@ -23,7 +24,8 @@ import { LightChangeComponent } from './light-change/light-change.component';
       CreateuserComponent,
       DetailComponent,
       LightSearchComponent,
-      LightChangeComponent
+      LightChangeComponent,
+      SceneComponent
    ],
    imports: [
       BrowserModule,

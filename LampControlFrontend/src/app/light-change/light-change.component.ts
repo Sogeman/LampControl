@@ -55,12 +55,9 @@ export class LightChangeComponent implements OnInit {
   }
 
   retrieveUnusedLights() {
-      let lights: Light[];
-      this.hueService.retrieveAllLights()
-      .then(response => lights = response)
-      .then(() => this.filterUsedLights(lights)) // filter out lights already in a group
-      .then(filteredIds => this.retrieveFilteredLights(filteredIds))
-      .then(lightObjects => this.unusedLights = lightObjects)
+    this.hueService.retrieveAllLights()
+      .then(response => this.filterUsedLights(response)) // filter out lights already in a group, return unused
+      .then(filteredIds => this.unusedLights = this.retrieveFilteredLights(filteredIds)) // get unused lights and put in variable
       .then(() => {
         if (this.isListEmpty === true) {
           this.helpText = 'Keine Lampen mehr frei. Bitte entferne zuerst Lampen aus anderen Räumen.';
@@ -75,19 +72,20 @@ export class LightChangeComponent implements OnInit {
     let lightsInGroups: number[];
     let lightIds: number[];
     return this.hueService.retrieveAllGroups()
-      .then(responseGroups => lightsInGroups = this.filterLightsOutOfGroups(responseGroups))
-      .then(() => lightIds = this.stripIdsFromLightlist(lights))
-      .then(() => filtered = lightIds.filter(lightId => !lightsInGroups.includes(lightId)));
+      .then(responseGroups => lightsInGroups = this.filterLightsOutOfGroups(responseGroups)) // filter light ids out of groups
+      .then(() => lightIds = this.stripIdsFromLightlist(lights)) // strip out the ids of all lights
+      .then(() => filtered = lightIds.filter(lightId => !lightsInGroups.includes(lightId))); // filter out lights not already in a group
   }
 
   filterLightsOutOfGroups(groups: Group[]): number[] {
     let lights = [];
     for (const key in groups) {
-      if (groups.hasOwnProperty(key)) {
+      if (groups.hasOwnProperty(key)) { // push all light Ids into list
         lights.push(groups[key].lights);
       }
     }
-    lights = [].concat.apply([], lights);
+    lights = [].concat.apply([], lights); // flatten array to one level, also removes empty arrays
+    console.log(lights);
     return lights;
   }
 

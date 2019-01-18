@@ -15,8 +15,4 @@ public class HueService {
 	public List<HueScene> getAllScenes() {
 		return entityManager.createNamedQuery("scene.selectAll", HueScene.class).getResultList();
 	}
-	
-	public List<HueRoom> getAllRooms() {
-		return entityManager.createNamedQuery("room.selectAll", HueRoom.class).getResultList();
-	}
 }

@@ -15,7 +15,7 @@
   <p>Farbe und Helligkeit ändern</p>
   <div class="color-picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-    [cpDisableInput]="'true'" [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false" [cpPositionOffset]="'-160%'"
+    [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false" [cpPositionOffset]="'-150%'"
     [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
   </div>
 </div>
@@ -37,9 +37,10 @@
   <p>Farbe und Helligkeit ändern</p>
   <div class="color-picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-    [cpDisableInput]="'true'" [cpPosition]="'bottom'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="true"
+    [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'"
     [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
   </div>
 
   <button type="button" class="light-delete light-change-button" (click)="startLightChange()">Lampen ändern</button>
+  <button type="button" class="light-delete light-change-button" (click)="startScene()">Szene auswählen</button>
 </div>
