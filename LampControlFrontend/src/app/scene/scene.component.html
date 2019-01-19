@@ -1,5 +1,11 @@
 <button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
 <div class="float-clear"></div>
 
-
-<!-- display scenes fetched on init from backend -->
+<div class="container">
+  <div class="scene" *ngFor="let scene of sceneList | keyvalue">
+    <div class="item click-cursor" (click)="changeScene(scene.value, groupId)">
+      <img class="scene-select" [src]="getSceneImage(scene.value.name)">
+      <p>{{ scene.value.name }}</p>
+    </div>
+  </div>
+</div>

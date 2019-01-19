@@ -26,18 +26,14 @@
     <ul class="light-list">
       <li *ngFor="let light of unusedLights | keyvalue">
         <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightSelection(light.key, $event.target.checked)">
-        <label class="list-label" for="light.value.name">{{light.value.name}}</label>
+        <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
       </li>
     </ul>
-    <p>{{helpText}}</p>
+    <p>{{ helpText }}</p>
 
     <button *ngIf="isCreatingGroup && helpText === ''" type="button" class="click-cursor save-button" (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
       Speichern
     </button>
-    <!-- <button *ngIf="!isCreatingGroup && selectedLights.length > 0" type="button" class="click-cursor save-button"
-      (click)="startSavingGroup(groupName, selectedLights)">
-      <img src="assets/save.png">
-    </button> -->
   </div>
 </div>
 
@@ -46,7 +42,7 @@
   <ul class="light-list">
     <li *ngFor="let light of usedLights | keyvalue">
       <input checked class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightRemoval(light.key, $event.target.checked)">
-      <label class="list-label" for="light.value.name">{{light.value.name}}</label>
+      <label class="list-label" for="light.value.name">{{ light.value.name} }</label>
     </li>
   </ul>
 
@@ -55,7 +51,7 @@
   <ul class="light-list">
     <li *ngFor="let light of unusedLights | keyvalue">
       <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightRemoval(light.key, $event.target.checked)">
-      <label class="list-label" for="light.value.name">{{light.value.name}}</label>
+      <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
     </li>
   </ul>
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Light, Group } from './detail/detail.component';
+import { Light, Group } from './hue.service';
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +86,7 @@ export class ManipulationService {
       alpha += bri.toString();
     }
     lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + alpha + ')';
+    console.log(lightState);
     return lightState;
   }
 
@@ -98,7 +99,7 @@ export class ManipulationService {
     } else if (brightness === 0) {
       brightness = 1;
     }
-    return {xy: xyColor, bri: brightness};
+    return { xy: xyColor, bri: brightness };
   }
 
   getClassImage(roomClass: string, state: string): string {
@@ -115,6 +116,29 @@ export class ManipulationService {
         return 'assets/office_' + state + '.png';
       default:
         return 'assets/light_' + state + '.png';
+    }
+  }
+
+  getSceneImage(name: string): string {
+    switch (name) {
+      case 'Sonnenaufgang':
+        return 'assets/sunrise.jpg';
+      case 'Sonnenuntergang':
+        return 'assets/sunset.jpg';
+      case 'Lesen':
+        return 'assets/reading.jpg';
+      case 'Entspannen':
+        return 'assets/relax.jpg';
+      case 'Energie':
+        return 'assets/energy.jpg';
+      case 'Sakura':
+        return 'assets/sakura.jpg';
+      case 'Gemütlich':
+        return 'assets/cozy.jpg';
+      case 'Nachtlicht':
+        return 'assets/nightlight.jpg';
+      default:
+        return '';
     }
   }
 

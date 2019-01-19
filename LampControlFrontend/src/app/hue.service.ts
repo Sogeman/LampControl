@@ -1,9 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Light, Group } from './detail/detail.component';
 import { ManipulationService } from './manipulation.service';
 
-const HUE_SCENE_RESOURCE_URL = 'https://localhost:8080/lightcontroller/resources/scenes';
+export class Light {
+  name: string;
+  state: {
+    bri: number;
+    on: boolean;
+    xy: number[];
+  };
+}
+
+export class Group {
+  name: string;
+  lights: number[];
+  type: string; // 'Room'
+  class: string; // Room name
+  action: {
+    on: boolean,
+    bri: number,
+    xy: number[]
+  };
+}
+
+export class Scene {
+  name: string;
+  brightness: number;
+  x: number;
+  y: number;
+}
+
+const HUE_SCENE_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/scenes';
 let HUE_BRIDGE_URL = '';
 
 @Injectable({
@@ -130,6 +157,12 @@ export class HueService {
 
   // Scenes
 
+  retrieveAllScenes(): Promise<Scene[]> {
+    return this.httpClient.get<Scene[]>(HUE_SCENE_RESOURCE_URL).toPromise();
+  }
 
+  setSceneState(sceneData: Scene, id: number): Promise<any> {
+    return this.updateState('groups', [sceneData.x.toString(), sceneData.y.toString()], sceneData.brightness, id);
+  }
 
 }

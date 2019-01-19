@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Group, Light } from '../detail/detail.component';
+import { Group, Light } from '../hue.service';
 import { HueService } from '../hue.service';
 import { ManipulationService } from '../manipulation.service';
 

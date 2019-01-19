@@ -1,27 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ManipulationService } from '../manipulation.service';
-
-
-export class Light {
-  name: string;
-  state: {
-    bri: number;
-    on: boolean;
-    xy: number[];
-  };
-}
-
-export class Group {
-  name: string;
-  lights: number[];
-  type: string; // 'Room'
-  class: string; // Room name
-  action: {
-    on: boolean,
-    bri: number,
-    xy: number[]
-  };
-}
+import { Light, Group } from '../hue.service';
 
 @Component({
   selector: 'app-detail',
@@ -47,9 +26,9 @@ export class DetailComponent implements OnInit {
 
   @Input('lightState')
   set lightState(lightState: string) {
-    this._lightState = lightState;
-    this.stateChange.emit(lightState);
-    console.log('lightstate set');
+      this._lightState = lightState;
+      this.stateChange.emit(lightState);
+      console.log('lightstate set');
   }
   get lightState(): string {
      return this._lightState;

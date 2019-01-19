@@ -1,5 +1,6 @@
 package lampcontrol.project.HueLampControl;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,20 +20,24 @@ public class HueScene {
 	@Column(length=32, nullable=false)
 	private String name;
 	
-	@Column(length=32, nullable=false)
-	private String type = "GroupScene"; // default value for HUE API
+	@Column(length=32)
+	private Integer brightness;
 	
 	@Column(length=32)
-	private String group; // group id
+	private Float x;
+	
+	@Column(length=32)
+	private Float y;
 	
 	
 	public HueScene() {}
 
-	public HueScene(Long id, String name, String type, String group) {
+	public HueScene(Long id, String name, String type, Integer brightness, Float x, Float y) {
 		this.id = id;
 		this.name = name;
-		this.type = type;
-		this.group = group;
+		this.brightness = brightness;
+		this.x = x;
+		this.y = y;
 	}
 
 	public Long getId() {
@@ -51,27 +56,35 @@ public class HueScene {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public Integer getBrightness() {
+		return brightness;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setBrightness(Integer brightness) {
+		this.brightness = brightness;
 	}
 
-	public String getGroup() {
-		return group;
+	public Float getX() {
+		return x;
 	}
 
-	public void setGroup(String group) {
-		this.group = group;
+	public void setX(Float x) {
+		this.x = x;
+	}
+
+	public Float getY() {
+		return y;
+	}
+
+	public void setY(Float y) {
+		this.y = y;
 	}
 
 	@Override
 	public String toString() {
-		return "HueScene [id=" + id + ", name=" + name + ", type=" + type + ", group=" + group + "]";
+		return "HueScene [id=" + id + ", name=" + name + ", brightness=" + brightness + ", x=" + x
+				+ ", y=" + y + "]";
 	}
-
 	
 	
 }

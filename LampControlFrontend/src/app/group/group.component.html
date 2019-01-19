@@ -9,7 +9,7 @@
         <img src="assets/settings.png" class="">
       </button>
     </div>
-    <input type="text" class="name-input" [value]="group.name" placeholder="{{group.name}}" disabled>
+    <input type="text" class="name-input" [value]="group.name" placeholder="{{ group.name }}" disabled>
   </div>
   <div class="float-clear"></div>
 
@@ -27,4 +27,4 @@
   [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : clearChangingLights()"
   (delete)="deleteSelectedGroup($event)" (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
 
-<app-scene *ngIf="isChangingScene" (back)="clearSceneChange()"></app-scene>
+<app-scene *ngIf="isChangingScene" (back)="[clearSelectedGroup(), clearSceneChange(), viewSelectedGroup(groupId)]" [groupId]="groupId"></app-scene>

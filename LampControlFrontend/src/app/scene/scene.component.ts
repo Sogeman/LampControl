@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Scene, HueService } from '../hue.service';
+import { ManipulationService } from '../manipulation.service';
 
 @Component({
   selector: 'app-scene',
@@ -8,15 +10,31 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SceneComponent implements OnInit {
 
   @Output() back = new EventEmitter();
+  @Input() groupId: number;
+  sceneList: Scene[];
 
-  constructor() { }
+  constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 
   ngOnInit() {
-    // fetch all scenes from backend
+    this.refreshScenes();
   }
 
   backButtonClicked() {
     this.back.emit();
   }
+
+  refreshScenes() {
+    this.hueService.retrieveAllScenes()
+      .then(scenes => this.sceneList = scenes);
+    }
+
+  getSceneImage(name: string): string {
+    return this.manipulationService.getSceneImage(name);
+  }
+
+  changeScene(sceneData: Scene, id: number) {
+    this.hueService.toggleGroup(false, id)
+      .then(() => this.hueService.setSceneState(sceneData, id));
+    }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HueService } from '../hue.service';
-import { Light } from '../detail/detail.component';
+import { HueService, Light } from '../hue.service';
 import { ManipulationService } from '../manipulation.service';
 
 @Component({
@@ -21,9 +20,7 @@ export class LightComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('bridgeIp')) {
-      this.hueService.retrieveAllLights()
-        .then(lights => this.lightList = lights)
-        .then(() => console.log(this.lightList));
+      this.refreshAllLightsOnly();
       console.log('all lights retrieved');
     }
   }

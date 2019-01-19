@@ -9,7 +9,7 @@
     [style.background-color]="selectedLight.state.on ? '#f2e63c' : 'black'" class="detail-image item-image click-cursor"
     (click)="lightClicked()">
 
-  <input type="text" class="detail-name" [value]="selectedLight.name" placeholder="{{selectedLight.name}}" #lightName>
+  <input type="text" class="detail-name" [value]="selectedLight.name" placeholder="{{ selectedLight.name }}" #lightName>
   <button type="button" class="click-cursor save-button" (click)="startNameSave(lightName.value, id, 'light')">Speichern</button>
 
   <p>Farbe und Helligkeit ändern</p>
@@ -31,7 +31,7 @@
     [style.background-color]="selectedGroup.action.on ? '#f2e63c' : 'black'" class="detail-image item-image click-cursor"
     (click)="groupClicked()">
 
-  <input type="text" class="detail-name" [value]="selectedGroup.name" placeholder="{{selectedGroup.name}}" #groupName>
+  <input type="text" class="detail-name" [value]="selectedGroup.name" placeholder="{{ selectedGroup.name }}" #groupName>
   <button type="button" class="click-cursor save-button" (click)="startNameSave(groupName.value, id, 'group')">Speichern</button>
 
   <p>Farbe und Helligkeit ändern</p>

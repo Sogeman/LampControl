@@ -1,8 +1,7 @@
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HueService } from '../hue.service';
+import { HueService, Group, Light } from '../hue.service';
 import { ManipulationService } from '../manipulation.service';
-import { Group, Light } from '../detail/detail.component';
 
 @Component({
   selector: 'app-group',
@@ -25,9 +24,7 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('bridgeIp')) {
-      this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = this.filterGroups(groups))
-      .then(() => console.log(this.groupList));
+      this.refreshAllGroupsOnly();
       console.log('all groups retrieved');
     }
   }
