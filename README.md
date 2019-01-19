@@ -19,12 +19,13 @@ TODO:  (<s>implemented</s>)
 - <s>switch to add light to groups mode if group doesn't have lights</s>
 - <s>add new groups</s>
 - control <s>light</s> <s>color</s> and <s>brightness</s> of <s>group</s> or <s>individual lights</s>
-- choose pre-created scene
+- <s>choose pre-created scene</s>
+- create own scene
 
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
-Backend will probably used for storing and recalling standard scenes
+Backend is used for own scene API instead of using HUE Scene API
 
-TODO NEXT: scene implementation
+TODO NEXT: add additional scenes to backend
 
-TODO maybe: make back and delete button into component, create/delete own scene, set lightstate in group independently
+TODO maybe: make back and delete button into component, delete scenes, set lightstate in group independently
