@@ -19,7 +19,7 @@ export class LightSearchComponent implements OnInit {
     line2: ''
 };
   newLightsFound: boolean;
-  newLights: NewLight[];
+  newLights: Array<NewLight>;
 
   constructor(private hueService: HueService) { }
 

@@ -11,7 +11,7 @@ export class SceneComponent implements OnInit {
 
   @Output() back = new EventEmitter();
   @Input() groupId: number;
-  sceneList: Scene[];
+  sceneList: Array<Scene>;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 

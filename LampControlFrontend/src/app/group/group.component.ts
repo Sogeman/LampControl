@@ -11,8 +11,8 @@ import { ManipulationService } from '../manipulation.service';
 export class GroupComponent implements OnInit {
 
   @Output() groupsRefreshed = new EventEmitter();
-  groupList: Group[];
-  lightList: Light[];
+  groupList: Array<Group>;
+  lightList: Array<Light>;
   selectedGroup: Group;
   groupId: number;
   isChangingLights: boolean;
@@ -29,7 +29,7 @@ export class GroupComponent implements OnInit {
     }
   }
 
-  filterGroups(list: Group[]): Group[] {
+  filterGroups(list: Array<Group>): Array<Group> {
     const filteredGroups = [];
     Object.values(list).forEach((group) => {
       if (group.type === 'Room') {

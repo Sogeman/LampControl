@@ -7,19 +7,19 @@ export class Light {
   state: {
     bri: number;
     on: boolean;
-    xy: number[];
+    xy: Array<number>;
   };
 }
 
 export class Group {
   name: string;
-  lights: number[];
+  lights: Array<number>;
   type: string; // 'Room'
   class: string; // Room name
   action: {
     on: boolean,
     bri: number,
-    xy: number[]
+    xy: Array<number>
   };
 }
 
@@ -93,8 +93,8 @@ export class HueService {
 
   // Lights
 
-  retrieveAllLights(): Promise<Light[]> {
-    return this.httpClient.get<Light[]>(
+  retrieveAllLights(): Promise<Array<Light>> {
+    return this.httpClient.get<Array<Light>>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights')
         .toPromise();
   }
@@ -125,8 +125,8 @@ export class HueService {
 
   // Groups
 
-  retrieveAllGroups(): Promise<Group[]> {
-    return this.httpClient.get<Group[]>(
+  retrieveAllGroups(): Promise<Array<Group>> {
+    return this.httpClient.get<Array<Group>>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups')
         .toPromise();
   }
@@ -157,8 +157,8 @@ export class HueService {
 
   // Scenes
 
-  retrieveAllScenes(): Promise<Scene[]> {
-    return this.httpClient.get<Scene[]>(HUE_SCENE_RESOURCE_URL).toPromise();
+  retrieveAllScenes(): Promise<Array<Scene>> {
+    return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL).toPromise();
   }
 
   setSceneState(sceneData: Scene, id: number): Promise<any> {

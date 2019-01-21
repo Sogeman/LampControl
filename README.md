@@ -26,6 +26,4 @@ TODO:  (<s>implemented</s>)
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API
 
-TODO NEXT: add additional scenes to backend
-
 TODO maybe: make back and delete button into component, delete scenes, set lightstate in group independently

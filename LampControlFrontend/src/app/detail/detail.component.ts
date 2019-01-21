@@ -20,7 +20,7 @@ export class DetailComponent implements OnInit {
   @Input() selectedLight: Light;
   @Input() selectedGroup: Group;
   @Input() id: number;
-  lightList: Light[];
+  lightList: Array<Light>;
   private _lightState = '';
   private _groupState = '';
 

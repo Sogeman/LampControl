@@ -18,8 +18,8 @@ export class LightChangeComponent implements OnInit {
   @Input() selectedGroup: Group;
   @Input() isCreatingGroup: boolean;
   @Input() isChangingLights: boolean;
-  usedLights: Light[];
-  unusedLights: Light[];
+  usedLights: Array<Light>;
+  unusedLights: Array<Light>;
   isListEmpty: boolean;
   helpText: string;
   groupName: string;
@@ -67,17 +67,17 @@ export class LightChangeComponent implements OnInit {
       });
   }
 
-  filterUsedLights(lights: Light[]): Promise<number[]> {
-    let filtered: number[];
-    let lightsInGroups: number[];
-    let lightIds: number[];
+  filterUsedLights(lights: Array<Light>): Promise<Array<number>> {
+    let filtered: Array<number>;
+    let lightsInGroups: Array<number>;
+    let lightIds: Array<number>;
     return this.hueService.retrieveAllGroups()
       .then(responseGroups => lightsInGroups = this.filterLightsOutOfGroups(responseGroups)) // filter light ids out of groups
       .then(() => lightIds = this.stripIdsFromLightlist(lights)) // strip out the ids of all lights
       .then(() => filtered = lightIds.filter(lightId => !lightsInGroups.includes(lightId))); // filter out lights not already in a group
   }
 
-  filterLightsOutOfGroups(groups: Group[]): number[] {
+  filterLightsOutOfGroups(groups: Array<Group>): number[] {
     let lights = [];
     for (const key in groups) {
       if (groups.hasOwnProperty(key)) { // push all light Ids into list
@@ -89,7 +89,7 @@ export class LightChangeComponent implements OnInit {
     return lights;
   }
 
-  retrieveFilteredLights(lightIds: number[]): Light[] {
+  retrieveFilteredLights(lightIds: Array<number>): Array<Light> {
     const lightObjects = new Array();
     if (lightIds.length === 0) {
       this.isListEmpty = true;
@@ -103,7 +103,7 @@ export class LightChangeComponent implements OnInit {
     return lightObjects;
   }
 
-  stripIdsFromLightlist(lights: Light[]): number[] {
+  stripIdsFromLightlist(lights: Array<Light>): Array<number> {
     const lightIds = [];
     for (const key in lights) {
       if (lights.hasOwnProperty(key)) {
@@ -122,16 +122,16 @@ export class LightChangeComponent implements OnInit {
     }
   }
 
-  startGroupCreation(name: string, lights: number[], roomClass: string) {
+  startGroupCreation(name: string, lights: Array<number>, roomClass: string) {
     this.createGroup.emit(this.manipulationService.createGroupAttributeBody(name, lights, roomClass));
   }
 
-  startSavingGroup(name: string, lights: number[]) {
+  startSavingGroup(name: string, lights: Array<number>) {
     this.saveGroup.emit(this.manipulationService.createGroupAttributeBody(name, lights, ''));
   }
 
   retrieveUsedLights() {
-    let lightIds: number[];
+    let lightIds: Array<number>;
     this.hueService.retrieveSingleGroup(this.id)
       .then(group => lightIds = group.lights)
       .then(() => this.usedLights = this.retrieveFilteredLightList(lightIds))
@@ -139,7 +139,7 @@ export class LightChangeComponent implements OnInit {
       .then(() => this.retrieveUnusedLights());
   }
 
-  retrieveFilteredLightList(lightIds: number[]): Light[] {
+  retrieveFilteredLightList(lightIds: Array<number>): Array<Light> {
     const lights = [];
     lightIds.forEach(id => {
       this.hueService.retrieveSingleLight(id)

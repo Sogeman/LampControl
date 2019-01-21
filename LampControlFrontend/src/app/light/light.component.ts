@@ -10,7 +10,7 @@ import { ManipulationService } from '../manipulation.service';
 export class LightComponent implements OnInit {
 
   @Output() lightsRefreshed = new EventEmitter();
-  lightList: Light[];
+  lightList: Array<Light>;
   selectedLight: Light;
   id: number;
   lightSearch: boolean;
