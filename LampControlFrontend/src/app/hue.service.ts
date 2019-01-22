@@ -34,7 +34,7 @@ export class Scene {
 }
 
 const HUE_SCENE_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/scenes';
-let HUE_BRIDGE_URL = '';
+let hueBridgeUrl = '';
 
 @Injectable({
   providedIn: 'root'
@@ -46,14 +46,14 @@ export class HueService {
   // User Creation
 
   createUser(): Promise<any> {
-    console.log(HUE_BRIDGE_URL);
-    return this.httpClient.post(HUE_BRIDGE_URL + '/api', { 'devicetype': 'my_hue_app_lightcontroller' })
+    console.log(hueBridgeUrl);
+    return this.httpClient.post(hueBridgeUrl + '/api', { 'devicetype': 'my_hue_app_lightcontroller' })
       .toPromise();
   }
 
   fetchBridgeUrl(): Promise<string> {
     return this.httpClient.get('https://www.meethue.com/api/nupnp').toPromise()
-      .then((bridgeList => HUE_BRIDGE_URL = 'http://' + bridgeList[0].internalipaddress));
+      .then((bridgeList => hueBridgeUrl = 'http://' + bridgeList[0].internalipaddress));
   }
 
   // Lights & Groups

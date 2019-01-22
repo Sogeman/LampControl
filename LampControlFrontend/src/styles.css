@@ -19,6 +19,7 @@ app-home {
   color: white;
   width: 100%;
   text-align: center;
+  display: flex;
 }
 
 app-group, app-light {
@@ -230,7 +231,6 @@ li:nth-of-type(even) {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:14px;
 	font-weight:bold;
 	padding:6px 24px;
@@ -272,7 +272,6 @@ li:nth-of-type(even) {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:14px;
 	font-weight:bold;
 	padding:6px 24px;
@@ -314,7 +313,6 @@ li:nth-of-type(even) {
 	display:inline-block;
 	cursor:pointer;
 	color:#484e35;
-	font-family:Arial;
 	font-size:14px;
 	font-weight:bold;
 	padding:6px 24px;
@@ -377,7 +375,6 @@ li:nth-of-type(even) {
 	display:inline-block;
 	cursor:pointer;
 	color:#333333;
-	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;
 	padding:6px 24px;

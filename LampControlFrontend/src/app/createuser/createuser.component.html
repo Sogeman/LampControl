@@ -1,6 +1,7 @@
-<div>
-  <input type="text" name="nickname" placeholder="choose nickname" [(ngModel)]="user.nickname">
-  Press Bridge button then hit Create User in the next 30s<button type="button" (click)="startUserCreation()">Create User</button>
+<div class="user-creation">
+  <p>Drücke den Knopf auf der Bridge und dann innerhalb der nächsten 30s auf 'Speichern'</p>
+  <input type="text" class="nickname" name="nickname" placeholder="Namen eingeben" [(ngModel)]="user.nickname">
+  <button type="button" class="user-button" (click)="startUserCreation()">Speichern</button>
 </div>
 
 <p>implement password check for recurring users</p>

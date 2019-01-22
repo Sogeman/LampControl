@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../createuser/createuser.component';
 import { HueService } from '../hue.service';
+import { User } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     console.log('user created');
     console.log(this.user);
     this.setLocalStorage();
-    console.log('Saved userdata to cookies and storage');
+    console.log('Saved userdata to storage');
   }
 
   setLocalStorage() {
