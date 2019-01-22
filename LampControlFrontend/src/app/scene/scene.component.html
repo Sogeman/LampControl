@@ -1,11 +1,16 @@
 <button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
+<button (click)="createButtonClicked()" class="float-right create-button">Neue Szene</button>
 <div class="float-clear"></div>
 
-<div class="container">
+<div class="container push-down">
   <div class="scene" *ngFor="let scene of sceneList | keyvalue">
     <div class="item click-cursor" (click)="changeScene(scene.value, groupId)">
-      <img class="scene-select" [src]="getSceneImage(scene.value.name)">
-      <p>{{ scene.value.name }}</p>
+      <img class="scene-select" [src]="getSceneImage(scene.value.name)" [style.background-color]="scene.value.rgb">
+      <p class="scene-name">{{ scene.value.name }}</p>
     </div>
+    <button *ngIf="scene.value.defaultScene === false" class="delete-scene click-cursor" (click)="[isConfirmingDelete = true, parent = 'group', id = scene.value.id]">&times;</button>
+    <button *ngIf="scene.value.defaultScene === true" class="invisible-delete-scene"></button>
   </div>
 </div>
+
+<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" [sceneId]="id" (delete)="deleteScene($event)" (cancel)="isConfirmingDelete = false"></app-delete-confirmation>

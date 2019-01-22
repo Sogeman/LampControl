@@ -29,15 +29,23 @@ public class HueScene {
 	@Column(length=32)
 	private Float y;
 	
+	@Column(length=32)
+	private String rgb;
+	
+	@Column
+	private Boolean defaultScene;
+	
 	
 	public HueScene() {}
 
-	public HueScene(Long id, String name, String type, Integer brightness, Float x, Float y) {
+	public HueScene(Long id, String name, String type, Integer brightness, Float x, Float y, String rgb, Boolean defaultScene) {
 		this.id = id;
 		this.name = name;
 		this.brightness = brightness;
 		this.x = x;
 		this.y = y;
+		this.rgb = rgb;
+		this.defaultScene = defaultScene;
 	}
 
 	public Long getId() {
@@ -80,11 +88,27 @@ public class HueScene {
 		this.y = y;
 	}
 
+
+	public String getRgb() {
+		return rgb;
+	}
+
+	public void setRgb(String rgb) {
+		this.rgb = rgb;
+	}
+
+	public Boolean getDefaultScene() {
+		return defaultScene;
+	}
+
+	public void setDefaultScene(Boolean defaultScene) {
+		this.defaultScene = defaultScene;
+	}
+
 	@Override
 	public String toString() {
-		return "HueScene [id=" + id + ", name=" + name + ", brightness=" + brightness + ", x=" + x
-				+ ", y=" + y + "]";
+		return "HueScene [id=" + id + ", name=" + name + ", brightness=" + brightness + ", x=" + x + ", y=" + y
+				+ ", rgb=" + rgb + ", defaultScene=" + defaultScene + "]";
 	}
-	
-	
+
 }

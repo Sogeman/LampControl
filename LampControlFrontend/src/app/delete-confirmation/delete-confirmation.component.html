@@ -1,0 +1,8 @@
+<div class="delete-confirmation-blackout" [ngClass]="'confirm-'+parent">
+  <div class="delete-confirmation-box">
+    <p>Wirklich löschen?</p>
+    <button class="delete-button" (click)="confirmDelete()">Ja</button>
+    <button class="cancel-button" (click)="cancelDelete()">Nein</button>
+  </div>
+</div>
+

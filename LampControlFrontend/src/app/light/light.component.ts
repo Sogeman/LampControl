@@ -76,11 +76,6 @@ export class LightComponent implements OnInit {
     console.log('light ' + id + ' state changed to ' + state);
   }
 
-  startAddingLights() {
-    this.lightSearch = true;
-    console.log('change to add light view');
-  }
-
   clearLightSearch() {
     this.lightSearch = false;
     this.refreshAll();

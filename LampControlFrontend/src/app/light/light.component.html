@@ -9,11 +9,11 @@
         <img src="assets/settings.png" class="">
       </button>
     </div>
-    <input type="text" class="name-input" [value]="light.value.name" placeholder="{{ light.value.name }}" disabled>
+    <p>{{ light.value.name }}</p>
   </div>
   <div class="float-clear"></div>
 
-  <div class="add-button click-cursor" (click)="startAddingLights()">
+  <div class="add-button click-cursor" (click)="lightSearch = true">
     <img src="assets/plus.png">
   </div>
 </div>

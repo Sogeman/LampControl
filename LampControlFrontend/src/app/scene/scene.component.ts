@@ -10,8 +10,12 @@ import { ManipulationService } from '../manipulation.service';
 export class SceneComponent implements OnInit {
 
   @Output() back = new EventEmitter();
+  @Output() create = new EventEmitter();
   @Input() groupId: number;
+  @Input() parent: string;
   sceneList: Array<Scene>;
+  isConfirmingDelete: boolean;
+  id: number;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 
@@ -21,6 +25,10 @@ export class SceneComponent implements OnInit {
 
   backButtonClicked() {
     this.back.emit();
+  }
+
+  createButtonClicked() {
+    this.create.emit();
   }
 
   refreshScenes() {
@@ -35,6 +43,12 @@ export class SceneComponent implements OnInit {
   changeScene(sceneData: Scene, id: number) {
     this.hueService.toggleGroup(false, id)
       .then(() => this.hueService.setSceneState(sceneData, id));
-    }
+  }
+
+  deleteScene(id: number) {
+    this.hueService.deleteScene(id)
+      .then(() => this.isConfirmingDelete = false)
+      .then(() => this.refreshScenes());
+  }
 
 }

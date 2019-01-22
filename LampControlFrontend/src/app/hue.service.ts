@@ -24,10 +24,13 @@ export class Group {
 }
 
 export class Scene {
+  id: number;
   name: string;
   brightness: number;
   x: number;
   y: number;
+  rgb: string;
+  defaultScene: number;
 }
 
 const HUE_SCENE_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/scenes';
@@ -62,11 +65,11 @@ export class HueService {
     if (type === 'group') {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id, body)
-          .toPromise();
+        .toPromise();
     } else {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id, body)
-          .toPromise();
+        .toPromise();
     }
 
   }
@@ -76,19 +79,19 @@ export class HueService {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/action',
         this.manipulationService.createStateBody(color, brightness))
-          .toPromise();
+        .toPromise();
     } else {
       return this.httpClient.put(
         localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id + '/state',
         this.manipulationService.createStateBody(color, brightness))
-          .toPromise();
+        .toPromise();
     }
   }
 
   deleteEntity(id: number, type: string): Promise<any> {
     return this.httpClient.delete(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/' + type + '/' + id)
-        .toPromise();
+      .toPromise();
   }
 
   // Lights
@@ -96,20 +99,20 @@ export class HueService {
   retrieveAllLights(): Promise<Array<Light>> {
     return this.httpClient.get<Array<Light>>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights')
-        .toPromise();
+      .toPromise();
   }
 
   retrieveSingleLight(id: number): Promise<Light> {
     return this.httpClient.get<Light>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/lights/' + id)
-        .toPromise();
+      .toPromise();
   }
 
   toggleLight(lightState: boolean, id: number): Promise<any> {
-      return this.httpClient.put(
-        localStorage.getItem('bridgeIp') + '/api/'
-        + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
-          .toPromise();
+    return this.httpClient.put(
+      localStorage.getItem('bridgeIp') + '/api/'
+      + localStorage.getItem('username') + '/lights/' + id + '/state', this.manipulationService.createToggleBody(lightState))
+      .toPromise();
   }
 
   searchForNewLights(): Promise<any> {
@@ -128,31 +131,31 @@ export class HueService {
   retrieveAllGroups(): Promise<Array<Group>> {
     return this.httpClient.get<Array<Group>>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups')
-        .toPromise();
+      .toPromise();
   }
 
   toggleGroup(groupState: boolean, id: number): Promise<any> {
     return this.httpClient.put(localStorage.getItem('bridgeIp') + '/api/'
       + localStorage.getItem('username') + '/groups/' + id + '/action', this.manipulationService.createToggleBody(groupState))
-        .toPromise();
+      .toPromise();
   }
 
   retrieveSingleGroup(id: number): Promise<Group> {
     return this.httpClient.get<Group>(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id)
-        .toPromise();
+      .toPromise();
   }
 
   createGroup(body: any): Promise<any> {
     return this.httpClient.post(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups', body)
-        .toPromise();
+      .toPromise();
   }
 
   setGroupAttributes(body: any, id: number): Promise<any> {
     return this.httpClient.put(
       localStorage.getItem('bridgeIp') + '/api/' + localStorage.getItem('username') + '/groups/' + id, body)
-        .toPromise();
+      .toPromise();
   }
 
   // Scenes
@@ -165,4 +168,11 @@ export class HueService {
     return this.updateState('groups', [sceneData.x.toString(), sceneData.y.toString()], sceneData.brightness, id);
   }
 
+  saveScene(name: string, color: string): Promise<any> {
+    return this.httpClient.post(HUE_SCENE_RESOURCE_URL, this.manipulationService.createSceneBody(name, color)).toPromise();
+  }
+
+  deleteScene(id: number): Promise<any> {
+    return this.httpClient.delete(HUE_SCENE_RESOURCE_URL + '/' + id).toPromise();
+  }
 }

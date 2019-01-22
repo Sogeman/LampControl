@@ -18,6 +18,7 @@ export class GroupComponent implements OnInit {
   isChangingLights: boolean;
   isGroupCreation: boolean;
   isChangingScene: boolean;
+  isSceneCreation: boolean;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) {
    }
@@ -97,10 +98,6 @@ export class GroupComponent implements OnInit {
     console.log('return to homepage');
   }
 
-  startCreatingGroup() {
-    this.isGroupCreation = true;
-    console.log('switch to group create view');
-  }
 
   clearGroupCreation() {
     this.isChangingLights = false;
@@ -125,7 +122,7 @@ export class GroupComponent implements OnInit {
   deleteSelectedGroup(id: number) {
     this.hueService.deleteEntity(id, 'groups')
       .then(() => this.clearSelectedGroup())
-      .then(() => this.clearChangingLights());
+      .then(() => this.isChangingLights = false);
     console.log('group ' + id + ' deleted and return to homepage');
   }
 
@@ -138,23 +135,6 @@ export class GroupComponent implements OnInit {
     this.hueService.setGroupAttributes(body, this.groupId)
       .then(() => this.clearGroupCreation())
       .then(() => this.clearSelectedGroup());
-  }
-
-  startLightChange() {
-    this.isChangingLights = true;
-    this.isGroupCreation = false;
-  }
-
-  clearChangingLights() {
-    this.isChangingLights = false;
-  }
-
-  startSceneChange() {
-    this.isChangingScene = true;
-  }
-
-  clearSceneChange() {
-    this.isChangingScene = false;
   }
 
 }

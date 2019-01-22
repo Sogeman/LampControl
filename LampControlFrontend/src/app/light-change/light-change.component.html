@@ -1,5 +1,5 @@
 <button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
-<button *ngIf="selectedGroup" (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
+<button *ngIf="selectedGroup" (click)="[isConfirmingDelete = true, parent = 'group']" class="float-right delete-button">Löschen</button>
 <div class="float-clear"></div>
 
 <div *ngIf="isCreatingGroup && !isChangingLights">
@@ -58,5 +58,7 @@
   <button type="button" class="click-cursor save-button" (click)="startSavingGroup(groupName, selectedLights)">
     Speichern
   </button>
-
 </div>
+
+<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" [sceneId]="id" (delete)="deleteButtonClicked($event)" (cancel)="isConfirmingDelete = false"></app-delete-confirmation>
+

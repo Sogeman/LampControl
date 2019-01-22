@@ -17,6 +17,8 @@ app-home {
 
 .title {
   color: white;
+  width: 100%;
+  text-align: center;
 }
 
 app-group, app-light {
@@ -26,13 +28,17 @@ app-group, app-light {
   background-color: #34495e;
 }
 
+app-group {
+  flex: 75%;
+}
+
 .overview-header {
   position: sticky;
   top: 0px;
   background-color: #22313f;
   z-index: 10;
   margin: 0;
-  padding: 1%;
+  padding: 1vh;
   color: white;
 }
 
@@ -61,10 +67,19 @@ app-group, app-light {
   align-items: center;
 }
 
-.item {
+.push-down {
+  margin-top: 2%;
+}
+
+.item{
   flex-basis: 30%;
-  padding: 10px;
+  padding: 1%;
   margin: 0 auto;
+  position: relative;
+}
+
+.group-item {
+  flex-basis: 20%;
 }
 
 .item-image {
@@ -92,6 +107,22 @@ app-group, app-light {
   float: left;
 }
 
+.picker {
+  opacity: 1;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+}
+
+.picker:hover {
+  opacity: 0.7;
+  box-shadow: 0 0 5px black;
+}
+
+
 li {
   padding: 1%;
 }
@@ -113,12 +144,14 @@ li:nth-of-type(even) {
 .scene-select {
   height: 128px;
   width: 128px;
-  background-color: white;
 }
 
 .scene {
   margin: 0 2%;
+}
 
+.scene-name {
+  margin-bottom: 1vh;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -244,7 +277,8 @@ li:nth-of-type(even) {
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px -1px 0px #5b8a3c;
+  text-shadow:0px -1px 0px #5b8a3c;
+  margin: 1%;
 }
 .save-button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #44a314), color-stop(1, #77b55a));
@@ -261,7 +295,7 @@ li:nth-of-type(even) {
 	top:1px;
 }
 
-.light-change-button {
+.light-change-button, .cancel-button {
 	-moz-box-shadow: 0px 1px 0px 0px #1c1b18;
 	-webkit-box-shadow: 0px 1px 0px 0px #1c1b18;
 	box-shadow: 0px 1px 0px 0px #1c1b18;
@@ -283,13 +317,13 @@ li:nth-of-type(even) {
 	font-family:Arial;
 	font-size:14px;
 	font-weight:bold;
-	padding:6px 15px;
+	padding:6px 24px;
 	text-decoration:none;
   text-shadow:0px -1px 0px #ffffff;
   margin: 2%;
 
 }
-.light-change-button:hover {
+.light-change-button:hover, .cancel-button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ccc2a6), color-stop(1, #eae0c2));
 	background:-moz-linear-gradient(top, #ccc2a6 5%, #eae0c2 100%);
 	background:-webkit-linear-gradient(top, #ccc2a6 5%, #eae0c2 100%);
@@ -299,11 +333,10 @@ li:nth-of-type(even) {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccc2a6', endColorstr='#eae0c2',GradientType=0);
 	background-color:#ccc2a6;
 }
-.light-change-button:active {
+.light-change-button:active, .cancel-button:active {
 	position:relative;
 	top:1px;
 }
-
 
 .add-button {
   position: absolute;
@@ -317,10 +350,71 @@ li:nth-of-type(even) {
   padding: 0;
   background: transparent;
   border: none;
-  margin: 5px;
+  margin-top: 1vh;
   transform: scale(1.2);
 }
 
 .controls-button:hover {
   opacity: 0.7;
+}
+
+.create-button {
+	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
+	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+	box-shadow: 0px 1px 0px 0px #fff6af;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+	background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#ffec64;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+  text-shadow:0px -1px 0px #ffee66;
+  margin: 1%;
+}
+.create-button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+	background-color:#ffab23;
+}
+.create-button:active {
+	position:relative;
+	top:1px;
+}
+
+.delete-scene {
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 2vh;
+}
+
+.invisible-delete-scene {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 2vh;
 }

@@ -1,0 +1,18 @@
+.delete-confirmation-blackout {
+  position: absolute;
+  top: 50%;
+  min-height: 30%;
+  background-color: rgba(0, 0, 0, 80%);
+}
+
+.delete-confirmation-box {
+  margin-top: 7vh;
+}
+
+.confirm-light {
+  width: 37.5vw;
+}
+
+.confirm-group {
+  width: 57.2vw;
+}

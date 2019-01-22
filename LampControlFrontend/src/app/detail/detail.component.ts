@@ -21,6 +21,8 @@ export class DetailComponent implements OnInit {
   @Input() selectedGroup: Group;
   @Input() id: number;
   lightList: Array<Light>;
+  isConfirmingDelete: boolean;
+  parent: string;
   private _lightState = '';
   private _groupState = '';
 
@@ -64,7 +66,16 @@ export class DetailComponent implements OnInit {
   }
 
   deleteButtonClicked() {
+    this.isConfirmingDelete = true;
+  }
+
+  finishDeletion() {
+    this.clearIsConfirmingDelete();
     this.delete.emit(this.id);
+  }
+
+  clearIsConfirmingDelete() {
+    this.isConfirmingDelete = false;
   }
 
   lightClicked() {

@@ -1,0 +1,12 @@
+<button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
+<div class="float-clear"></div>
+
+<p>Namen eingeben:</p>
+<input class="name-input" type="text" placeholder="Szenenname" #sceneName>
+
+<p>Farbe und Helligkeit einstellen</p>
+<div class="picker" [(colorPicker)]="sceneColor" [style.background]="sceneColor" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
+[cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'">
+</div>
+
+<button type="button" class="click-cursor save-button" (click)="saveScene(sceneName.value, sceneColor)">Speichern</button>

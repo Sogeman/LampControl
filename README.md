@@ -20,10 +20,10 @@ TODO:  (<s>implemented</s>)
 - <s>add new groups</s>
 - control <s>light</s> <s>color</s> and <s>brightness</s> of <s>group</s> or <s>individual lights</s>
 - <s>choose pre-created scene</s>
-- create own scene
-
+- <s>create own scene</s>
+- <s>delete created scenes</s>
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API
 
-TODO maybe: make back and delete button into component, delete scenes, set lightstate in group independently, expand app to include departure times for bus in front of my appartment
+TODO maybe: make back and delete button into componen, set lightstate in group independently, expand app to include departure times for bus in front of my appartment

@@ -2,7 +2,7 @@
 
 <div *ngIf="selectedLight && !selectedGroup">
   <button (click)="backButtonClicked('light')" class="float-left back-button">Zurück</button>
-  <button (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
+  <button (click)="[isConfirmingDelete = true, parent = 'light']" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
 
   <img [src]="(selectedLight.state.on == true) ? 'assets/light_on.png' : 'assets/light_off.png'"
@@ -13,7 +13,7 @@
   <button type="button" class="click-cursor save-button" (click)="startNameSave(lightName.value, id, 'light')">Speichern</button>
 
   <p>Farbe und Helligkeit ändern</p>
-  <div class="color-picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState"
+  <div class="picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
     [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false" [cpPositionOffset]="'-150%'"
     [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
@@ -24,7 +24,7 @@
 
 <div *ngIf="selectedGroup && !selectedLight">
   <button (click)="backButtonClicked('group')" class="float-left back-button">Zurück</button>
-  <button (click)="deleteButtonClicked()" class="float-right delete-button">Löschen</button>
+  <button (click)="[isConfirmingDelete = true, parent = 'group']" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
 
   <img [src]="selectedGroup.action.on ? (getGroupImage(selectedGroup.class, 'on')) : (getGroupImage(selectedGroup.class, 'off'))"
@@ -35,7 +35,7 @@
   <button type="button" class="click-cursor save-button" (click)="startNameSave(groupName.value, id, 'group')">Speichern</button>
 
   <p>Farbe und Helligkeit ändern</p>
-  <div class="color-picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState"
+  <div class="picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
     [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'"
     [cpPresetColors]="[ 'rgb(255,255,255)', 'rgb(255,250,206)', 'rgb(255,204,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)']">
@@ -44,3 +44,5 @@
   <button type="button" class="light-delete light-change-button" (click)="startLightChange()">Lampen ändern</button>
   <button type="button" class="light-delete light-change-button" (click)="startScene()">Szene auswählen</button>
 </div>
+
+<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" (delete)="finishDeletion()" (cancel)="clearIsConfirmingDelete()"></app-delete-confirmation>

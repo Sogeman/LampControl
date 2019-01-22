@@ -138,7 +138,7 @@ export class ManipulationService {
       case 'Nachtlicht':
         return 'assets/nightlight.jpg';
       default:
-        return '';
+        return 'assets/default.png';
     }
   }
 
@@ -172,6 +172,22 @@ export class ManipulationService {
       group['class'] = roomClass;
     }
     return group;
+  }
+
+  createSceneBody(name: string, color: string): any {
+    const lightState = this.calculateChangeLightState(color);
+    const x = lightState.xy[0];
+    const y = lightState.xy[1];
+    const bri = lightState.bri;
+    const body = {
+      name: name,
+      x: x,
+      y: y,
+      brightness: bri,
+      rgb: color,
+      defaultScene: false
+    };
+    return body;
   }
 
 }

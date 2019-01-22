@@ -18,6 +18,7 @@ export class LightChangeComponent implements OnInit {
   @Input() selectedGroup: Group;
   @Input() isCreatingGroup: boolean;
   @Input() isChangingLights: boolean;
+  @Input() parent: string;
   usedLights: Array<Light>;
   unusedLights: Array<Light>;
   isListEmpty: boolean;
@@ -25,7 +26,7 @@ export class LightChangeComponent implements OnInit {
   groupName: string;
   selectedRoomClass: string;
   selectedLights: Array<any> = [];
-
+  isConfirmingDelete: boolean;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 

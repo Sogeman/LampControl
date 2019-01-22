@@ -8,12 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { GroupComponent } from './group/group.component';
 import { LightComponent } from './light/light.component';
 import { CreateuserComponent } from './createuser/createuser.component';
-import { CookieService } from 'ngx-cookie-service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
 import { LightChangeComponent } from './light-change/light-change.component';
 import { SceneComponent } from './scene/scene.component';
+import { AddsceneComponent } from './addscene/addscene.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 @NgModule({
    declarations: [
@@ -25,7 +26,9 @@ import { SceneComponent } from './scene/scene.component';
       DetailComponent,
       LightSearchComponent,
       LightChangeComponent,
-      SceneComponent
+      SceneComponent,
+      AddsceneComponent,
+      DeleteConfirmationComponent
    ],
    imports: [
       BrowserModule,
@@ -34,7 +37,6 @@ import { SceneComponent } from './scene/scene.component';
       ColorPickerModule
    ],
    providers: [
-      CookieService
    ],
    bootstrap: [
       AppComponent
