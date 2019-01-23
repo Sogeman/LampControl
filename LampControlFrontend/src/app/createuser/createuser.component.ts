@@ -30,7 +30,6 @@ export class CreateuserComponent implements OnInit {
       .then(users => {
         if (users.length > 0) {
           this.saveUser(users[0]);
-          console.log('User fetched from database');
         } else {
           this.createUser();
         }
@@ -52,6 +51,5 @@ export class CreateuserComponent implements OnInit {
           alert('Bridge Knopf drücken!');
         }
       });
-  console.log('User created');
   }
 }
