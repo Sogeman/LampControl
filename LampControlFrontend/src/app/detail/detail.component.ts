@@ -30,7 +30,6 @@ export class DetailComponent implements OnInit {
   set lightState(lightState: string) {
       this._lightState = lightState;
       this.stateChange.emit(lightState);
-      console.log('lightstate set');
   }
   get lightState(): string {
      return this._lightState;
@@ -40,7 +39,6 @@ export class DetailComponent implements OnInit {
   set groupState(groupState: string) {
     this._groupState = groupState;
     this.stateChange.emit(groupState);
-    console.log('groupstate set');
   }
   get groupState(): string {
     return this._groupState;
