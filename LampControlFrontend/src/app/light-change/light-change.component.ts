@@ -86,7 +86,6 @@ export class LightChangeComponent implements OnInit {
       }
     }
     lights = [].concat.apply([], lights); // flatten array to one level, also removes empty arrays
-    console.log(lights);
     return lights;
   }
 
