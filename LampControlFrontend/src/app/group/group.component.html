@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<app-detail *ngIf="selectedGroup && !isChangingLights && !isLightRemove && !isChangingScene" [selectedGroup]="selectedGroup" [id]="groupId"
+<app-detail *ngIf="selectedGroup && !isChangingLights && !isChangingScene" [selectedGroup]="selectedGroup" [id]="groupId"
   (groupToggled)="toggleGroupDetail($event, groupId)" (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)"
   (stateChange)="changeState($event, groupId)" (delete)="deleteSelectedGroup($event)" (lightChange)="[isGroupCreation = false, isChangingLights = true]"
   (sceneChange)="isChangingScene = true"></app-detail>

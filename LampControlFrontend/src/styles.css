@@ -30,7 +30,11 @@ app-group, app-light {
 }
 
 app-group {
-  flex: 75%;
+  flex: 60%;
+}
+
+app-light {
+  flex: 40%;
 }
 
 .overview-header {

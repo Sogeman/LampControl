@@ -10,9 +10,11 @@
 }
 
 .confirm-light {
-  width: 37.5vw;
+  margin: 0 1%;
+  width: 36vw;
 }
 
 .confirm-group {
-  width: 57.2vw;
+  margin: 0 1%;
+  width: 54.8%;
 }

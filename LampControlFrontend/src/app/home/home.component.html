@@ -2,7 +2,7 @@
 
 <div *ngIf="user.nickname" class="title">
   <h2 class="header">{{ user.nickname }}'s Hue Controller</h2>
-  <button type="button" class="departure-button">Abfahrten</button>
+  <!-- <button type="button" class="departure-button">Abfahrten</button> -->
 </div>
 <div class="row main" *ngIf="user.username">
   <app-group class="column centered" (groupsRefreshed)="light.refreshAllLightsOnly()" #group></app-group>
