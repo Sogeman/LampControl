@@ -6,7 +6,7 @@
 
 <p>Farbe und Helligkeit einstellen</p>
 <div class="picker" [(colorPicker)]="sceneColor" [style.background]="sceneColor" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-[cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'">
+[cpDisableInput]="'true'" [cpPosition]="'right'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'">
 </div>
 
 <button type="button" class="click-cursor save-button" (click)="saveScene(sceneName.value, sceneColor)">Speichern</button>
