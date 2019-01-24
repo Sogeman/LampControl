@@ -26,7 +26,7 @@ export class CreateuserComponent implements OnInit {
   }
 
   startUserCreation() {
-    this.userService.retrieveUser(escape(this.user.nickname))
+    this.userService.retrieveUser(this.user.nickname)
       .then(users => {
         if (users.length > 0) {
           this.saveUser(users[0]);

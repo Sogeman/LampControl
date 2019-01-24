@@ -8,7 +8,8 @@ export class User {
   bridgeIp: string;
 }
 
-const HUE_USER_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/users';
+const HUE_USER_RESOURCE_URL = 'http://192.168.0.129:8080/lampcontroller/resources/users';
+// const HUE_USER_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/users';
 
 @Injectable({
   providedIn: 'root'
