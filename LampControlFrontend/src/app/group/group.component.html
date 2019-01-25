@@ -1,4 +1,4 @@
-<h2 class="overview-header">Rooms</h2>
+<h2 class="overview-header">Räume</h2>
 
 <div class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation && !isChangingScene">
   <div *ngFor="let group of groupList | keyvalue" class="group-item item">
@@ -10,7 +10,6 @@
       </button>
     </div>
     <p>{{ group.value.name }}</p>
-    <p>{{group.key}}</p>
   </div>
   <div class="float-clear"></div>
 
