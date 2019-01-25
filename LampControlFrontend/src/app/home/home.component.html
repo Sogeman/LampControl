@@ -1,6 +1,6 @@
 <app-createuser (userCreated)="setUser($event)" *ngIf="!user.username"></app-createuser>
 
-<div *ngIf="user.nickname" class="title">
+<div *ngIf="user.username" class="title">
   <h2 class="header">{{ user.nickname }}'s Hue Controller</h2>
   <!-- <button type="button" class="departure-button">Abfahrten</button> -->
 </div>
