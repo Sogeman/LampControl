@@ -18,6 +18,4 @@ You can:
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
 
-TODO: return to sign in if there's no user for some reason
-
 TODO maybe: make back button into component, set lightstate in group independently, change scene, expand app to include departure times for bus in front of my appartment
