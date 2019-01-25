@@ -27,7 +27,7 @@ export class LightComponent implements OnInit {
   refreshSingleLight(id: number) {
     this.hueService.retrieveSingleLight(id)
       .then(light => this.selectedLight = light)
-      .then(() => this.id = id)
+      .then(() => this.id = id);
   }
 
   refreshAllLightsOnly() {

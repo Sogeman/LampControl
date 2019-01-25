@@ -31,11 +31,12 @@ export class GroupComponent implements OnInit {
 
   filterGroups(list: Array<Group>): Array<Group> {
     const filteredGroups = [];
-    Object.values(list).forEach((group) => {
-      if (group.type === 'Room') {
-        filteredGroups.push(group);
+    for (const key in list) {
+      if (list.hasOwnProperty(key)) {
+        filteredGroups[key] = list[key];
       }
-    });
+    }
+    console.log(filteredGroups);
     return filteredGroups;
   }
 
@@ -57,7 +58,8 @@ export class GroupComponent implements OnInit {
 
   refreshAll() {
     this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = this.filterGroups(groups));
+      .then(groups => this.groupList = this.filterGroups(groups))
+      .then(() => console.log(this.groupList));
     this.groupsRefreshed.emit();
   }
 
@@ -77,6 +79,7 @@ export class GroupComponent implements OnInit {
         if (group.lights.length < 1) {
           this.isChangingLights = true;
           this.groupId = id;
+          this.selectedGroup = group;
         } else {
           this.selectedGroup = group;
         }
