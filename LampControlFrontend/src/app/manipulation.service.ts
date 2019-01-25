@@ -86,7 +86,6 @@ export class ManipulationService {
       alpha += bri.toString();
     }
     lightState = 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + alpha + ')';
-    console.log(lightState);
     return lightState;
   }
 

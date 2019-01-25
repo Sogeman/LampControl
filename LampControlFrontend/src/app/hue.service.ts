@@ -33,8 +33,8 @@ export class Scene {
   defaultScene: number;
 }
 
-const HUE_SCENE_RESOURCE_URL = 'http://192.168.0.1:8080/lampcontroller/resources/scenes';
-// const HUE_SCENE_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/scenes';
+// const HUE_SCENE_RESOURCE_URL = 'http://192.168.0.129:8080/lampcontroller/resources/scenes';
+const HUE_SCENE_RESOURCE_URL = 'http://localhost:8080/lampcontroller/resources/scenes';
 let hueBridgeUrl = '';
 
 @Injectable({
