@@ -2,11 +2,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HueService } from '../hue.service';
 
 @Component({
-  selector: 'app-addscene',
-  templateUrl: './addscene.component.html',
-  styleUrls: ['./addscene.component.css']
+  selector: 'app-scene-input',
+  templateUrl: './scene-input.component.html',
+  styleUrls: ['./scene-input.component.css']
 })
-export class AddsceneComponent implements OnInit {
+export class SceneInputComponent implements OnInit {
 
   @Output() back = new EventEmitter();
   @Input() sceneColor: string;

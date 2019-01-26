@@ -13,7 +13,7 @@ import { DetailComponent } from './detail/detail.component';
 import { LightSearchComponent } from './light-search/light-search.component';
 import { LightChangeComponent } from './light-change/light-change.component';
 import { SceneComponent } from './scene/scene.component';
-import { AddsceneComponent } from './addscene/addscene.component';
+import { SceneInputComponent } from './scene-input/scene-input.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { MonitorComponent } from './monitor/monitor.component';
 
@@ -28,7 +28,7 @@ import { MonitorComponent } from './monitor/monitor.component';
       LightSearchComponent,
       LightChangeComponent,
       SceneComponent,
-      AddsceneComponent,
+      SceneInputComponent,
       DeleteConfirmationComponent,
       MonitorComponent
    ],

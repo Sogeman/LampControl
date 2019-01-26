@@ -29,4 +29,4 @@
 
 <app-scene *ngIf="isChangingScene && !isSceneCreation" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]" (create)="isSceneCreation = true" [groupId]="groupId"></app-scene>
 
-<app-addscene *ngIf="isSceneCreation" (back)="isSceneCreation = false"></app-addscene>
+<app-scene-input *ngIf="isSceneCreation" (back)="isSceneCreation = false"></app-scene-input>
