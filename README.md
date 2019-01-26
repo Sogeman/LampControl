@@ -1,9 +1,9 @@
 # LampControl
-Third Semester Project, Hue Lamp Control
+Third Semester Project, Home Control
 
 Mandler Rene
 
-Web Application to control Philips Hue lights
+Web Application to control Philips Hue lights Uand show public transport data in the future)
 
 You can:
 
