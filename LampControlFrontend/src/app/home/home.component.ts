@@ -56,10 +56,6 @@ export class HomeComponent implements OnInit {
   }
 
   setLocalStorage(user: User) {
-    console.log(user, 'setlocal');
-    console.log(user.nickname);
-    console.log(user.userId);
-    console.log(user.username);
     localStorage.setItem('username', user.username);
     localStorage.setItem('nickname', user.nickname);
     localStorage.setItem('id', JSON.stringify(user.userId));
