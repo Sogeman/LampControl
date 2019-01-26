@@ -47,14 +47,24 @@ export class HueService {
   // User Creation
 
   createUser(): Promise<any> {
-    console.log(hueBridgeUrl);
     return this.httpClient.post(hueBridgeUrl + '/api', { 'devicetype': 'my_hue_app_lightcontroller' })
       .toPromise();
   }
 
   fetchBridgeUrl(): Promise<string> {
     return this.httpClient.get('https://www.meethue.com/api/nupnp').toPromise()
-      .then((bridgeList => hueBridgeUrl = 'http://' + bridgeList[0].internalipaddress));
+      // .then((bridgeList => hueBridgeUrl = 'http://' + bridgeList[0].internalipaddress));
+      .then((bridgeList => hueBridgeUrl = 'http://' + '192.168.0.115'));
+  }
+
+  checkUsername(username: string): Promise<any> {
+    return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + username).toPromise();
+      //       if (response[0]) {
+      //     Object.keys(response[0]).join();
+      //   } else {
+      //     'success';
+      //   }
+      // });
   }
 
   // Lights & Groups

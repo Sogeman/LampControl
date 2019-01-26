@@ -1,10 +1,13 @@
-<app-createuser (userCreated)="setUser($event)" *ngIf="!user.username"></app-createuser>
+<app-createuser *ngIf="!user.username" (userCreated)="setUser($event)" (cancel)="userIsValid = false"></app-createuser>
 
-<div *ngIf="user.username" class="title">
+<div *ngIf="userIsValid" class="title">
   <h2 class="header">{{ user.nickname }}'s Hue Controller</h2>
-  <!-- <button type="button" class="departure-button">Abfahrten</button> -->
+  <button type="button" class="departure-button" *ngIf="!isShowingDepartures" (click)="isShowingDepartures = true">Abfahrten</button>
+  <button type="button" class="departure-button" *ngIf="isShowingDepartures" (click)="isShowingDepartures = false">Lampen</button>
 </div>
-<div class="row main" *ngIf="user.username">
+<div class="row main" *ngIf="user.username && !isShowingDepartures">
   <app-group class="column centered" (groupsRefreshed)="light.refreshAllLightsOnly()" #group></app-group>
   <app-light class="column centered" (lightsRefreshed)="group.refreshAllGroupsOnly()" #light></app-light>
 </div>
+
+<app-monitor class="monitor main" *ngIf="isShowingDepartures"></app-monitor>

@@ -15,6 +15,7 @@ import { LightChangeComponent } from './light-change/light-change.component';
 import { SceneComponent } from './scene/scene.component';
 import { AddsceneComponent } from './addscene/addscene.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { MonitorComponent } from './monitor/monitor.component';
 
 @NgModule({
    declarations: [
@@ -28,7 +29,8 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
       LightChangeComponent,
       SceneComponent,
       AddsceneComponent,
-      DeleteConfirmationComponent
+      DeleteConfirmationComponent,
+      MonitorComponent
    ],
    imports: [
       BrowserModule,
@@ -36,8 +38,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
       FormsModule,
       ColorPickerModule
    ],
-   providers: [
-   ],
+   providers: [],
    bootstrap: [
       AppComponent
    ]

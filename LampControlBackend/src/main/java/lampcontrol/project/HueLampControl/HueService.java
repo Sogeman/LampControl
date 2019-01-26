@@ -26,4 +26,11 @@ public class HueService {
 				.setParameter("nickname", nickname)
 				.getResultList();
 	}
+	
+	public void deleteUser(Long id) {
+		entityManager
+			.createNamedQuery("user.deleteUserByUsername")
+			.setParameter("id", id)
+			.executeUpdate();
+	}
 }

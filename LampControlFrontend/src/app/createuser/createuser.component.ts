@@ -2,12 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HueService } from '../hue.service';
 import { UserService, User } from '../user.service';
 
-// export class User {
-//   username: string;
-//   nickname: string;
-//   bridgeIp: string;
-// }
-
 @Component({
   selector: 'app-createuser',
   templateUrl: './createuser.component.html',
@@ -17,6 +11,7 @@ export class CreateuserComponent implements OnInit {
 
   user: User;
   @Output() userCreated = new EventEmitter<User>();
+  @Output() cancel = new EventEmitter();
 
   constructor(private hueService: HueService, private userService: UserService) {
     this.user = new User();
@@ -29,27 +24,47 @@ export class CreateuserComponent implements OnInit {
     this.userService.retrieveUser(this.user.nickname)
       .then(users => {
         if (users.length > 0) {
-          this.saveUser(users[0]);
+          this.hueService.checkUsername(users[0].username)
+            .then(response => {
+              if (response[0]) {
+                return Object.keys(response[0]).join();
+              }
+            })
+            .then(valid => {
+              if (valid === 'error') {
+                this.createUser('Username nicht mehr gültig!');
+                this.userService.deleteUser(users[0].userId);
+              } else {
+                this.saveUser(users[0]);
+              }
+            });
         } else {
-          this.createUser();
+          this.createUser('');
         }
       });
   }
 
   saveUser(user: User) {
+    console.log(user, 'emit User');
     this.userCreated.emit(user);
   }
 
-  createUser() {
+  createUser(extraMessage: string) {
     this.hueService.createUser()
       .then(createdUser => {
         if (createdUser[0].success) {
           this.user.username = createdUser[0].success.username;
+          this.userService.saveUser(this.user)
+          .then(response => this.user.userId = response);
           this.saveUser(this.user);
-          this.userService.saveUser(this.user);
         } else {
-          alert('Bridge Knopf drücken!');
+          alert('Bridge Knopf drücken! ' + extraMessage);
+          this.user.nickname = '';
         }
       });
+  }
+
+  cancelUserCreation() {
+    this.cancel.emit();
   }
 }

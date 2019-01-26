@@ -36,7 +36,6 @@ export class GroupComponent implements OnInit {
         filteredGroups[key] = list[key];
       }
     }
-    console.log(filteredGroups);
     return filteredGroups;
   }
 

@@ -12,13 +12,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 @NamedQueries({
-	@NamedQuery(name="user.selectAll", query="SELECT u from User u"),
-	@NamedQuery(name="user.getUser", query="SELECT u from User u WHERE u.nickname = :nickname")
+	@NamedQuery(name="user.selectAll", query="SELECT u FROM User u"),
+	@NamedQuery(name="user.getUser", query="SELECT u FROM User u WHERE u.nickname = :nickname"),
+	@NamedQuery(name="user.deleteUserByUsername", query="DELETE FROM User u WHERE u.username = :username")
 })
 public class User {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long userId;
 	
 	@Column(length=100, nullable=false)
 	private String username;
@@ -31,18 +32,18 @@ public class User {
 
 	public User() {}
 	
-	public User(Long id, String username, String nickname) {
-		this.id = id;
+	public User(Long userId, String username, String nickname) {
+		this.userId = userId;
 		this.username = username;
 		this.nickname = nickname;
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -63,7 +64,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", nickname=" + nickname + "]";
+		return "User [userId=" + userId + ", username=" + username + ", nickname=" + nickname + "]";
 	}
 
 }
