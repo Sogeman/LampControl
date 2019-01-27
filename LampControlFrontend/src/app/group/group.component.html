@@ -1,4 +1,9 @@
-<h2 class="overview-header">Räume</h2>
+<h2 class="overview-header">Räume
+  <div class="add-button-phone-group click-cursor" (click)="isGroupCreation = true">
+    <img src="assets/plus.png">
+  </div>
+</h2>
+
 
 <div class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation && !isChangingScene">
   <div *ngFor="let group of groupList | keyvalue" class="group-item item">
@@ -25,8 +30,8 @@
   (sceneChange)="isChangingScene = true"></app-detail>
 
 <app-light-change *ngIf="isChangingLights || isGroupCreation" [selectedGroup]="selectedGroup" [id]="groupId"
-  [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : isChangingLights = false"
-  (delete)="deleteSelectedGroup($event)" (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
+  [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="clearGroupCreation()" (delete)="deleteSelectedGroup($event)"
+  (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
 
 <app-scene *ngIf="isChangingScene && !isSceneCreation && !isSceneEdit" [groupId]="groupId" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]"
   (create)="isSceneCreation = true" (edit)="startSceneEdit($event)"></app-scene>

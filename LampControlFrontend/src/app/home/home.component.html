@@ -1,7 +1,7 @@
 <app-createuser *ngIf="!user.username" (userCreated)="setUser($event)" (cancel)="userIsValid = false"></app-createuser>
 
 <div *ngIf="userIsValid" class="title">
-  <h2 class="header">{{ user.nickname }}'s Hue Controller</h2>
+  <h2 class="header">{{ user.nickname }}'s Controller</h2>
   <button type="button" class="departure-button" *ngIf="!isShowingDepartures" (click)="isShowingDepartures = true">Abfahrten</button>
   <button type="button" class="departure-button" *ngIf="isShowingDepartures" (click)="isShowingDepartures = false">Lampen</button>
 </div>

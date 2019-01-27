@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   assignUserDataFromLocalStorage() {
+    this.userIsValid = true;
     this.user.username = localStorage.getItem('username');
     this.user.nickname = localStorage.getItem('nickname');
     this.user.bridgeIp = localStorage.getItem('bridgeIp');

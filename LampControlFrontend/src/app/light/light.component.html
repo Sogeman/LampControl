@@ -1,4 +1,9 @@
-<h2 class="overview-header">Lampen</h2>
+<h2 class="overview-header">Lampen
+  <div class="add-button-phone-light click-cursor" (click)="isGroupCreation = true">
+    <img src="assets/plus.png">
+  </div>
+</h2>
+
 
 <div class="container" *ngIf="!selectedLight && !lightSearch">
   <div *ngFor="let light of lightList | keyvalue" class="item">
