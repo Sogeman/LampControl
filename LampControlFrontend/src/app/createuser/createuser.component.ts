@@ -45,7 +45,6 @@ export class CreateuserComponent implements OnInit {
   }
 
   saveUser(user: User) {
-    console.log(user, 'emit User');
     this.userCreated.emit(user);
   }
 

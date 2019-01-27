@@ -11,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -56,18 +57,21 @@ public class HueSceneResource {
 		return entityManager.find(HueScene.class, id);
 	}
 	
-//	@PUT
-//	@Path("/{id}")
-//	@Transactional
-//	public void updateScene(@PathParam("id") Long id, HueScene newScene) {
-//		HueScene oldScene = entityManager.find(HueScene.class, id);
-//		if(oldScene != null) {
-//			oldScene.setName(newScene.getName());
-//			oldScene.setLights(newScene.getLights());
-//		} else {
-//			throw new WebApplicationException(Status.NOT_FOUND);
-//		}
-//	}
+	@PUT
+	@Path("/{id}")
+	@Transactional
+	public void updateScene(@PathParam("id") Long id, HueScene newScene) {
+		HueScene oldScene = entityManager.find(HueScene.class, id);
+		if(oldScene != null) {
+			oldScene.setName(newScene.getName());
+			oldScene.setBrightness(newScene.getBrightness());
+			oldScene.setRgb(newScene.getRgb());
+			oldScene.setX(newScene.getX());
+			oldScene.setY(newScene.getY());
+		} else {
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+	}
 	
 	@DELETE
 	@Path("/{id}")

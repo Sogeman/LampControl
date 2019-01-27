@@ -9,6 +9,7 @@
       <p class="scene-name">{{ scene.value.name }}</p>
     </div>
     <button *ngIf="scene.value.defaultScene === false" class="delete-scene click-cursor" (click)="[isConfirmingDelete = true, parent = 'group', id = scene.value.id]">&times;</button>
+    <button *ngIf="scene.value.defaultScene === false" class="change-scene click-cursor" (click)="[chosenScene = scene, editButtonClicked()]">C</button>
     <button *ngIf="scene.value.defaultScene === true" class="invisible-delete-scene"></button>
   </div>
 </div>

@@ -2,7 +2,7 @@
 <div class="float-clear"></div>
 
 <p>Namen eingeben:</p>
-<input class="name-input" type="text" placeholder="Szenenname" #sceneName>
+<input class="name-input" type="text" placeholder="Szenenname" [value]="name" #sceneName>
 
 <p>Farbe und Helligkeit einstellen</p>
 <div class="picker" [(colorPicker)]="sceneColor" [style.background]="sceneColor" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"

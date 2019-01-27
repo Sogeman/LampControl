@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HueService, Group, Light } from '../hue.service';
+import { HueService, Group, Light, Scene } from '../hue.service';
 import { ManipulationService } from '../manipulation.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class GroupComponent implements OnInit {
   isGroupCreation: boolean;
   isChangingScene: boolean;
   isSceneCreation: boolean;
+  isSceneEdit: boolean;
+  chosenScene: Scene;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) {
    }
@@ -58,8 +60,7 @@ export class GroupComponent implements OnInit {
   refreshAll() {
     this.hueService.retrieveAllGroups()
       .then(groups => this.groupList = this.filterGroups(groups))
-      .then(() => console.log(this.groupList));
-    this.groupsRefreshed.emit();
+      .then(() => this.groupsRefreshed.emit());
   }
 
   toggleGroup(groupState: boolean, id: number) {
@@ -124,6 +125,11 @@ export class GroupComponent implements OnInit {
     this.hueService.setGroupAttributes(body, this.groupId)
       .then(() => this.clearGroupCreation())
       .then(() => this.clearSelectedGroup());
+  }
+
+  startSceneEdit(scene: Scene) {
+    this.isSceneEdit = true;
+    this.chosenScene = scene;
   }
 
 }

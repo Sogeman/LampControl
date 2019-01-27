@@ -13,9 +13,9 @@ You can:
 - see and controll all groups (color, brightness)
 - add new group and remove group
 - add lights to groups and remove lights from groups
-- choose a scene for a group, create own scenes and delete those scenes
+- choose a scene for a group, create own scenes, edit created scenes and delete those scenes
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
 
-TODO maybe: set lightstate in group independently, change scene, expand app to include departure times for bus in front of my appartment
+TODO maybe: mobile phone view, loading animation of 1s at the start to mask the time it takes to check the username, set lightstate in group independently, expand app to include departure times for bus in front of my appartment

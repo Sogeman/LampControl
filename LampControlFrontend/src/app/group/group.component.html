@@ -2,8 +2,9 @@
 
 <div class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation && !isChangingScene">
   <div *ngFor="let group of groupList | keyvalue" class="group-item item">
-    <img [src]="group.value.action.on ? (getGroupImage(group.value.class, 'on')) : (getGroupImage(group.value.class, 'off'))" (click)="toggleGroup(group.value.action.on, group.key)"
-      [style.background-color]="group.value.action.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
+    <img [src]="group.value.action.on ? (getGroupImage(group.value.class, 'on')) : (getGroupImage(group.value.class, 'off'))"
+      (click)="toggleGroup(group.value.action.on, group.key)" [style.background-color]="group.value.action.on ? '#f2e63c' : 'black'"
+      class="item-image click-cursor">
     <div class=controls>
       <button type="button" class="controls-button click-cursor" (click)="viewSelectedGroup(group.key)">
         <img src="assets/settings.png" class="">
@@ -27,6 +28,7 @@
   [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : isChangingLights = false"
   (delete)="deleteSelectedGroup($event)" (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
 
-<app-scene *ngIf="isChangingScene && !isSceneCreation" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]" (create)="isSceneCreation = true" [groupId]="groupId"></app-scene>
+<app-scene *ngIf="isChangingScene && !isSceneCreation && !isSceneEdit" [groupId]="groupId" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]"
+  (create)="isSceneCreation = true" (edit)="startSceneEdit($event)"></app-scene>
 
-<app-scene-input *ngIf="isSceneCreation" (back)="isSceneCreation = false"></app-scene-input>
+<app-scene-input *ngIf="isSceneCreation || isSceneEdit" [chosenScene]="chosenScene" (back)="[isSceneCreation = false, isSceneEdit = false, chosenScene = null]"></app-scene-input>

@@ -59,12 +59,6 @@ export class HueService {
 
   checkUsername(username: string): Promise<any> {
     return this.httpClient.get(localStorage.getItem('bridgeIp') + '/api/' + username).toPromise();
-      //       if (response[0]) {
-      //     Object.keys(response[0]).join();
-      //   } else {
-      //     'success';
-      //   }
-      // });
   }
 
   // Lights & Groups
@@ -179,8 +173,12 @@ export class HueService {
     return this.updateState('groups', [sceneData.x.toString(), sceneData.y.toString()], sceneData.brightness, id);
   }
 
-  saveScene(name: string, color: string): Promise<any> {
-    return this.httpClient.post(HUE_SCENE_RESOURCE_URL, this.manipulationService.createSceneBody(name, color)).toPromise();
+  saveScene(name: string, color: string, sceneId: number): Promise<any> { // if ob post oder put
+    if (sceneId) {
+      return this.httpClient.put(HUE_SCENE_RESOURCE_URL + '/' + sceneId, this.manipulationService.createSceneBody(name, color)).toPromise();
+    } else {
+      return this.httpClient.post(HUE_SCENE_RESOURCE_URL, this.manipulationService.createSceneBody(name, color)).toPromise();
+    }
   }
 
   deleteScene(id: number): Promise<any> {

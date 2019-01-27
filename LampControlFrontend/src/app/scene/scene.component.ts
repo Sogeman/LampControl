@@ -11,11 +11,13 @@ export class SceneComponent implements OnInit {
 
   @Output() back = new EventEmitter();
   @Output() create = new EventEmitter();
+  @Output() edit = new EventEmitter<Scene>();
   @Input() groupId: number;
   @Input() parent: string;
   sceneList: Array<Scene>;
   isConfirmingDelete: boolean;
   id: number;
+  chosenScene: Scene;
 
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 
@@ -29,6 +31,10 @@ export class SceneComponent implements OnInit {
 
   createButtonClicked() {
     this.create.emit();
+  }
+
+  editButtonClicked() {
+    this.edit.emit(this.chosenScene);
   }
 
   refreshScenes() {
