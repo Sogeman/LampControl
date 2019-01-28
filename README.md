@@ -18,4 +18,4 @@ You can:
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
 
-TODO maybe: loading animation of 1s at the start to mask the time it takes to check the username, set lightstate in group independently, expand app to include departure times for bus in front of my appartment
+TODO maybe: check inputs are not empty before saving, loading animation of 1s at the start to mask the time it takes to check the username, set lightstate in group independently, expand app to include departure times for bus in front of my appartment
