@@ -534,7 +534,7 @@ li:nth-of-type(even) {
   .add-button-phone-group {
     display: block;
     position: absolute;
-    top: -6%;
+    top: -5%;
     right: 0;
     z-index: 20;
     height: 64px;
