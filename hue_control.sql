@@ -49,10 +49,7 @@ INSERT INTO `scenes` (`id`, `name`, `brightness`, `x`, `y`, `rgb`) VALUES
 (5, 'Energie', 254, 0.2732, 0.2878, NULL),
 (6, 'Sakura', 254, 0.4068, 0.2409, NULL),
 (7, 'Gemütlich', 140, 0.3578, 0.4191, NULL),
-(8, 'Nachtlicht', 15, 0.6874, 0.3056, NULL),
-(9, 'Test', 254, 0.2879, 0.1931, NULL),
-(10, 'Test2', 254, 0.4243, 0.1738, 'rgb(149,50,129)'),
-(11, 'Test 3', 25, 0.3125, 0.6346, 'rgba(145,201,26,0.1)');
+(8, 'Nachtlicht', 15, 0.6874, 0.3056, NULL);
 
 --
 -- Indizes der exportierten Tabellen
