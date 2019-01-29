@@ -3,6 +3,7 @@
   margin: 0 auto;
   border-radius: 50%;
   border: 3px solid black;
+  background-color: wheat;
 }
 
 .search-button:hover {

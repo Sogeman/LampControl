@@ -1,5 +1,8 @@
 <div class="user-creation">
-  <p>Drücke den Knopf auf der Bridge und dann innerhalb der nächsten 30s auf 'Speichern', oder gib einen gespeicherten Namen ein</p>
-  <input type="text" class="nickname" name="nickname" placeholder="Namen eingeben" [(ngModel)]="user.nickname">
-  <button type="button" class="user-button" (click)="startUserCreation()">Speichern</button>
+  <p>Drücke den Knopf auf der Bridge und dann innerhalb der nächsten 30s auf 'Speichern', oder gib einen gespeicherten
+    Namen ein</p>
+  <form novalidate #form="ngForm">
+    <input type="text" class="nickname" name="nickname" placeholder="Namen eingeben" [(ngModel)]="user.nickname" required minlength="4" maxlength="32">
+    <button *ngIf="form.valid" type="button" class="user-button" (click)="startUserCreation()">Speichern</button>
+  </form>
 </div>

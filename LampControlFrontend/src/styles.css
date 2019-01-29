@@ -18,9 +18,11 @@ app-home {
 .title {
   color: white;
   width: 100%;
-  height: 10%;
+  height: 8%;
   text-align: center;
   display: flex;
+  min-height: 43px;
+  margin-bottom: -2%;
 }
 
 app-group, app-light {
@@ -68,9 +70,7 @@ app-light {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-around;
-  align-items: center;
+  justify-content: center;
 }
 
 .push-down {
@@ -97,18 +97,18 @@ app-light {
 
 .header {
   flex-basis: 95%;
+  line-height: 13px;
 }
 
 .item {
   flex-basis: 30%;
   padding: 1%;
-  margin: 0 auto;
   position: relative;
+  min-width: 105px;
 }
 
 .group-item {
   flex-basis: 18%;
-  min-width: 100px;
 }
 
 .item-image {
@@ -181,6 +181,34 @@ li:nth-of-type(even) {
 
 .scene-name {
   margin-bottom: 1vh;
+}
+
+.delete-confirmation-blackout {
+  position: absolute;
+  top: 50%;
+  min-height: 40%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.delete-confirmation-box {
+  margin-top: 7vh;
+}
+
+.confirm-light {
+  margin: 0 1%;
+  width: 37%;
+}
+
+.confirm-group {
+  margin: 0 1%;
+  width: 56%;
+}
+
+.heading-monitor {
+  width: 48%;
+  margin: 1%;
+  display: inline-block;
+  background-color: #22313f;
 }
 
 /* Buttons */
@@ -364,6 +392,7 @@ li:nth-of-type(even) {
   background-color: #34495e;
   max-height: 64px;
 }
+
 .add-button-phone-light, .add-button-phone-group {
   display: none;
 }
@@ -454,10 +483,9 @@ li:nth-of-type(even) {
   margin-left: 1vh;
 }
 
-
 /* Media Queries */
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 451px) and (max-width: 1200px) {
   .controls-button {
     padding: 0;
     background: transparent;
@@ -476,18 +504,29 @@ li:nth-of-type(even) {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 601px) {
   app-home {
     height: 102vh;
+  }
+  app-group, app-light {
+    display: inline-block;
+    min-width: 100%;
+    height: unset;
+    min-height: 60vh;
+    overflow: unset;
+    position: relative;
+  }
+  .column {
+    margin-bottom: 3%;
   }
   .row {
     display: block;
   }
   .overview-header {
     margin-bottom: 3%;
-    background-color: #34495e;
-    padding-top: 3.5%;
-    padding-bottom: 3.5%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid whitesmoke;
   }
   .add-button {
     display: none;
@@ -495,18 +534,61 @@ li:nth-of-type(even) {
   .add-button-phone-group {
     display: block;
     position: absolute;
-    top: -7.5%;
+    top: -6%;
     right: 0;
     z-index: 20;
+    height: 64px;
   }
   .add-button-phone-light {
     display: block;
     position: absolute;
-    top: -7.5%;
+    top: -6%;
     right: 0;
     z-index: 20;
   }
   .group-item {
     flex-basis: 30%;
   }
+  .name {
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+  }
+  .container {
+    overflow: auto;
+    background-color: #34495e;
+  }
+  .confirm-group, .confirm-light {
+    width: 98%;
+  }
+  .confirm-group {
+    top: 33%;
+  }
+  .confirm-light {
+    top: 22vh;
+  }
+  .heading-monitor {
+    display: block;
+    width: unset;
+  }
 }
+
+
+/* Test styles
+
+@media only screen and (min-width: 451px) and (max-width: 800px) {
+  body {
+    background-color: red;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
+  body {
+    background-color: green;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1200px) {
+  body {
+    background-color: blue;
+  }
+} */

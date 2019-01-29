@@ -1,6 +1,5 @@
 package lampcontrol.project.HueLampControl;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,7 +16,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
@@ -63,7 +61,6 @@ public class UserResource {
 	@Path("/{id}")
 	@Transactional
 	public void deleteScene(@PathParam("id") Long id) {
-//		hueService.deleteUser(id);
 		User user = entityManager.find(User.class, id);
 		if (user != null) {
 			entityManager.remove(user);

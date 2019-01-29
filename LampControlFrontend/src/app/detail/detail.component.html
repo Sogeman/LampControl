@@ -15,9 +15,12 @@
   <p>Farbe und Helligkeit ändern</p>
   <div class="picker" (colorPickerSelect)="lightState=$event" [colorPicker]="lightState" [style.background]="lightState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-    [cpDisableInput]="'true'" [cpPosition]="'left'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
+    [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
     [cpPositionOffset]="'-150%'">
   </div>
+
+<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" (delete)="finishDeletion()" (cancel)="clearIsConfirmingDelete()"></app-delete-confirmation>
+
 </div>
 
 <!-- Group Detail -->
@@ -37,12 +40,14 @@
   <p>Farbe und Helligkeit ändern</p>
   <div class="picker" [colorPicker]="groupState" (colorPickerSelect)="groupState=$event" [style.background]="groupState"
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-    [cpDisableInput]="'true'" [cpPosition]="'right'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
+    [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
     [cpPositionOffset]="'-150%'">
   </div>
-</div>
-
-<button type="button" class="light-delete light-change-button" (click)="startLightChange()">Lampen ändern</button>
-<button type="button" class="light-delete light-change-button" (click)="startScene()">Szene auswählen</button>
 
 <app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" (delete)="finishDeletion()" (cancel)="clearIsConfirmingDelete()"></app-delete-confirmation>
+
+</div>
+
+<button type="button" class="light-change-button" (click)="startLightChange()">Lampen ändern</button>
+<button type="button" class="light-change-button" (click)="startScene()">Szene auswählen</button>
+

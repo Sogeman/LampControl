@@ -1,5 +1,5 @@
 <h2 class="overview-header">Lampen
-  <div class="add-button-phone-light click-cursor" (click)="isGroupCreation = true">
+  <div class="add-button-phone-light click-cursor" *ngIf="!selectedLight && !lightSearch" (click)="lightSearch = true">
     <img src="assets/plus.png">
   </div>
 </h2>
@@ -14,7 +14,7 @@
         <img src="assets/settings.png" class="">
       </button>
     </div>
-    <p>{{ light.value.name }}</p>
+    <p class="name">{{ light.value.name }}</p>
   </div>
   <div class="float-clear"></div>
 

@@ -1,5 +1,5 @@
 <h2 class="overview-header">Räume
-  <div class="add-button-phone-group click-cursor" (click)="isGroupCreation = true">
+  <div class="add-button-phone-group click-cursor" *ngIf="!selectedGroup && !isChangingLights" (click)="isGroupCreation = true">
     <img src="assets/plus.png">
   </div>
 </h2>
@@ -15,7 +15,7 @@
         <img src="assets/settings.png" class="">
       </button>
     </div>
-    <p>{{ group.value.name }}</p>
+    <p class="name">{{ group.value.name }}</p>
   </div>
   <div class="float-clear"></div>
 
@@ -24,13 +24,13 @@
   </div>
 </div>
 
-<app-detail *ngIf="selectedGroup && !isChangingLights && !isChangingScene" [selectedGroup]="selectedGroup" [id]="groupId"
+<app-detail *ngIf="selectedGroup && !isChangingLights && !isChangingScene && !isGroupCreation" [selectedGroup]="selectedGroup" [id]="groupId"
   (groupToggled)="toggleGroupDetail($event, groupId)" (back)="clearSelectedGroup()" (nameChange)="saveGroupName($event.value, $event.id, $event.type)"
   (stateChange)="changeState($event, groupId)" (delete)="deleteSelectedGroup($event)" (lightChange)="[isGroupCreation = false, isChangingLights = true]"
   (sceneChange)="isChangingScene = true"></app-detail>
 
 <app-light-change *ngIf="isChangingLights || isGroupCreation" [selectedGroup]="selectedGroup" [id]="groupId"
-  [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="clearGroupCreation()" (delete)="deleteSelectedGroup($event)"
+  [isCreatingGroup]="isGroupCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : [clearGroupCreation(), clearSelectedGroup()]" (delete)="deleteSelectedGroup($event)"
   (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
 
 <app-scene *ngIf="isChangingScene && !isSceneCreation && !isSceneEdit" [groupId]="groupId" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]"

@@ -10,7 +10,7 @@ import { ManipulationService } from '../manipulation.service';
 })
 export class LightChangeComponent implements OnInit {
 
-  @Output() back = new EventEmitter();
+  @Output() back = new EventEmitter<boolean>();
   @Output() delete = new EventEmitter<number>();
   @Output() createGroup = new EventEmitter();
   @Output() saveGroup = new EventEmitter();
@@ -39,7 +39,7 @@ export class LightChangeComponent implements OnInit {
   }
 
   backButtonClicked() {
-    this.back.emit();
+    this.back.emit(this.isCreatingGroup);
   }
 
   deleteButtonClicked() {

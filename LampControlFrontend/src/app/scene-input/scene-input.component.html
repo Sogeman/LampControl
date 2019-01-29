@@ -1,12 +1,12 @@
 <button (click)="backButtonClicked()" class="float-left back-button">Zurück</button>
 <div class="float-clear"></div>
+  <p>Namen eingeben:</p>
+  <input class="name-input" type="text" placeholder="Szenenname" [value]="name" #sceneName required minlength="3" maxlength="16">
 
-<p>Namen eingeben:</p>
-<input class="name-input" type="text" placeholder="Szenenname" [value]="name" #sceneName>
+  <p>Farbe und Helligkeit einstellen</p>
+  <div class="picker" [(colorPicker)]="sceneColor" [style.background]="sceneColor" [cpCancelButton]="true"
+    [cpCancelButtonText]="'Abbrechen'" [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'"
+    [cpPositionRelativeToArrow]="false" [cpPositionOffset]="'-150%'" required>
+  </div>
 
-<p>Farbe und Helligkeit einstellen</p>
-<div class="picker" [(colorPicker)]="sceneColor" [style.background]="sceneColor" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
-[cpDisableInput]="'true'" [cpPosition]="'right'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"  [cpPositionOffset]="'-150%'">
-</div>
-
-<button type="button" class="click-cursor save-button" (click)="saveScene(sceneName.value, sceneColor)">Speichern</button>
+  <button *ngIf="sceneName.value !== undefined && sceneColor !== undefined" type="button" class="click-cursor save-button" (click)="saveScene(sceneName.value, sceneColor)">Speichern</button>

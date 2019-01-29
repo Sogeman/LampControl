@@ -3,41 +3,44 @@
 <div class="float-clear"></div>
 
 <div *ngIf="isCreatingGroup && !isChangingLights">
-  <div *ngIf="isCreatingGroup">
-    <h4>Namen eingeben:</h4>
-    <input class="name-input" type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName">
-    <h4>Raumtyp auswählen:</h4>
-    <select class="room-select" [(ngModel)]="selectedRoomClass">
-      <option value="Living room">Wohnzimmer</option>
-      <option value="Kitchen">Küche</option>
-      <option value="Dining">Essbereich</option>
-      <option value="Bedroom">Schlafzimmer</option>
-      <option value="Office">Büro</option>
-      <option value="Bathroom">Badezimmer</option>
-      <option>Other</option>
-    </select>
-  </div>
+    <div *ngIf="isCreatingGroup">
+      <h4>Namen eingeben:</h4>
+      <input class="name-input" type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName" required
+        minlength="4" maxlength="16">
+      <h4>Raumtyp auswählen:</h4>
+      <select class="room-select" [(ngModel)]="selectedRoomClass">
+        <option value="Living room">Wohnzimmer</option>
+        <option value="Kitchen">Küche</option>
+        <option value="Dining">Essbereich</option>
+        <option value="Bedroom">Schlafzimmer</option>
+        <option value="Office">Büro</option>
+        <option value="Bathroom">Badezimmer</option>
+        <option>Other</option>
+      </select>
+    </div>
 
-  <div>
-    <h4>Lampen zum Raum hinzufügen:</h4>
-  </div>
+    <div>
+      <h4>Lampen zum Raum hinzufügen:</h4>
+    </div>
 
-  <div class="group-lights">
-    <ul class="light-list">
-      <li *ngFor="let light of unusedLights | keyvalue">
-        <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightSelection(light.key, $event.target.checked)">
-        <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
-      </li>
-    </ul>
-    <p>{{ helpText }}</p>
+    <div class="group-lights">
+      <ul class="light-list">
+        <li *ngFor="let light of unusedLights | keyvalue">
+          <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightSelection(light.key, $event.target.checked)">
+          <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
+        </li>
+      </ul>
+      <p>{{ helpText }}</p>
 
-    <button *ngIf="isCreatingGroup && helpText === ''" type="button" class="click-cursor save-button" (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
-      Speichern
-    </button>
-  </div>
+      <button *ngIf="isCreatingGroup && helpText === ''" type="button" class="click-cursor save-button"
+        (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
+        Speichern
+      </button>
+    </div>
 </div>
 
 <div *ngIf="isChangingLights && !isCreatingGroup">
+  <p><b>{{ selectedGroup.name }}</b></p>
   <p>Derzeitige Lampen</p>
   <ul class="light-list">
     <li *ngFor="let light of usedLights | keyvalue">
@@ -60,5 +63,5 @@
   </button>
 </div>
 
-<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" [sceneId]="id" (delete)="deleteButtonClicked($event)" (cancel)="isConfirmingDelete = false"></app-delete-confirmation>
-
+<app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" [sceneId]="id" (delete)="deleteButtonClicked($event)"
+  (cancel)="isConfirmingDelete = false"></app-delete-confirmation>

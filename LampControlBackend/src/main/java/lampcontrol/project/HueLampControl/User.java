@@ -13,8 +13,7 @@ import javax.persistence.Table;
 @Table(name="users")
 @NamedQueries({
 	@NamedQuery(name="user.selectAll", query="SELECT u FROM User u"),
-	@NamedQuery(name="user.getUser", query="SELECT u FROM User u WHERE u.nickname = :nickname"),
-	@NamedQuery(name="user.deleteUserByUsername", query="DELETE FROM User u WHERE u.username = :username")
+	@NamedQuery(name="user.getUser", query="SELECT u FROM User u WHERE u.nickname = :nickname")
 })
 public class User {
 
@@ -38,6 +37,11 @@ public class User {
 		this.nickname = nickname;
 	}
 	
+	public User(String username, String nickname) {
+		this.username = username;
+		this.nickname = nickname;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
