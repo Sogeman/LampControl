@@ -15,7 +15,7 @@ You can:
 - add lights to groups and remove lights from groups
 - choose a scene for a group, create own scenes, edit created scenes and delete those scenes
 
-works on tablets and phones (tested on Fire HD 2017 and Axon 7)
+works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with Firefox and Chrome)
 
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
