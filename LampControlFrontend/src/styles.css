@@ -512,7 +512,7 @@ li:nth-of-type(even) {
     display: inline-block;
     min-width: 100%;
     height: unset;
-    min-height: 60vh;
+    min-height: 45vh;
     overflow: unset;
     position: relative;
   }
