@@ -1,3 +1,6 @@
+![desktop view](https://i.imgur.com/Fy6IIIC.png)
+![mobile view](https://i.imgur.com/UJwIKsf.png)
+
 # LampControl
 Third Semester Project, Home Control
 
