@@ -33,7 +33,7 @@
             <td class="transport-type"><img src="assets/bus.svg" class="monitor-image"></td>
             <td>{{ bus.departureTime.timePlanned | date:'HH:mm:ss' }}</td>
             <td>{{ bus.departureTime.timeReal | date:'HH:mm:ss'}}</td>
-            <td class="countdown" [class.red]="bus.departureTime.countdown <= 5" [class.yellow]="bus.departureTime.countdown >=6 && bus.departureTime.countdown < 8">{{ bus.departureTime.countdown }}</td>
+            <td class="countdown" [class.red]="bus.departureTime.countdown <= 5" [class.yellow]="bus.departureTime.countdown >=6 && bus.departureTime.countdown <= 8">{{ bus.departureTime.countdown }}</td>
           </tr>
         </tbody>
       </table>
