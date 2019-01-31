@@ -23,4 +23,4 @@ works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with F
 Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
 
-TODO: loading animation of 1s at the start to mask the time it takes to check the username(?), allow creation of normal groups so lights can be in multiple, expand app to include departure times for bus in front of my appartment, set lightstate in group independently
+TODO: allow creation of normal groups so lights can be in multiple, expand app to include departure times for bus in front of my appartment, set lightstate in group independently
