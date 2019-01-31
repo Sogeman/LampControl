@@ -16,6 +16,7 @@ import { SceneComponent } from './scene/scene.component';
 import { SceneInputComponent } from './scene-input/scene-input.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { MonitorComponent } from './monitor/monitor.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
    declarations: [
@@ -30,7 +31,8 @@ import { MonitorComponent } from './monitor/monitor.component';
       SceneComponent,
       SceneInputComponent,
       DeleteConfirmationComponent,
-      MonitorComponent
+      MonitorComponent,
+      LoadingSpinnerComponent
    ],
    imports: [
       BrowserModule,

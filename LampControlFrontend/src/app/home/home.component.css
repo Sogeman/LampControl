@@ -1,3 +1,10 @@
+app-loading-spinner {
+  height: 100%;
+  width: 100%;
+  background-color: #1c2935;
+  position: fixed;
+  z-index: 200;
+}
 
 .departure-button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #fff6af;

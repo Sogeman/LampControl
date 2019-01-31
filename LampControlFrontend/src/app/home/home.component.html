@@ -1,4 +1,6 @@
-<app-createuser *ngIf="!user.username" (userCreated)="setUser($event)" (cancel)="userIsValid = false"></app-createuser>
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+<app-createuser *ngIf="!user.username" (userCreated)="setUser($event)"></app-createuser>
 
 <div *ngIf="user.username" class="title">
   <h2 class="header">{{ user.nickname }}'s Controller</h2>

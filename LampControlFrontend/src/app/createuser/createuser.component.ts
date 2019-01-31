@@ -11,7 +11,6 @@ export class CreateuserComponent implements OnInit {
 
   user: User;
   @Output() userCreated = new EventEmitter<User>();
-  @Output() cancel = new EventEmitter();
 
   constructor(private hueService: HueService, private userService: UserService) {
     this.user = new User();
@@ -63,7 +62,4 @@ export class CreateuserComponent implements OnInit {
       });
   }
 
-  cancelUserCreation() {
-    this.cancel.emit();
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HueService } from '../hue.service';
 import { User, UserService } from '../user.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,12 @@ export class HomeComponent implements OnInit {
 
   user: User;
   isShowingDepartures: boolean;
-  userIsValid: boolean;
+  loading: boolean;
 
   constructor(private hueService: HueService, private userService: UserService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.user = new User();
     if (localStorage.getItem('username')) {
       this.hueService.checkUsername(localStorage.getItem('username'))
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
         .then(message => message === 'error' ? this.userNotAuthorized() : this.assignUserDataFromLocalStorage());
     } else {
       this.getBridgeUrl();
+      this.loadingTimer();
     }
     if (this.user.bridgeIp === undefined) {
       this.getBridgeUrl();
@@ -37,17 +40,17 @@ export class HomeComponent implements OnInit {
   }
 
   userNotAuthorized() {
-    this.userIsValid = false;
     this.userService.deleteUser(parseInt(localStorage.getItem('id'), 10));
     this.userService.clearLocalStorage();
+    this.loadingTimer();
   }
 
   assignUserDataFromLocalStorage() {
-    this.userIsValid = true;
     this.user.username = localStorage.getItem('username');
     this.user.nickname = localStorage.getItem('nickname');
     this.user.bridgeIp = localStorage.getItem('bridgeIp');
     this.user.userId = parseInt(localStorage.getItem('id'), 10);
+    this.loadingTimer();
   }
 
   setUser(user: User) {
@@ -64,9 +67,14 @@ export class HomeComponent implements OnInit {
 
   getBridgeUrl() {
     this.hueService.fetchBridgeUrl()
-    .then(bridgeIp => {
-      localStorage.setItem('bridgeIp', bridgeIp);
-      this.user.bridgeIp = bridgeIp;
-    });
+      .then(bridgeIp => {
+        localStorage.setItem('bridgeIp', bridgeIp);
+        this.user.bridgeIp = bridgeIp;
+      });
+  }
+
+  loadingTimer() {
+    const source = timer(1000);
+    const subscribe = source.subscribe(() => this.loading = false);
   }
 }
