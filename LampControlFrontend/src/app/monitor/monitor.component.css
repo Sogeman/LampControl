@@ -1,1 +1,63 @@
+.monitor-item {
+  margin-bottom: 4%;
+}
 
+.monitor-table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.monitor-image {
+  height: 75px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #34495e;
+}
+
+th {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+td {
+  font-size: 20px;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #22313f;
+}
+
+tr:nth-of-type(even) {
+  background-color: #2c4052;
+}
+
+.countdown {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+@media only screen and (max-width: 601px) {
+  td {
+    font-size: 16px;
+  }
+  th {
+    font-size: 16px;
+    min-width: 35%;
+  }
+  .countdown {
+    font-size: 25px;
+  }
+}

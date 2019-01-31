@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HueService } from '../hue.service';
 import { User, UserService } from '../user.service';
-import { timer } from 'rxjs';
+import { timer, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   user: User;
   isShowingDepartures: boolean;
   loading: boolean;
+  timer: Subscription;
 
   constructor(private hueService: HueService, private userService: UserService) { }
 
@@ -74,7 +75,10 @@ export class HomeComponent implements OnInit {
   }
 
   loadingTimer() {
-    const source = timer(1000);
-    const subscribe = source.subscribe(() => this.loading = false);
+    this.timer = timer(500).subscribe(() => this.loading = false);
+  }
+
+  ngOnDestroy() {
+    this.timer.unsubscribe();
   }
 }

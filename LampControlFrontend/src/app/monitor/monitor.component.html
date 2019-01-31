@@ -1,4 +1,61 @@
 <div class="monitor">
-  <h2 class="heading-monitor">Dr.-Neumann-Gasse</h2>
-  <h2 class="heading-monitor">Dr.-Neumann-Gasse</h2>
+  <div class="monitor-item">
+    <h2 class="heading-monitor">{{monitorsData[0].lines[0].name}} &#8594; {{ monitorsData[0].lines[0].towards }}</h2>
+    <table class="monitor-table">
+      <thead>
+        <th class="transport-type">Verkehrsmittel</th>
+        <th>geplante Zeit</th>
+        <th>tatsächliche Zeit</th>
+        <th>Ankunft in</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bus of departures1">
+          <td class="transport-type"><img src="assets/bus.svg" class="monitor-image"></td>
+          <td>{{ bus.departureTime.timePlanned | date:'HH:mm:ss' }}</td>
+          <td>{{ bus.departureTime.timeReal | date:'HH:mm:ss'}}</td>
+          <td class="countdown" [class.red]="bus.departureTime.countdown <= 5" [class.yellow]="bus.departureTime.countdown >=6 && bus.departureTime.countdown <= 8">{{ bus.departureTime.countdown }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="monitor-item">
+    <h2 class="heading-monitor">{{monitorsData[1].lines[0].name}} &#8594; {{ monitorsData[1].lines[0].towards }}</h2>
+    <table class="monitor-table">
+        <thead>
+          <th class="transport-type">Verkehrsmittel</th>
+          <th>geplante Zeit</th>
+          <th>tatsächliche Zeit</th>
+          <th>Ankunft in</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bus of departures2">
+            <td class="transport-type"><img src="assets/bus.svg" class="monitor-image"></td>
+            <td>{{ bus.departureTime.timePlanned | date:'HH:mm:ss' }}</td>
+            <td>{{ bus.departureTime.timeReal | date:'HH:mm:ss'}}</td>
+            <td class="countdown" [class.red]="bus.departureTime.countdown <= 5" [class.yellow]="bus.departureTime.countdown >=6 && bus.departureTime.countdown < 8">{{ bus.departureTime.countdown }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+<!--
+  <div class="monitor-item">
+      <h2 class="heading-monitor">{{monitorsData[2].lines[0].name}} &#8594; {{ monitorsData[2].lines[0].towards }}</h2>
+      <table class="monitor-table">
+          <thead>
+            <th class="transport-type">Verkehrsmittel</th>
+            <th>geplante Zeit</th>
+            <th>tatsächliche Zeit</th>
+            <th>Ankunft in</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bus of departures3">
+              <td class="transport-type"><img src="assets/bus.svg" class="monitor-image"></td>
+              <td>{{ bus.departureTime.timePlanned | date:'HH:mm:ss' }}</td>
+              <td>{{ bus.departureTime.timeReal | date:'HH:mm:ss'}}</td>
+              <td class="countdown" [class.red]="bus.departureTime.countdown <= 5" [class.yellow]="bus.departureTime.countdown >=6 && bus.departureTime.countdown < 8">{{ bus.departureTime.countdown }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div> -->
 </div>

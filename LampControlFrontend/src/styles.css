@@ -22,7 +22,7 @@ app-home {
   text-align: center;
   display: flex;
   min-height: 43px;
-  margin-bottom: -2%;
+  margin-bottom: -1%;
 }
 
 app-group, app-light {
@@ -205,7 +205,7 @@ li:nth-of-type(even) {
 }
 
 .heading-monitor {
-  width: 48%;
+  width: 90%;
   margin: 1%;
   display: inline-block;
   background-color: #22313f;
@@ -569,6 +569,9 @@ li:nth-of-type(even) {
   .heading-monitor {
     display: block;
     width: unset;
+  }
+  .transport-type {
+    display: none;
   }
 }
 

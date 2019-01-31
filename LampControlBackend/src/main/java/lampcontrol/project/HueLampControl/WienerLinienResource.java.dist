@@ -1,0 +1,59 @@
+package lampcontrol.project.HueLampControl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
+import javax.inject.Inject;
+import javax.json.Json;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/wienerlinien")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public class WienerLinienResource2 {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	private static final String baseWienerLinienUrl = "http://www.wienerlinien.at/ogd_realtime/monitor?rbl=";
+	private static final String ApiKey = "Insert API Key here";
+
+	@GET
+	@Path("/{station1}/{station2}")
+	public String getStationInfos(@PathParam("station1") String station1, @PathParam("station2") String station2) throws IOException {
+		return sendGET(station1, station2);
+	}
+
+	private static String sendGET(String station1, String station2) throws IOException {
+		URL url = new URL(baseWienerLinienUrl + station1 + "&rbl=" + station2 + "&sender=" + ApiKey);
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		int responseCode = con.getResponseCode();
+		System.out.println("GET Response Code :: " + responseCode);
+		if (responseCode == HttpURLConnection.HTTP_OK) { // success
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+			return  response.toString();
+		} else {
+			return "GET request didn\'t work";
+		}
+		
+	}
+}

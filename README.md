@@ -8,7 +8,7 @@ Mandler Rene
 
 Web Application to control Philips Hue lights Uand show public transport data in the future)
 
-You can:
+<h1>You can:</h1>
 
 - create new user on Hue Bridge or recall user by nickname
 - see and control all lights (color, brightness)
@@ -17,10 +17,17 @@ You can:
 - add new group and remove group
 - add lights to groups and remove lights from groups
 - choose a scene for a group, create own scenes, edit created scenes and delete those scenes
+- view Wiener Linien departure times of one station in both directions
 
 works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with Firefox and Chrome)
 
-Technologies used: Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
+<h1>Technologies used:</h1>
+Java EE backend with Wildfly 12 deployment server, MySQL database, Angular frontend, Hue API.
 Backend is used for own scene API instead of using HUE Scene API, also saving users
 
-TODO: allow creation of normal groups so lights can be in multiple, expand app to include departure times for bus in front of my appartment, set lightstate in group independently
+<h1>APIs</h1>
+HUE API: https://developers.meethue.com/
+Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664
+<em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
+
+TODO: allow creation of normal groups so lights can be in multiple, set lightstate in group independently

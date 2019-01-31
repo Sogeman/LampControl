@@ -3,7 +3,8 @@
 <app-createuser *ngIf="!user.username" (userCreated)="setUser($event)"></app-createuser>
 
 <div *ngIf="user.username" class="title">
-  <h2 class="header">{{ user.nickname }}'s Controller</h2>
+  <h2 class="header" *ngIf="!isShowingDepartures">{{ user.nickname }}'s Controller</h2>
+  <h2 class="header" *ngIf="isShowingDepartures">Dr.-Neumann-Gasse</h2>
   <button type="button" class="departure-button" *ngIf="!isShowingDepartures" (click)="isShowingDepartures = true">Abfahrten</button>
   <button type="button" class="departure-button" *ngIf="isShowingDepartures" (click)="isShowingDepartures = false">Lampen</button>
 </div>
