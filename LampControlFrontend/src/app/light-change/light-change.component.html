@@ -2,20 +2,22 @@
 <button *ngIf="selectedGroup" (click)="[isConfirmingDelete = true, parent = 'group']" class="float-right delete-button">Löschen</button>
 <div class="float-clear"></div>
 
-<div *ngIf="isCreatingGroup && !isChangingLights">
-    <div *ngIf="isCreatingGroup">
+<div *ngIf="isCreatingGroup || isCreatingRoom && !isChangingLights">
+    <div *ngIf="isCreatingGroup || isCreatingRoom">
       <h4>Namen eingeben:</h4>
       <input class="name-input" type="text" placeholder="Bitte Namen eingeben" [(ngModel)]="groupName" required
         minlength="4" maxlength="16">
       <h4>Raumtyp auswählen:</h4>
-      <select class="room-select" [(ngModel)]="selectedRoomClass">
+      <select class="room-select" [(ngModel)]="selectedRoomClass" *ngIf="isCreatingRoom">
         <option value="Living room">Wohnzimmer</option>
         <option value="Kitchen">Küche</option>
         <option value="Dining">Essbereich</option>
         <option value="Bedroom">Schlafzimmer</option>
         <option value="Office">Büro</option>
         <option value="Bathroom">Badezimmer</option>
-        <option>Other</option>
+      </select>
+      <select class="room-select" [(ngModel)]="selectedRoomClass" *ngIf="isCreatingGroup">
+          <option value="">Gruppe</option>
       </select>
     </div>
 
@@ -32,7 +34,11 @@
       </ul>
       <p>{{ helpText }}</p>
 
-      <button *ngIf="isCreatingGroup && helpText === ''" type="button" class="click-cursor save-button"
+      <button *ngIf="isCreatingRoom && helpText === '' && !isCreatingGroup" type="button" class="click-cursor save-button"
+        (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
+        Speichern
+      </button>
+      <button *ngIf="isCreatingGroup && selectedLights.length > 0" type="button" class="click-cursor save-button"
         (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
         Speichern
       </button>

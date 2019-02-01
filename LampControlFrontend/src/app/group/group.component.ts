@@ -17,6 +17,7 @@ export class GroupComponent implements OnInit {
   groupId: number;
   isChangingLights: boolean;
   isGroupCreation: boolean;
+  isRoomCreation: boolean;
   isChangingScene: boolean;
   isSceneCreation: boolean;
   isSceneEdit: boolean;
@@ -96,6 +97,7 @@ export class GroupComponent implements OnInit {
   clearGroupCreation() {
     this.isChangingLights = false;
     this.isGroupCreation = false;
+    this.isRoomCreation = false;
     this.refreshAllGroupsOnly();
   }
 

@@ -14,7 +14,7 @@ Web Application to control Philips Hue lights Uand show public transport data in
 - see and control all lights (color, brightness)
 - add new lights and remove lights
 - see and controll all groups (color, brightness)
-- add new group and remove group
+- add new group or room and remove them (lights can only be in one room)
 - add lights to groups and remove lights from groups
 - choose a scene for a group, create own scenes, edit created scenes and delete those scenes
 - view Wiener Linien departure times of one station in both directions
@@ -30,4 +30,4 @@ HUE API: https://developers.meethue.com/
 Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
 
-TODO: allow creation of normal groups so lights can be in multiple, set lightstate in group independently
+TODO: set lightstate in group independently

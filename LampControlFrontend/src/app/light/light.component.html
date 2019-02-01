@@ -1,6 +1,6 @@
 <h2 class="overview-header">Lampen
   <div class="add-button-phone-light click-cursor" *ngIf="!selectedLight && !lightSearch" (click)="lightSearch = true">
-    <img src="assets/plus.png">
+      <button class="click-cursor add-button" (click)="lightSearch = true">+ Lichter</button>
   </div>
 </h2>
 
@@ -18,8 +18,8 @@
   </div>
   <div class="float-clear"></div>
 
-  <div class="add-button click-cursor" (click)="lightSearch = true">
-    <img src="assets/plus.png">
+  <div class="add-button-group">
+    <button class="click-cursor add-button" (click)="lightSearch = true">Lichter suchen</button>
   </div>
 </div>
 

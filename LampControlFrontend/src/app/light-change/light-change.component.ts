@@ -17,6 +17,7 @@ export class LightChangeComponent implements OnInit {
   @Input() id: number;
   @Input() selectedGroup: Group;
   @Input() isCreatingGroup: boolean;
+  @Input() isCreatingRoom: boolean;
   @Input() isChangingLights: boolean;
   @Input() parent: string;
   usedLights: Array<Light>;
@@ -31,10 +32,12 @@ export class LightChangeComponent implements OnInit {
   constructor(private hueService: HueService, private manipulationService: ManipulationService) { }
 
   ngOnInit() {
-    if (!this.isCreatingGroup) {
-      this.retrieveUsedLights();
-    } else {
+    if (this.isCreatingRoom) {
       this.retrieveUnusedLights();
+    } else if (this.isCreatingGroup) {
+      this.retrieveAllOwnedLights();
+    } else {
+      this.retrieveUsedLights();
     }
   }
 
@@ -55,8 +58,17 @@ export class LightChangeComponent implements OnInit {
     }
   }
 
+  retrieveAllLights() {
+    return this.hueService.retrieveAllLights();
+  }
+
+  retrieveAllOwnedLights() {
+    this.retrieveAllLights()
+      .then(response => this.unusedLights = response);
+  }
+
   retrieveUnusedLights() {
-    this.hueService.retrieveAllLights()
+    this.retrieveAllLights()
       .then(response => this.filterUsedLights(response)) // filter out lights already in a group, return unused
       .then(filteredIds => this.unusedLights = this.retrieveFilteredLights(filteredIds)) // get unused lights and put in variable
       .then(() => {
@@ -82,7 +94,9 @@ export class LightChangeComponent implements OnInit {
     let lights = [];
     for (const key in groups) {
       if (groups.hasOwnProperty(key)) { // push all light Ids into list
-        lights.push(groups[key].lights);
+        if (groups[key].type === 'Room') {
+          lights.push(groups[key].lights);
+        }
       }
     }
     lights = [].concat.apply([], lights); // flatten array to one level, also removes empty arrays

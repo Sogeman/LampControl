@@ -187,7 +187,7 @@ li:nth-of-type(even) {
   position: absolute;
   top: 50%;
   min-height: 40%;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .delete-confirmation-box {
@@ -252,6 +252,49 @@ li:nth-of-type(even) {
 }
 
 .back-button:active {
+  position: relative;
+  top: 1px;
+}
+
+.add-button {
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #c2c2c2));
+  background: -moz-linear-gradient(top, #f9f9f9 5%, #c2c2c2 100%);
+  background: -webkit-linear-gradient(top, #f9f9f9 5%, #c2c2c2 100%);
+  background: -o-linear-gradient(top, #f9f9f9 5%, #c2c2c2 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 5%, #c2c2c2 100%);
+  background: linear-gradient(to bottom, #f9f9f9 5%, #c2c2c2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#c2c2c2', GradientType=0);
+  background-color: #f9f9f9;
+  -moz-border-radius: 42px;
+  -webkit-border-radius: 42px;
+  border-radius: 42px;
+  border: 2px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 9px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin: 2%;
+}
+
+.add-button:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c2c2c2), color-stop(1, #f9f9f9));
+  background: -moz-linear-gradient(top, #c2c2c2 5%, #f9f9f9 100%);
+  background: -webkit-linear-gradient(top, #c2c2c2 5%, #f9f9f9 100%);
+  background: -o-linear-gradient(top, #c2c2c2 5%, #f9f9f9 100%);
+  background: -ms-linear-gradient(top, #c2c2c2 5%, #f9f9f9 100%);
+  background: linear-gradient(to bottom, #c2c2c2 5%, #f9f9f9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c2c2c2', endColorstr='#f9f9f9', GradientType=0);
+  background-color: #c2c2c2;
+}
+
+.add-button:active {
   position: relative;
   top: 1px;
 }
@@ -385,16 +428,35 @@ li:nth-of-type(even) {
   top: 1px;
 }
 
-.add-button {
+.add-button-group {
   position: absolute;
-  bottom: 1%;
-  border-radius: 50%;
+  bottom: 2%;
+  border-radius: 30px;
   background-color: #34495e;
-  max-height: 64px;
+  height: 50px;
+  width: 200px;
 }
 
 .add-button-phone-light, .add-button-phone-group {
   display: none;
+}
+
+.room-label {
+  position: absolute;
+  left: 8%;
+  top: 90%;
+}
+
+.group-label {
+  position: absolute;
+  right: 4%;
+  top: 90%;
+}
+
+.light-label {
+  position: absolute;
+  left: 13%;
+  top: 90%;
 }
 
 .controls-button {
@@ -528,23 +590,26 @@ li:nth-of-type(even) {
     padding-bottom: 15px;
     border: 1px solid whitesmoke;
   }
-  .add-button {
+  .add-button-group {
     display: none;
   }
   .add-button-phone-group {
     display: block;
     position: absolute;
-    top: -5%;
-    right: 0;
+    top: 7%;
+    right: 0px;
     z-index: 20;
-    height: 64px;
+    height: 50px;
+    width: 195px;
   }
   .add-button-phone-light {
     display: block;
     position: absolute;
-    top: -6%;
-    right: 0;
+    top: 9%;
+    right: 0px;
     z-index: 20;
+    width: 103px;
+    height: 50px;
   }
   .group-item {
     flex-basis: 30%;
@@ -573,25 +638,8 @@ li:nth-of-type(even) {
   .transport-type {
     display: none;
   }
-}
-
-
-/* Test styles
-
-@media only screen and (min-width: 451px) and (max-width: 800px) {
-  body {
-    background-color: red;
+  .lds-spinner {
+    top: 43%;
+    left: 42%;
   }
 }
-
-@media only screen and (min-width: 801px) and (max-width: 1000px) {
-  body {
-    background-color: green;
-  }
-}
-
-@media only screen and (min-width: 1001px) and (max-width: 1200px) {
-  body {
-    background-color: blue;
-  }
-} */
