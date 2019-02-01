@@ -1,6 +1,6 @@
 <div class="monitor">
-  <div class="monitor-item">
-    <h2 class="heading-monitor">{{monitorsData[0].lines[0].name}} &#8594; {{ monitorsData[0].lines[0].towards }}</h2>
+  <div class="monitor-item" *ngFor="let monitor of monitorsData; index as i">
+    <h2 class="heading-monitor">{{monitor.lines[0].name}} &#8594; {{ monitor.lines[0].towards }}</h2>
     <table class="monitor-table">
       <thead>
         <th class="transport-type">Verkehrsmittel</th>
@@ -9,7 +9,7 @@
         <th>Ankunft in</th>
       </thead>
       <tbody>
-        <tr *ngFor="let bus of departures1">
+        <tr *ngFor="let bus of departures[i]">
           <td class="transport-type"><img src="assets/bus.svg" class="monitor-image"></td>
           <td>{{ bus.departureTime.timePlanned | date:'HH:mm:ss' }}</td>
           <td>{{ bus.departureTime.timeReal | date:'HH:mm:ss'}}</td>
@@ -19,7 +19,7 @@
     </table>
   </div>
 
-  <div class="monitor-item">
+  <!-- <div class="monitor-item">
     <h2 class="heading-monitor">{{monitorsData[1].lines[0].name}} &#8594; {{ monitorsData[1].lines[0].towards }}</h2>
     <table class="monitor-table">
         <thead>
@@ -38,7 +38,7 @@
         </tbody>
       </table>
   </div>
-<!--
+
   <div class="monitor-item">
       <h2 class="heading-monitor">{{monitorsData[2].lines[0].name}} &#8594; {{ monitorsData[2].lines[0].towards }}</h2>
       <table class="monitor-table">
@@ -59,3 +59,4 @@
         </table>
     </div> -->
 </div>
+

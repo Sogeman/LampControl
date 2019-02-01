@@ -6,7 +6,9 @@ export class WLResponse {
 
 }
 
+// const WL_MONITOR_URL = 'http://192.168.0.117:8080/lampcontroller/resources/wienerlinien'; // für RPi
 const WL_MONITOR_URL = 'http://localhost:8080/lampcontroller/resources/wienerlinien';
+
 
 
 @Injectable({
@@ -20,7 +22,7 @@ export class WienerlinienService {
   // Steige (für rbl-Nr.) https://data.wien.gv.at/csv/wienerlinien-ogd-steige.csv
 
   getStationInfo(): Observable<any> { // hardcoded for one station, both directions
-    return this.httpClient.get(WL_MONITOR_URL + '/1655/1661');
+    return this.httpClient.get(WL_MONITOR_URL + '/1655/1661/1658');
     // change numbers based on station you want, you get the Data in the csv files
   }
 
