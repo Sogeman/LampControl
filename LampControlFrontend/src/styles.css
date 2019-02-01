@@ -596,19 +596,19 @@ li:nth-of-type(even) {
   .add-button-phone-group {
     display: block;
     position: absolute;
-    top: 7%;
+    top: 0px;
     right: 0px;
     z-index: 20;
+    width: 100%;
     height: 50px;
-    width: 195px;
   }
   .add-button-phone-light {
     display: block;
     position: absolute;
-    top: 9%;
+    top: 0px;
     right: 0px;
     z-index: 20;
-    width: 103px;
+    width: 100%;
     height: 50px;
   }
   .group-item {
