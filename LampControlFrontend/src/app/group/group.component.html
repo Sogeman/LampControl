@@ -1,5 +1,5 @@
 <h2 class="overview-header">Räume
-  <div class="add-button-phone-group click-cursor" *ngIf="!selectedGroup && !isChangingLights" (click)="isGroupCreation = true">
+  <div class="add-button-phone-group click-cursor" *ngIf="!selectedGroup && !isChangingLights && !isRoomCreation && !isGroupCreation" (click)="isGroupCreation = true">
       <button class="click-cursor add-button float-left" (click)="isRoomCreation = true">+ Raum</button>
       <button class="click-cursor add-button float-right" (click)="isGroupCreation = true">+ Gruppe</button>
   </div>

@@ -32,12 +32,12 @@ public class UserResource {
 	public List<User> getAllUsers() {
 		return hueService.getAllUsers();
 	}
-	
-	@GET
-	@Path("/{nickname}")
-	public List<User> getUser(@PathParam("nickname") String nickname) {
-		return hueService.getUser(nickname);
-	}
+//	
+//	@GET
+//	@Path("/{nickname}")
+//	public List<User> getUser(@PathParam("nickname") String nickname) {
+//		return hueService.getUser(nickname);
+//	}
 	
 	@GET
 	@Path("/{id}")

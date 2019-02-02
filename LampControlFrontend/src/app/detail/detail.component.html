@@ -5,7 +5,7 @@
   <button (click)="[isConfirmingDelete = true, parent = 'light']" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
 
-  <img [src]="(selectedLight.state.on == true) ? 'assets/light_on.png' : 'assets/light_off.png'"
+  <img [src]="(selectedLight.state.on == true) ? 'assets/light_on.svg' : 'assets/light_off.svg'"
     [style.background-color]="selectedLight.state.on ? '#f2e63c' : 'black'" class="detail-image item-image click-cursor"
     (click)="lightClicked()">
 

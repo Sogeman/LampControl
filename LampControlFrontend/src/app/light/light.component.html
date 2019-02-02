@@ -8,7 +8,7 @@
 
 <div class="container" *ngIf="!selectedLight && !lightSearch">
   <div *ngFor="let light of lightList | keyvalue" class="item">
-    <img [src]="light.value.state.on ? 'assets/light_on.png' : 'assets/light_off.png'" (click)="toggleLight(light.value.state.on, light.key)"
+    <img [src]="light.value.state.on ? 'assets/light_on.svg' : 'assets/light_off.svg'" (click)="toggleLight(light.value.state.on, light.key)"
       [style.background-color]="light.value.state.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
     <div class=controls>
       <button type="button" class="controls-button click-cursor" (click)="refreshSingleLight(light.key)">

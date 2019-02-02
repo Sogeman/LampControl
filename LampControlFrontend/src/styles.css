@@ -115,6 +115,7 @@ app-light {
   padding: 2%;
   border-radius: 20%;
   margin: 2% 0;
+  height: 64px;
 }
 
 .item-image:hover {
@@ -585,7 +586,7 @@ li:nth-of-type(even) {
     display: block;
   }
   .overview-header {
-    margin-bottom: 3%;
+    margin-bottom: 1%;
     padding-top: 15px;
     padding-bottom: 15px;
     border: 1px solid whitesmoke;

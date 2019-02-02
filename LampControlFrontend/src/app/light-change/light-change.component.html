@@ -15,9 +15,13 @@
         <option value="Bedroom">Schlafzimmer</option>
         <option value="Office">Büro</option>
         <option value="Bathroom">Badezimmer</option>
+        <option value="Toilet">Toilette</option>
+        <option value="Hallway">Flur</option>
+        <option value="Garden">Garten</option>
+        <option value="Terrace">Terrasse</option>
       </select>
       <select class="room-select" [(ngModel)]="selectedRoomClass" *ngIf="isCreatingGroup">
-          <option value="">Gruppe</option>
+          <option value="group">Gruppe</option>
       </select>
     </div>
 
@@ -38,7 +42,7 @@
         (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
         Speichern
       </button>
-      <button *ngIf="isCreatingGroup && selectedLights.length > 0" type="button" class="click-cursor save-button"
+      <button *ngIf="isCreatingGroup && selectedLights.length > 0 && selectedRoomClass === 'group'" type="button" class="click-cursor save-button"
         (click)="startGroupCreation(groupName, selectedLights, selectedRoomClass)">
         Speichern
       </button>

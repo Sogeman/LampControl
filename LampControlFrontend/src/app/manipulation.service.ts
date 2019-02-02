@@ -104,17 +104,23 @@ export class ManipulationService {
   getClassImage(roomClass: string, state: string): string {
     switch (roomClass) {
       case 'Bedroom':
-        return 'assets/bedroom_' + state + '.png';
+        return 'assets/bedroom_' + state + '.svg';
       case 'Bathroom':
-        return 'assets/bathroom_' + state + '.png';
+        return 'assets/bathroom_' + state + '.svg';
       case 'Living room':
-        return 'assets/livingroom_' + state + '.png';
+        return 'assets/livingroom_' + state + '.svg';
       case 'Dining': case 'Kitchen':
-        return 'assets/kitchen_' + state + '.png';
+        return 'assets/kitchen_' + state + '.svg';
       case 'Office':
-        return 'assets/office_' + state + '.png';
+        return 'assets/office_' + state + '.svg';
+      case 'Hallway':
+        return 'assets/hallway_' + state + '.svg';
+      case 'Toilet':
+        return 'assets/toilet_' + state + '.svg';
+      case 'Garden': case 'Terrace':
+        return 'assets/garden_' + state + '.svg';
       default:
-        return 'assets/light_' + state + '.png';
+        return 'assets/light_' + state + '.svg';
     }
   }
 
@@ -166,7 +172,7 @@ export class ManipulationService {
       name: name,
       lights: lights
     };
-    if (roomClass !== '') {
+    if (roomClass !== 'group') {
       group['type'] = 'Room';
       group['class'] = roomClass;
     }

@@ -20,11 +20,11 @@ public class HueService {
 		return entityManager.createNamedQuery("user.selectAll", User.class).getResultList();
 	}
 	
-	public List<User> getUser(String nickname) {
-		return entityManager
-				.createNamedQuery("user.getUser", User.class)
-				.setParameter("nickname", nickname)
-				.getResultList();
-	}
+//	public List<User> getUser(String nickname) {
+//		return entityManager
+//				.createNamedQuery("user.getUser", User.class)
+//				.setParameter("nickname", nickname)
+//				.getSingleResult();
+//	}
 	
 }
