@@ -7,7 +7,7 @@ Third Semester Project, Home Control
 
 Mandler Rene
 
-Web Application to control Philips Hue lights Uand show public transport data in the future)
+Web Application to control Philips Hue lights and show public transport data for specific stops
 
 <h1>You can:</h1>
 
@@ -18,7 +18,7 @@ Web Application to control Philips Hue lights Uand show public transport data in
 - add new group or room and remove them (lights can only be in one room)
 - add lights to groups and remove lights from groups
 - choose a scene for a group, create own scenes, edit created scenes and delete those scenes
-- view Wiener Linien departure times of one station in both directions
+- view Wiener Linien departure times of stations (change station in source code)
 
 works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with Firefox and Chrome)
 
