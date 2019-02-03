@@ -12,12 +12,11 @@
       [style.background-color]="light.value.state.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
     <div class=controls>
       <button type="button" class="controls-button click-cursor" (click)="refreshSingleLight(light.key)">
-        <img src="assets/settings.png" class="">
+        <img src="assets/settings.png">
       </button>
     </div>
     <p class="name">{{ light.value.name }}</p>
   </div>
-  <div class="float-clear"></div>
 
   <div class="add-button-group">
     <button class="click-cursor add-button" (click)="lightSearch = true">Lichter suchen</button>

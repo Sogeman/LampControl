@@ -29,5 +29,3 @@ Backend is used for own scene API instead of using HUE Scene API, also saving us
 HUE API: https://developers.meethue.com/
 Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
-
-TODO: set lightstate in group independently
