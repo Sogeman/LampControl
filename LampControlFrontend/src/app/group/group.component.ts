@@ -32,16 +32,6 @@ export class GroupComponent implements OnInit {
     }
   }
 
-  filterGroups(list: Array<Group>): Array<Group> {
-    const filteredGroups = [];
-    for (const key in list) {
-      if (list.hasOwnProperty(key)) {
-        filteredGroups[key] = list[key];
-      }
-    }
-    return filteredGroups;
-  }
-
   getGroupImage(roomClass: string, state: string): string {
     return this.manipulationService.getClassImage(roomClass, state);
   }
@@ -55,12 +45,12 @@ export class GroupComponent implements OnInit {
 
   refreshAllGroupsOnly() {
     this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = this.filterGroups(groups));
+      .then(groups => this.groupList = groups);
   }
 
   refreshAll() {
     this.hueService.retrieveAllGroups()
-      .then(groups => this.groupList = this.filterGroups(groups))
+      .then(groups => this.groupList = groups)
       .then(() => this.groupsRefreshed.emit());
   }
 
@@ -90,7 +80,7 @@ export class GroupComponent implements OnInit {
 
   clearSelectedGroup() {
     this.selectedGroup = null;
-    this.refreshAll();
+    this.refreshAllGroupsOnly();
   }
 
 

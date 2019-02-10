@@ -11,16 +11,12 @@ export class MonitorComponent implements OnInit, OnDestroy {
 
   monitorsData: any;
   departures: Array<any>;
-  departures1: Array<any>;
-  departures2: Array<any>;
-  departures3: Array<any>;
-  departures4: Array<any>;
   timer: Subscription;
 
   constructor(private wienerlinien: WienerlinienService) { }
 
   ngOnInit() {
-    this.timer = timer(0, 30000).subscribe(() => this.refreshAll());
+    this.timer = timer(0, 10000).subscribe(() => this.refreshAll());
   }
 
   ngOnDestroy() {
@@ -34,10 +30,7 @@ export class MonitorComponent implements OnInit, OnDestroy {
   }
 
   createDeparturesArray(monitors: Array<any>) {
-    const departures = [];
-    monitors.forEach(monitor => departures.push(monitor.lines[0].departures.departure));
-    this.departures = departures;
-    console.log(this.departures);
+    this.departures = monitors.map(monitor => monitor.lines[0].departures.departure);
   }
 
 }
