@@ -187,12 +187,8 @@ li:nth-of-type(even) {
 .delete-confirmation-blackout {
   position: absolute;
   top: 50%;
-  min-height: 40%;
+  min-height: 10%;
   background-color: rgba(0, 0, 0, 0.7);
-}
-
-.delete-confirmation-box {
-  margin-top: 7vh;
 }
 
 .confirm-light {
@@ -548,25 +544,6 @@ li:nth-of-type(even) {
 
 /* Media Queries */
 
-@media only screen and (min-width: 451px) and (max-width: 1200px) {
-  .controls-button {
-    padding: 0;
-    background: transparent;
-    border: none;
-    display: inline;
-  }
-  .controls {
-    width: 50px;
-    margin: 0 auto;
-  }
-  app-group {
-    flex: 50%;
-  }
-  app-light {
-    flex: 50%;
-  }
-}
-
 @media only screen and (max-width: 601px) {
   app-home {
     height: 102vh;
@@ -623,14 +600,13 @@ li:nth-of-type(even) {
     overflow: auto;
     background-color: #34495e;
   }
+  .delete-confirmation-blackout {
+    position: fixed;
+    top: 40%;
+    z-index: 200;
+  }
   .confirm-group, .confirm-light {
     width: 98%;
-  }
-  .confirm-group {
-    top: 33%;
-  }
-  .confirm-light {
-    top: 22vh;
   }
   .heading-monitor {
     display: block;
@@ -642,5 +618,27 @@ li:nth-of-type(even) {
   .lds-spinner {
     top: 43%;
     left: 42%;
+  }
+}
+
+@media only screen and (min-width: 602px) and (max-width: 1200px) {
+  .controls-button {
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: inline;
+  }
+  .controls {
+    width: 50px;
+    margin: 0 auto;
+  }
+  app-group {
+    flex: 50%;
+  }
+  app-light {
+    flex: 50%;
+  }
+  .confirm-group, .confirm-light {
+    width: 46%;
   }
 }
