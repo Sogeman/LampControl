@@ -5,7 +5,7 @@
 # LampControl
 Third Semester Project, Home Control
 
-v1.3 under releases, no more updates planned for now
+v1.3 under releases
 
 Mandler Rene
 
