@@ -9,7 +9,7 @@ v1.3 under releases, no more updates planned for now
 
 Mandler Rene
 
-Web Application to control Philips Hue lights and show public transport data for specific stops
+Web Application to control Philips Hue lights and show public transport data for specific stops<br>
 I have it running on a Raspberry Pi to access it on a tablet near the door
 
 <h1>You can:</h1>
