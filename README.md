@@ -5,11 +5,11 @@
 # LampControl
 Third Semester Project, Home Control
 
-v1.3 under releases, no more updates planned for now
+v1.3 under releases
 
 Mandler Rene
 
-Web Application to control Philips Hue lights and show public transport data for specific stops
+Web Application to control Philips Hue lights and show public transport data for specific stops<br>
 I have it running on a Raspberry Pi to access it on a tablet near the door
 
 <h1>You can:</h1>
@@ -27,9 +27,11 @@ works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with F
 
 <h1>Technologies used:</h1>
 Java EE backend with Wildfly 12 deployment server, MySQL database, Angular 7 frontend
-Backend is used for own scene API instead of using HUE Scene API, also saving users
+Backend is used for own scene API instead of using HUE Scene API and for saving users
 
 <h1>APIs</h1>
 HUE API: https://developers.meethue.com/
 Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
+
+Todo: Logout Button (clears localStorage)
