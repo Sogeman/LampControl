@@ -27,7 +27,7 @@ works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with F
 
 <h1>Technologies used:</h1>
 Java EE backend with Wildfly 12 deployment server, MySQL database, Angular 7 frontend
-Backend is used for own scene API instead of using HUE Scene API, also saving users
+Backend is used for own scene API instead of using HUE Scene API and for saving users
 
 <h1>APIs</h1>
 HUE API: https://developers.meethue.com/
