@@ -2,6 +2,8 @@
 ![mobile view](https://i.imgur.com/NCH1whZ.png)
 ![departure view](https://i.imgur.com/uzU7rGS.png)
 
+More pictures <a href="https://imgur.com/a/DoKlxT0">
+
 # LampControl
 Third Semester Project, Home Control
 
