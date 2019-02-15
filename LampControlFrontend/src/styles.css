@@ -21,8 +21,8 @@ app-home {
   height: 8%;
   text-align: center;
   display: flex;
-  min-height: 43px;
-  margin-bottom: -1%;
+  min-height: 45px;
+  position: relative;
 }
 
 app-group, app-light {
@@ -96,8 +96,11 @@ app-light {
 }
 
 .header {
-  flex-basis: 95%;
-  line-height: 13px;
+  flex-basis: 33%;
+}
+
+app-nav-menu {
+  display: none;
 }
 
 .item {
@@ -152,15 +155,15 @@ app-light {
   box-shadow: 0 0 5px black;
 }
 
-li {
+.list {
   padding: 1%;
 }
 
-li:nth-of-type(odd) {
+.list:nth-of-type(odd) {
   background-color: #22313f;
 }
 
-li:nth-of-type(even) {
+.list:nth-of-type(even) {
   background-color: #2c4052;
 }
 
@@ -207,6 +210,88 @@ li:nth-of-type(even) {
   display: inline-block;
   background-color: #22313f;
 }
+
+.nav-list {
+  position: absolute;
+  padding-left: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  width: 100%;
+  top: 69%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  z-index: 999;
+  background: rgba(28,41,53, 0.95);
+  transition: transform 200ms ease-in-out;
+}
+
+.nav-list-item {
+  text-decoration: none;
+  background-color: unset;
+  list-style: none;
+  width: 20%;
+  margin-top: 1em;
+  margin-left: 1em;
+  text-align: left;
+  padding: 0;
+}
+
+.nav-list-item .delete-button {
+  margin: 0;
+}
+
+.logout-button {
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  margin-top: 1em;
+  height: 25px;
+}
+
+.nav-toggle:checked ~ .nav-list{
+  transform: scale(1,1);
+  transition: transform 250ms ease-in-out;
+}
+
+.nav-toggle:checked ~ .nav-list .logout-button {
+  opacity: 1;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 3px;
+  width: 2.5em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  top: 10px;
+}
+.nav-toggle-label span::after {
+  top: 20px;
+}
+
+
 
 /* Buttons */
 
@@ -277,7 +362,7 @@ li:nth-of-type(even) {
   padding: 10px 9px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
-  margin: 2%;
+  margin: 0.5em;
 }
 
 .add-button:hover {
@@ -430,8 +515,8 @@ li:nth-of-type(even) {
   bottom: 2%;
   border-radius: 30px;
   background-color: #34495e;
-  height: 50px;
-  width: 200px;
+  height: 52px;
+  width: 220px;
 }
 
 .add-button-phone-light, .add-button-phone-group {
@@ -544,7 +629,7 @@ li:nth-of-type(even) {
 
 /* Media Queries */
 
-@media only screen and (max-width: 601px) {
+@media only screen and (max-width: 801px) {
   app-home {
     height: 102vh;
   }
@@ -555,6 +640,15 @@ li:nth-of-type(even) {
     min-height: 45vh;
     overflow: unset;
     position: relative;
+  }
+  .title {
+    margin-bottom: 0.5em;
+  }
+  .user-nickname {
+    display: none;
+  }
+  .nav-menu {
+    display: inline-block;
   }
   .column {
     margin-bottom: 3%;
@@ -619,9 +713,12 @@ li:nth-of-type(even) {
     top: 43%;
     left: 42%;
   }
+  .nav-list {
+    width: 101%;
+  }
 }
 
-@media only screen and (min-width: 602px) and (max-width: 1200px) {
+@media only screen and (min-width: 802px) and (max-width: 1200px) {
   .controls-button {
     padding: 0;
     background: transparent;
@@ -640,5 +737,25 @@ li:nth-of-type(even) {
   }
   .confirm-group, .confirm-light {
     width: 46%;
+  }
+  .nav-menu {
+    display: inline-block;
+  }
+  .header {
+    margin-bottom: 0;
+    margin-top: 0.6em;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .nav-menu {
+    display: inline-block;
+  }
+  .nav-list {
+    text-align: left;
+    top: 74%;
+  }
+  .delete-button {
+    margin: 0;
   }
 }

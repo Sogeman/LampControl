@@ -22,15 +22,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.user = new User();
     if (localStorage.getItem('username')) {
       this.hueService.checkUsername(localStorage.getItem('username'))
-        .then(response => this.extractError(response)) // returns 'error' or 'no error'
-        .then(message => message === 'error' ? this.userNotAuthorized() : this.assignUserDataFromLocalStorage());
+      .then(response => this.extractError(response)) // returns 'error' or 'no error'
+      .then(message => message === 'error' ? this.userNotAuthorized() : this.assignUserDataFromLocalStorage());
     } else {
       this.getBridgeUrl();
-      this.loadingTimer();
+      this.fireLoadingTimer();
     }
     if (this.user.bridgeIp === undefined) {
       this.getBridgeUrl();
     }
+  }
+
+  ngOnDestroy() {
+    this.timer.unsubscribe();
   }
 
   extractError(response: any): string {
@@ -42,8 +46,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   userNotAuthorized() {
     this.userService.deleteUser(parseInt(localStorage.getItem('id'), 10));
-    this.userService.clearLocalStorage();
-    this.loadingTimer();
+    this.clearLocalStorage();
+    this.fireLoadingTimer();
   }
 
   assignUserDataFromLocalStorage() {
@@ -51,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.user.nickname = localStorage.getItem('nickname');
     this.user.bridgeIp = localStorage.getItem('bridgeIp');
     this.user.userId = parseInt(localStorage.getItem('id'), 10);
-    this.loadingTimer();
+    this.fireLoadingTimer();
   }
 
   setUser(user: User) {
@@ -74,11 +78,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  loadingTimer() {
-    this.timer = timer(500).subscribe(() => this.loading = false);
+  fireLoadingTimer() {
+    this.timer = timer(400).subscribe(() => this.loading = false);
   }
 
-  ngOnDestroy() {
-    this.timer.unsubscribe();
+
+  clearLocalStorage() {
+    localStorage.clear();
+  }
+
+  userLoggedOut() {
+    this.clearLocalStorage();
+    this.user.username = null;
+    this.loading = true;
+    this.fireLoadingTimer();
   }
 }

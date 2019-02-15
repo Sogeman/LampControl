@@ -34,8 +34,4 @@ export class UserService {
     return this.httpClient.delete(HUE_USER_RESOURCE_URL + '/' + userId).toPromise();
   }
 
-  clearLocalStorage() {
-    localStorage.clear();
-  }
-
 }

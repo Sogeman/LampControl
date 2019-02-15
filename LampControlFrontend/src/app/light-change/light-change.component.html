@@ -31,7 +31,7 @@
 
     <div class="group-lights">
       <ul class="light-list">
-        <li *ngFor="let light of unusedLights | keyvalue">
+        <li *ngFor="let light of unusedLights | keyvalue" class="list">
           <input class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightSelection(light.key, $event.target.checked)">
           <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
         </li>
@@ -53,7 +53,7 @@
   <p><b>{{ selectedGroup.name }}</b></p>
   <p>Derzeitige Lampen</p>
   <ul class="light-list">
-    <li *ngFor="let light of usedLights | keyvalue">
+    <li *ngFor="let light of usedLights | keyvalue" class="list">
       <input checked class="list-checkbox" type="checkbox" name="light.value.name" (change)="onLightRemoval(light.key, $event.target.checked)">
       <label class="list-label" for="light.value.name">{{ light.value.name }}</label>
     </li>
