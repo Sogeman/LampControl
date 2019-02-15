@@ -217,7 +217,7 @@ app-nav-menu {
   padding-bottom: 1em;
   padding-top: 1em;
   width: 100%;
-  top: 69%;
+  top: 75%;
   transform: scale(1, 0);
   transform-origin: top;
   z-index: 999;
@@ -750,12 +750,5 @@ app-nav-menu {
 @media only screen and (min-width: 1201px) {
   .nav-menu {
     display: inline-block;
-  }
-  .nav-list {
-    text-align: left;
-    top: 74%;
-  }
-  .delete-button {
-    margin: 0;
   }
 }
