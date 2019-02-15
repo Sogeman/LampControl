@@ -29,7 +29,7 @@ I have it running on a Raspberry Pi to access it on a tablet near the door
 works on tablets and phones (tested on Fire HD 2017, Axon 7 and Pixel 2XL with Firefox and Chrome)
 
 <h1>Technologies used:</h1>
-Java EE backend with Wildfly 12 deployment server, MySQL database, Angular 7 frontend
+Java EE backend with Wildfly 12 deployment server, MySQL database, Angular 7 frontend<br>
 Backend is used for own scene API instead of using HUE Scene API and for saving users
 
 <h1>APIs</h1>
