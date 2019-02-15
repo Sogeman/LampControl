@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .then(message => message === 'error' ? this.userNotAuthorized() : this.assignUserDataFromLocalStorage());
     } else {
       this.getBridgeUrl();
-      this.fireLoadingTimer();
+      this.stopLoadingTimer();
     }
     if (this.user.bridgeIp === undefined) {
       this.getBridgeUrl();
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   userNotAuthorized() {
     this.userService.deleteUser(parseInt(localStorage.getItem('id'), 10));
     this.clearLocalStorage();
-    this.fireLoadingTimer();
+    this.stopLoadingTimer();
   }
 
   assignUserDataFromLocalStorage() {
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.user.nickname = localStorage.getItem('nickname');
     this.user.bridgeIp = localStorage.getItem('bridgeIp');
     this.user.userId = parseInt(localStorage.getItem('id'), 10);
-    this.fireLoadingTimer();
+    this.stopLoadingTimer();
   }
 
   setUser(user: User) {
@@ -78,8 +78,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  fireLoadingTimer() {
-    this.timer = timer(400).subscribe(() => this.loading = false);
+  stopLoadingTimer() {
+    this.timer = timer(250).subscribe(() => this.loading = false);
   }
 
 
@@ -91,6 +91,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.clearLocalStorage();
     this.user.username = null;
     this.loading = true;
-    this.fireLoadingTimer();
+    this.stopLoadingTimer();
   }
 }

@@ -4,8 +4,9 @@
   position: relative;
   width: 64px;
   height: 64px;
+  left: 46%;
   top: 45%;
-  left: 45%;
+
 }
 .lds-spinner div {
   transform-origin: 32px 32px;
@@ -76,5 +77,11 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 801px) {
+  .lds-spinner {
+    left: 44%;
   }
 }
