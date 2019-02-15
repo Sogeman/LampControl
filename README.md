@@ -35,6 +35,7 @@ Backend is used for own scene API instead of using HUE Scene API and for saving 
 <h1>APIs</h1>
 HUE API: https://developers.meethue.com/<br>
 Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664<br>
-<em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em><br>
+<em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
+
 
 Todo: Logout Button (clears localStorage) in menu, fix loading spinner in mobile view
