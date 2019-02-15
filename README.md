@@ -1,5 +1,5 @@
 ![desktop view](https://i.imgur.com/N6jFk0m.png)
-![mobile view](https://i.imgur.com/NCH1whZ.png)
+![mobile view](https://i.imgur.com/niv5tly.png)
 ![departure view](https://i.imgur.com/uzU7rGS.png)
 
 <a href="https://imgur.com/a/DoKlxT0">More pictures </a>
