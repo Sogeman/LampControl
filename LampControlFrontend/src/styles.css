@@ -99,10 +99,6 @@ app-light {
   flex-basis: 33%;
 }
 
-app-nav-menu {
-  display: none;
-}
-
 .item {
   flex-basis: 30%;
   padding: 1%;
@@ -222,7 +218,7 @@ app-nav-menu {
   transform-origin: top;
   z-index: 999;
   background: rgba(28,41,53, 0.95);
-  transition: transform 200ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 }
 
 .nav-list-item {
@@ -265,6 +261,7 @@ app-nav-menu {
 
 .nav-toggle:checked ~ .nav-list .logout-button {
   opacity: 1;
+  transition: opacity 500ms ease-in-out;
 }
 
 .nav-toggle-label span,
