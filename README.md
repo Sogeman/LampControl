@@ -13,7 +13,8 @@ v1.3 under releases
 Mandler Rene
 
 Web Application to control Philips Hue lights and show public transport data for specific stops<br>
-I have it running on a Raspberry Pi to access it on a tablet near the door
+I have it running on a Raspberry Pi to access it on a tablet near the door<br>
+Note for future projects: do error handling
 
 <h1>You can:</h1>
 
@@ -38,4 +39,4 @@ Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
 
 
-Todo: Logout Button (clears localStorage) in menu, fix loading spinner in mobile view
+Todo: put all the multiple empty then methods into one, really no idea why I did it like that
