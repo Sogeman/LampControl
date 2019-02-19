@@ -28,7 +28,9 @@ export class DetailComponent implements OnInit {
 
   @Input('lightState')
   set lightState(lightState: string) {
+      console.log(this._lightState);
       this._lightState = lightState;
+      console.log(this._lightState);
       this.stateChange.emit(lightState);
   }
   get lightState(): string {
