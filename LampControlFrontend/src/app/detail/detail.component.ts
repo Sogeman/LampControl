@@ -28,9 +28,7 @@ export class DetailComponent implements OnInit {
 
   @Input('lightState')
   set lightState(lightState: string) {
-      console.log(this._lightState);
       this._lightState = lightState;
-      console.log(this._lightState);
       this.stateChange.emit(lightState);
   }
   get lightState(): string {
@@ -39,7 +37,9 @@ export class DetailComponent implements OnInit {
 
   @Input('groupState')
   set groupState(groupState: string) {
+    console.log(this._groupState);
     this._groupState = groupState;
+    console.log(this._groupState);
     this.stateChange.emit(groupState);
   }
   get groupState(): string {
@@ -51,9 +51,9 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     const calculatedLightState = this.manipulationService.calculateLightState(this.selectedLight, this.selectedGroup);
     if (this.selectedLight) {
-      this.lightState = calculatedLightState;
+      this._lightState = calculatedLightState;
     } else {
-      this.groupState = calculatedLightState;
+      this._groupState = calculatedLightState;
     }
   }
 
