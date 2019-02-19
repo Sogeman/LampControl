@@ -39,4 +39,4 @@ Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
 
 
-Todo: put all the multiple empty then methods into one, really no idea why I did it like that, cache scene api call, save color on post to avoid get call on opening details?
+Todo: put all the multiple empty then methods into one, really no idea why I did it like that, cache scene api call, don't emit lightState onInit, only emit on change
