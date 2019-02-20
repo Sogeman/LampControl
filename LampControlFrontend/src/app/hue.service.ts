@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ManipulationService } from './manipulation.service';
+import { Observable, of, observable } from 'rxjs';
 
 export class Light {
   name: string;
@@ -43,6 +44,9 @@ let hueBridgeUrl = '';
 export class HueService {
 
   constructor(private httpClient: HttpClient, private manipulationService: ManipulationService) { }
+
+  data: Array<Scene>;
+  scenesUpdated: boolean;
 
   // User Creation
 
@@ -166,7 +170,29 @@ export class HueService {
   // Scenes
 
   retrieveAllScenes(): Promise<Array<Scene>> {
-    return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL).toPromise();
+    // return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL);
+    if (!this.scenesUpdated) {
+      return new Promise((resolve) => {
+        if (this.data) {
+          resolve(this.data);
+        } else {
+          this.getScenes()
+            .then(scenes => resolve(scenes));
+        }
+      });
+    } else {
+      return new Promise((resolve) => {
+        this.getScenes()
+            .then(scenes => resolve(scenes));
+      });
+    }
+  }
+
+  getScenes(): Promise<Array<Scene>> {
+    this.scenesUpdated = false;
+    return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL).toPromise()
+      .then(scenes => this.data = scenes);
+    // return this.data;
   }
 
   setSceneState(sceneData: Scene, id: number): Promise<any> {
@@ -174,6 +200,8 @@ export class HueService {
   }
 
   saveScene(name: string, color: string, sceneId: number): Promise<any> { // if ob post oder put
+    this.scenesUpdated = true;
+    console.log(this.scenesUpdated);
     if (sceneId) {
       return this.httpClient.put(HUE_SCENE_RESOURCE_URL + '/' + sceneId, this.manipulationService.createSceneBody(name, color)).toPromise();
     } else {
@@ -182,6 +210,7 @@ export class HueService {
   }
 
   deleteScene(id: number): Promise<any> {
+    this.scenesUpdated = true;
     return this.httpClient.delete(HUE_SCENE_RESOURCE_URL + '/' + id).toPromise();
   }
 }
