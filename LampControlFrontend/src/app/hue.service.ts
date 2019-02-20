@@ -170,38 +170,28 @@ export class HueService {
   // Scenes
 
   retrieveAllScenes(): Promise<Array<Scene>> {
-    // return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL);
-    if (!this.scenesUpdated) {
-      return new Promise((resolve) => {
-        if (this.data) {
-          resolve(this.data);
-        } else {
-          this.getScenes()
-            .then(scenes => resolve(scenes));
-        }
-      });
-    } else {
-      return new Promise((resolve) => {
+    return new Promise((resolve) => {
+      if (this.data && !this.scenesUpdated) {
+        resolve(this.data);
+      } else {
         this.getScenes()
             .then(scenes => resolve(scenes));
-      });
-    }
+      }
+    });
   }
 
   getScenes(): Promise<Array<Scene>> {
     this.scenesUpdated = false;
     return this.httpClient.get<Array<Scene>>(HUE_SCENE_RESOURCE_URL).toPromise()
       .then(scenes => this.data = scenes);
-    // return this.data;
   }
 
   setSceneState(sceneData: Scene, id: number): Promise<any> {
     return this.updateState('groups', [sceneData.x.toString(), sceneData.y.toString()], sceneData.brightness, id);
   }
 
-  saveScene(name: string, color: string, sceneId: number): Promise<any> { // if ob post oder put
+  saveScene(name: string, color: string, sceneId: number): Promise<any> { // check if post or put
     this.scenesUpdated = true;
-    console.log(this.scenesUpdated);
     if (sceneId) {
       return this.httpClient.put(HUE_SCENE_RESOURCE_URL + '/' + sceneId, this.manipulationService.createSceneBody(name, color)).toPromise();
     } else {
