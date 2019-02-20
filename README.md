@@ -37,6 +37,3 @@ Backend is used for own scene API instead of using HUE Scene API and for saving 
 HUE API: https://developers.meethue.com/<br>
 Wiener Linien Open Data API: https://www.wienerlinien.at/eportal3/ep/channelView.do/pageTypeId/66528/channelId/-48664<br>
 <em>remove .dist from WienerLinienResource.java.dist and insert Wiener Linien Developer Key</em>
-
-
-Todo: put all the multiple empty then methods into one, really no idea why I did it like that, cache scene api call
