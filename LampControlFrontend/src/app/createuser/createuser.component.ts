@@ -53,8 +53,10 @@ export class CreateuserComponent implements OnInit {
         if (createdUser[0].success) {
           this.user.username = createdUser[0].success.username;
           this.userService.saveUser(this.user)
-          .then(response => this.user.userId = response)
-          .then(() => this.saveUser(this.user));
+          .then(response => {
+            this.user.userId = response;
+            this.saveUser(this.user);
+          });
         } else {
           alert(`Bridge Knopf drücken! ${extraMessage}`);
           this.user.nickname = '';

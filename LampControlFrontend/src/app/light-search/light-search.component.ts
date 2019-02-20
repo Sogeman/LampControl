@@ -32,12 +32,11 @@ export class LightSearchComponent implements OnInit {
 
   startLightSearch() {
     this.hueService.searchForNewLights()
-      .then(() => this.newLightsFound = true)
       .then(() => {
+        this.newLightsFound = true;
         this.helpText.line1 = 'Es wird nach Lampen gesucht, dies kann bis zu 20s dauern.';
         this.helpText.line2 = 'Bitte zur Hauptansicht zurückkehren und wenn notwendig aktualisieren.';
-        }
-      );
+      });
   }
 
 }

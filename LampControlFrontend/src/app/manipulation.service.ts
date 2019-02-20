@@ -67,7 +67,7 @@ export class ManipulationService {
     let bri = 0;
     let rgb = [];
     let lightState = '';
-    let alpha = '';
+    let alpha = ',';
     if (light) {
       bri = light.state.bri;
       rgb = this.convertXYtoRGB(light.state.xy);
@@ -77,15 +77,15 @@ export class ManipulationService {
     }
     if (bri === 1) {
       bri = 0;
-      alpha = bri.toString();
+      alpha += bri.toString();
     } else if (bri === 254) {
       bri = 1;
       alpha = '';
     } else {
       bri = parseFloat((bri / 254).toFixed(2));
-      alpha = bri.toString();
+      alpha += bri.toString();
     }
-    lightState = `rgb(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+    lightState = `rgb(${rgb[0]},${rgb[1]},${rgb[2]}${alpha})`;
     return lightState;
   }
 

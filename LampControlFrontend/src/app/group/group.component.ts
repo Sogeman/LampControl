@@ -104,8 +104,10 @@ export class GroupComponent implements OnInit {
 
   deleteSelectedGroup(id: number) {
     this.hueService.deleteEntity(id, 'groups')
-      .then(() => this.clearSelectedGroup())
-      .then(() => this.isChangingLights = false);
+      .then(() => {
+        this.clearSelectedGroup();
+        this.isChangingLights = false;
+      });
   }
 
   createGroup(body: any) {
@@ -115,8 +117,10 @@ export class GroupComponent implements OnInit {
 
   saveGroup(body: any) {
     this.hueService.setGroupAttributes(body, this.groupId)
-      .then(() => this.clearGroupCreation())
-      .then(() => this.clearSelectedGroup());
+      .then(() => {
+        this.clearGroupCreation();
+        this.clearSelectedGroup();
+      });
   }
 
   startSceneEdit(scene: Scene) {

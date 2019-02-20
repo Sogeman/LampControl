@@ -70,8 +70,8 @@ export class LightChangeComponent implements OnInit {
   retrieveUnusedLights() {
     this.retrieveAllLights()
       .then(response => this.filterUsedLights(response)) // filter out lights already in a group, return unused
-      .then(filteredIds => this.unusedLights = this.retrieveFilteredLights(filteredIds)) // get unused lights and put in variable
-      .then(() => {
+      .then(filteredIds => {
+        this.unusedLights = this.retrieveFilteredLights(filteredIds);  // get unused lights and put in variable
         if (this.isListEmpty === true) {
           this.helpText = 'Keine Lampen mehr frei. Bitte entferne zuerst Lampen aus anderen Räumen.';
         } else {
@@ -88,7 +88,7 @@ export class LightChangeComponent implements OnInit {
       .then(responseGroups => lightsInGroups = this.filterLightsOutOfGroups(responseGroups)) // filter light ids out of groups
       .then(() => lightIds = this.stripIdsFromLightlist(lights)) // strip out the ids of all lights
       .then(() => filtered = lightIds.filter(lightId => !lightsInGroups.includes(lightId))); // filter out lights not already in a group
-  }
+}
 
   filterLightsOutOfGroups(groups: Array<Group>): number[] {
     let lights = [];
@@ -147,10 +147,12 @@ export class LightChangeComponent implements OnInit {
   retrieveUsedLights() {
     let lightIds: Array<number>;
     this.hueService.retrieveSingleGroup(this.id)
-      .then(group => lightIds = group.lights)
-      .then(() => this.usedLights = this.retrieveFilteredLightList(lightIds))
-      .then(() => this.selectedLights = lightIds)
-      .then(() => this.retrieveUnusedLights());
+      .then(group => {
+        lightIds = group.lights;
+        this.usedLights = this.retrieveFilteredLightList(lightIds);
+        this.selectedLights = lightIds;
+        this.retrieveUnusedLights();
+      });
   }
 
   retrieveFilteredLightList(lightIds: Array<number>): Array<Light> {

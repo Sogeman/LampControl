@@ -37,9 +37,7 @@ export class DetailComponent implements OnInit {
 
   @Input('groupState')
   set groupState(groupState: string) {
-    console.log(this._groupState);
     this._groupState = groupState;
-    console.log(this._groupState);
     this.stateChange.emit(groupState);
   }
   get groupState(): string {

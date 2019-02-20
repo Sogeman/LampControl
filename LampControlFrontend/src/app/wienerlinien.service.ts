@@ -6,8 +6,8 @@ export class WLResponse {
 
 }
 
-// const WL_MONITOR_URL = 'http://192.168.0.117:8080/lampcontroller/resources/wienerlinien'; // für RPi
-const WL_MONITOR_URL = 'http://localhost:8080/lampcontroller/resources/wienerlinien';
+const WL_MONITOR_URL = 'http://192.168.0.117:8080/lampcontroller/resources/wienerlinien'; // für RPi
+// const WL_MONITOR_URL = 'http://localhost:8080/lampcontroller/resources/wienerlinien';
 
 
 

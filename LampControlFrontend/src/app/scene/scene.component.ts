@@ -53,8 +53,10 @@ export class SceneComponent implements OnInit {
 
   deleteScene(id: number) {
     this.hueService.deleteScene(id)
-      .then(() => this.isConfirmingDelete = false)
-      .then(() => this.refreshScenes());
+      .then(() => {
+        this.isConfirmingDelete = false;
+        this.refreshScenes();
+      });
   }
 
 }

@@ -36,7 +36,7 @@
   [isCreatingGroup]="isGroupCreation" [isCreatingRoom]="isRoomCreation" [isChangingLights]="isChangingLights" (back)="$event ? clearGroupCreation() : [clearGroupCreation(), clearSelectedGroup()]"
   (delete)="deleteSelectedGroup($event)" (saveGroup)="saveGroup($event)" (createGroup)="createGroup($event)"></app-light-change>
 
-<app-scene *ngIf="isChangingScene && !isSceneCreation && !isSceneEdit" [groupId]="groupId" (back)="[clearSelectedGroup(), isChangingScene = false, viewSelectedGroup(groupId)]"
+<app-scene *ngIf="isChangingScene && !isSceneCreation && !isSceneEdit" [groupId]="groupId" (back)="[selectedGroup = null, isChangingScene = false, viewSelectedGroup(groupId)]"
   (create)="isSceneCreation = true" (edit)="startSceneEdit($event)"></app-scene>
 
 <app-scene-input *ngIf="isSceneCreation || isSceneEdit" [chosenScene]="chosenScene" (back)="[isSceneCreation = false, isSceneEdit = false, chosenScene = null]"></app-scene-input>
