@@ -2,16 +2,16 @@
 
 <app-createuser *ngIf="!user.username" (userCreated)="setUser($event)"></app-createuser>
 
-<div *ngIf="user.username" class="title">
+<header *ngIf="user.username" class="title">
   <app-nav-menu class="nav-menu header" (logout)="userLoggedOut()"></app-nav-menu>
   <h2 class="header user-nickname" *ngIf="!isShowingDepartures">{{ user.nickname }}'s Controller</h2>
   <h2 class="header user-nickname" *ngIf="isShowingDepartures">Dr.-Neumann-Gasse</h2>
   <button type="button" class="departure-button" *ngIf="!isShowingDepartures" (click)="isShowingDepartures = true">Abfahrten</button>
   <button type="button" class="departure-button" *ngIf="isShowingDepartures" (click)="isShowingDepartures = false">Lampen</button>
-</div>
-<div class="row main" *ngIf="user.username && !isShowingDepartures">
+</header>
+<main class="row main" *ngIf="user.username && !isShowingDepartures">
   <app-group class="column centered" (groupsRefreshed)="light.refreshAllLightsOnly()" #group></app-group>
   <app-light class="column centered" (lightsRefreshed)="group.refreshAllGroupsOnly()" #light></app-light>
-</div>
+</main>
 
 <app-monitor class="monitor main" *ngIf="isShowingDepartures"></app-monitor>
