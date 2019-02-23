@@ -6,7 +6,7 @@
 </h2>
 
 
-<div class="container" *ngIf="!selectedLight && !lightSearch">
+<section class="container" *ngIf="!selectedLight && !lightSearch">
   <div *ngFor="let light of lightList | keyvalue" class="item">
     <img [src]="light.value.state.on ? 'assets/light_on.svg' : 'assets/light_off.svg'" (click)="toggleLight(light.value.state.on, light.key)"
       [style.background-color]="light.value.state.on ? '#f2e63c' : 'black'" class="item-image click-cursor">
@@ -21,7 +21,7 @@
   <div class="add-button-group">
     <button class="click-cursor add-button" (click)="lightSearch = true">Lichter suchen</button>
   </div>
-</div>
+</section>
 
 <app-detail *ngIf="selectedLight" [selectedLight]="selectedLight" [id]="id" (nameChange)="saveLightName($event.value, $event.id, $event.type)"
   (back)="clearSelectedLight()" (delete)="deleteSelectedLight($event)" (lightToggled)="toggleLightDetail($event, id)"
