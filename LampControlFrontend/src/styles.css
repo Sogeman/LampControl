@@ -29,6 +29,7 @@ app-group, app-light {
   height: 95%;
   overflow-y: auto;
   background-color: #34495e;
+  border: 1px solid white;
 }
 
 app-group {
@@ -510,6 +511,7 @@ app-light {
 .add-button-group {
   position: absolute;
   bottom: 2%;
+  border: 2px solid white;
   border-radius: 30px;
   background-color: #34495e;
   height: 52px;
@@ -637,6 +639,7 @@ app-light {
     min-height: 45vh;
     overflow: unset;
     position: relative;
+    border: unset;
   }
   .title {
     margin-bottom: 0.5em;
