@@ -7,7 +7,7 @@
 </h2>
 
 
-<div class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation && !isRoomCreation && !isChangingScene  ">
+<section class="container" *ngIf="!selectedGroup && !isChangingLights && !isGroupCreation && !isRoomCreation && !isChangingScene  ">
   <div *ngFor="let group of groupList | keyvalue" class="group-item item">
     <img [src]="group.value.action.on ? (getGroupImage(group.value.class, 'on')) : (getGroupImage(group.value.class, 'off'))"
       (click)="toggleGroup(group.value.action.on, group.key)" [style.background-color]="group.value.action.on ? '#f2e63c' : 'black'"
@@ -24,7 +24,7 @@
     <button class="click-cursor add-button" (click)="isRoomCreation = true">+ Raum</button>
     <button class="click-cursor add-button" (click)="isGroupCreation = true">+ Gruppe</button>
   </div>
-</div>
+</section>
 
 <app-detail *ngIf="selectedGroup && !isChangingLights && !isChangingScene && !isGroupCreation && !isRoomCreation"
   [selectedGroup]="selectedGroup" [id]="groupId" (groupToggled)="toggleGroupDetail($event, groupId)" (back)="clearSelectedGroup()"
