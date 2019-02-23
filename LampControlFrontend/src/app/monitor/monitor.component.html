@@ -1,5 +1,5 @@
-<div class="monitor">
-  <div class="monitor-item" *ngFor="let monitor of monitorsData; index as i">
+<main class="monitor">
+  <section class="monitor-item" *ngFor="let monitor of monitorsData; index as i">
     <h2 class="heading-monitor">{{monitor.lines[0].name}} &#8594; {{ monitor.lines[0].towards }}</h2>
     <table class="monitor-table">
       <thead>
@@ -17,6 +17,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
+  </section>
+</main>
 
