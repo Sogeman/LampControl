@@ -1,6 +1,6 @@
 <!-- Light Detail -->
 
-<div *ngIf="selectedLight && !selectedGroup">
+<section *ngIf="selectedLight && !selectedGroup">
   <button (click)="backButtonClicked('light')" class="float-left back-button">Zurück</button>
   <button (click)="[isConfirmingDelete = true, parent = 'light']" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
@@ -17,7 +17,7 @@
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
     [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
     [cpPositionOffset]="'-150%'">
-  </div>
+  </section>
 
 <app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" (delete)="finishDeletion()" (cancel)="clearIsConfirmingDelete()"></app-delete-confirmation>
 
@@ -25,7 +25,7 @@
 
 <!-- Group Detail -->
 
-<div *ngIf="selectedGroup && !selectedLight">
+<section *ngIf="selectedGroup && !selectedLight">
   <button (click)="backButtonClicked('group')" class="float-left back-button">Zurück</button>
   <button (click)="[isConfirmingDelete = true, parent = 'group']" class="float-right delete-button">Löschen</button>
   <div class="float-clear"></div>
@@ -42,7 +42,7 @@
     [cpOKButton]="true" [cpOKButtonText]="'Speichern'" [cpCancelButton]="true" [cpCancelButtonText]="'Abbrechen'"
     [cpDisableInput]="'true'" [cpPosition]="'top'" [cpOutputFormat]="'rgba'" [cpPositionRelativeToArrow]="false"
     [cpPositionOffset]="'-150%'">
-  </div>
+  </section>
 
 <app-delete-confirmation *ngIf="isConfirmingDelete" [parent]="parent" (delete)="finishDeletion()" (cancel)="clearIsConfirmingDelete()"></app-delete-confirmation>
 
